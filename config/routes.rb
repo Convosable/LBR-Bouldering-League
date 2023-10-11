@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_climbs
   resources :climbs
   resources :climbing_sets
   resources :users
