@@ -1,0 +1,2 @@
+class ClimbingSet < ApplicationRecord
+end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :climbing_sets
   resources :users
   resources :teams
   get '/hello', to: 'application#hello_world'
