@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: bouldering_league_production
-  username: bouldering_league
-  password: <%= ENV["BOULDERING_LEAGUE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
