@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+
+  post "/signup", to: "users#create"
+  get "/me", to: "users#show"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+
   resources :user_climbs
   resources :climbs
   resources :climbing_sets
   resources :users
   resources :teams
-  get '/hello', to: 'application#hello_world'
+
+  
 
   get '*path',
       to: 'fallback#index',
