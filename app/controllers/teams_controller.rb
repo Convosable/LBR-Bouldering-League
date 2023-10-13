@@ -20,11 +20,9 @@ class TeamsController < ApplicationController
     end
 
     def destroy
-        team = find_team
-        team.delete
+        find_team.delete
         head :no_content
     end
-
 
     private
 
