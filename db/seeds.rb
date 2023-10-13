@@ -1,5 +1,21 @@
 puts "🌱 Seeding data..."
 
+User.destroy_all
+Team.destroy_all
+ClimbingSet.destroy_all
+Climb.destroy_all
+
+Team.create([
+    {
+        team_name: "The Slabberz",
+        team_points: 150
+    },
+    {
+        team_name: "The Ascenders",
+        team_points: 100
+    }
+])
+
 User.create([
   {
     first_name: "Connor",
@@ -8,6 +24,7 @@ User.create([
     password_digest: "password",
     email: "connor@lbr.com",
     handicap: 7,
+    points: 150,
     team_id: 1
   },
   {
@@ -17,18 +34,11 @@ User.create([
     password_digest: "password",
     email: "ziv@lbr.com",
     handicap: 1,
+    points: 100,
     team_id: 2
   }
 ])
 
-Team.create([
-    {
-        team_name: "The Slabberz"
-    },
-    {
-        team_name: "The Ascenders"
-    }
-])
 
 ClimbingSet.create([
     {

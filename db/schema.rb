@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_220232) do
 
   create_table "teams", force: :cascade do |t|
     t.string "team_name"
+    t.integer "team_points", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,6 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_220232) do
     t.string "password_digest"
     t.string "email"
     t.integer "handicap"
+    t.integer "points", default: 0
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
