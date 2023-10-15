@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import SignUpForm from './components/SignUpForm';
 
 import { useDispatch } from 'react-redux';
 import { setUser } from "./redux/user";
@@ -22,6 +23,7 @@ function App() {
   return (
       <div className="App">
         <NavBar />
+        <SignUpForm />
         <Routes>
         </Routes>
       </div>
