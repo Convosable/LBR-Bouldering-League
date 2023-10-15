@@ -27,8 +27,8 @@ function App() {
       <div className="App">
         <h1>{user.username}</h1>
         <NavBar />
-        <Routes>
-        </Routes>
+          <Routes>
+          </Routes>
       </div>
   );
 }
