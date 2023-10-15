@@ -3,9 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Teams from './pages/Teams';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/user';
+import { setTeams } from './redux/teams';
 
 
 function App() {
@@ -26,10 +28,7 @@ function App() {
       fetch("/teams")
       .then((r) => {
         if(r.ok) {
-          r.json().then(teams => {
-            console.log(teams)
-            // dispatch(setTeams(teams))
-          });
+          r.json().then(teams => {dispatch(setTeams(teams))});
         }
       })
     },[])
@@ -42,6 +41,7 @@ function App() {
         <NavBar />
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/teams' element={<Teams />} />
           </Routes>
       </div>
   );
