@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import SignUpForm from './components/SignUpForm';
+import Login from './pages/Login';
 
-import { useDispatch } from 'react-redux';
-import { setUser } from "./redux/user";
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from './redux/user';
 
 
 function App() {
 
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user)
 
     useEffect(() => {
       fetch("/me")
@@ -20,10 +21,12 @@ function App() {
       });
     }, []);
 
+    if (!user) return <Login />;
+
   return (
       <div className="App">
+        <h1>{user.username}</h1>
         <NavBar />
-        <SignUpForm />
         <Routes>
         </Routes>
       </div>
