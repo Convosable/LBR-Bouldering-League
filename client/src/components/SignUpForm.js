@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../redux/user';
+import { setSignupError } from '../redux/error';
 
 const SignUpForm = () => {
 
@@ -12,9 +13,9 @@ const SignUpForm = () => {
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [email, setEmail] = useState("")
     const [handicap, setHandicap] = useState("")
-    const [errors, setErrors] = useState("")
 
     const dispatch = useDispatch();
+    const error = useSelector((state) => state.error.signupError);
 
 
     function handleSignup(e) {
@@ -39,7 +40,9 @@ const SignUpForm = () => {
                     r.json().then((user) => dispatch(setUser(user)))
                 }
                 else {
-                    r.json().then((errors) => setErrors(errors.errors))
+                    r.json().then((errors) => {
+                        dispatch(setSignupError(errors.errors))
+                    })
                 }
             })
     }
@@ -108,15 +111,12 @@ const SignUpForm = () => {
                 </select> <br></br>
                 <input type="submit" value="Sign Up" />
             </form>
-            {errors.length > 0 ? (
-                <div>
-                    {errors.map((error) => (
-                        <li key={error}>
-                            {error}
-                        </li>
-                    ))}
-                </div>
-            ) : null}
+            {error?.map((err) => (
+                <li key={err}>
+                    {err}
+                </li>
+            ))}
+            
         </div>
     )
 }

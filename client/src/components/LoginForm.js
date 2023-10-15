@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 
-import { useDispatch } from 'react-redux';
-import { setUser } from "./redux/user";
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../redux/user';
+import { setLoginError } from '../redux/error';
 
 const LoginForm = () => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [errors, setErrors] = useState("")
 
     const dispatch = useDispatch();
-    
+    const error = useSelector((state) => state.error.loginError);
+
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -25,10 +26,15 @@ const LoginForm = () => {
             if (r.ok) {
                 r.json().then((user) => dispatch(setUser(user)));
             } else {
-                r.json().then((errors) => setErrors(errors.errors))
+                r.json().then((errors) => {
+                    dispatch(setLoginError(errors.errors))
+                })
             }
         })  
     }
+
+    //reminder to clear form if error is hit
+
 
   return (
     <div onSubmit = {handleSubmit}>
@@ -50,15 +56,11 @@ const LoginForm = () => {
             /> <br></br>
             <input type="submit" value="Log In"/>
         </form>
-        {errors.length > 0 ? (
-                <div>
-                    {errors.map((error) => (
-                        <li key={error}>
-                            {error}
-                        </li>
-                    ))}
-                </div>
-            ) : null}
+        {error?.map((err) => (
+                <li key={err}>
+                    {err}
+                </li>
+            ))}
     </div>
   )
 }

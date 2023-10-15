@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import SignUpForm from '../components/SignUpForm'
+import LoginForm from '../components/LoginForm'
 
 const Login = () => {
 
@@ -8,6 +9,7 @@ const Login = () => {
   return (
     <div>
       <div>
+        <LoginForm />
         <SignUpForm /> 
       </div>
     </div>
