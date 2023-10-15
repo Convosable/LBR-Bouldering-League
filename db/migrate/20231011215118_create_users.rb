@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :email
       t.integer :handicap
       t.integer :points, default: 0
-      t.integer :team_id
+      t.integer :team_id, default: nil
 
       t.timestamps
     end

@@ -37,7 +37,7 @@ function App() {
 
   return (
       <div className="App">
-        <h1>{user.username}</h1>
+        <h1>{user.username}{user.id}</h1>
         <NavBar />
           <Routes>
             <Route path='/' element={<Home />} />
