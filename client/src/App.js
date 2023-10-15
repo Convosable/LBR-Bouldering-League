@@ -22,6 +22,18 @@ function App() {
       });
     }, []);
 
+    useEffect(() => {
+      fetch("/teams")
+      .then((r) => {
+        if(r.ok) {
+          r.json().then(teams => {
+            console.log(teams)
+            // dispatch(setTeams(teams))
+          });
+        }
+      })
+    },[])
+
     if (!user) return <Login />;
 
   return (
