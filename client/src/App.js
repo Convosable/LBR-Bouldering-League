@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from './pages/Login';
+import Home from './pages/Home';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/user';
@@ -28,6 +29,7 @@ function App() {
         <h1>{user.username}</h1>
         <NavBar />
           <Routes>
+            <Route path='/' element={<Home />} />
           </Routes>
       </div>
   );

@@ -16,28 +16,28 @@ Team.create([
     }
 ])
 
-User.create([
-  {
-    first_name: "Connor",
-    last_name: "Vosberg",
-    username: "convosable",
-    password_digest: "password",
-    email: "connor@lbr.com",
-    handicap: 7,
-    points: 150,
-    team_id: 1
-  },
-  {
-    first_name: "Ziv",
-    last_name: "Elgar",
-    username: "zeev",
-    password_digest: "password",
-    email: "ziv@lbr.com",
-    handicap: 1,
-    points: 100,
-    team_id: 2
-  }
-])
+# User.create([
+#   {
+#     first_name: "Connor",
+#     last_name: "Vosberg",
+#     username: "convosable",
+#     password_digest: "password",
+#     email: "connor@lbr.com",
+#     handicap: 7,
+#     points: 150,
+#     team_id: 1
+#   },
+#   {
+#     first_name: "Ziv",
+#     last_name: "Elgar",
+#     username: "zeev",
+#     password_digest: "password",
+#     email: "ziv@lbr.com",
+#     handicap: 1,
+#     points: 100,
+#     team_id: 2
+#   }
+# ])
 
 
 ClimbingSet.create([
