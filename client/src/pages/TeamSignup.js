@@ -26,15 +26,17 @@ const TeamSignup = () => {
         .then((r) => {
             if(r.ok) {
                 r.json().then(team => console.log(team));
+                setTeamName('')
             } else {
                 r.json().then(error => console.log(error.errors));
+                setTeamName('')
             }
         })
     }
 
     //need to add current user to team 
 
-    
+
     // need to create a redux reducer to update state of teams (addTeam)
     // need to create a redux reducer to handle the error message for new team (ex) team_name already exists... user can only create onwe team...)
 

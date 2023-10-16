@@ -10,6 +10,9 @@ class TeamsController < ApplicationController
 
     def create
         new_team = Team.create!(team_params)
+        if new_team.persisted?
+            @current_user.update(team_id: new_team.id)
+        end
         render json: new_team, status: :created
     end
 
