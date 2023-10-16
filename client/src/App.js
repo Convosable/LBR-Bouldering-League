@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Teams from './pages/Teams';
 import Leaderboards from './pages/Leaderboards';
+import TeamSignup from './pages/TeamSignup';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/user';
@@ -44,6 +45,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/teams' element={<Teams />} />
             <Route path='/standings' element={<Leaderboards />} />
+            <Route path='/team-signup' element={<TeamSignup />} />
           </Routes>
       </div>
   );
