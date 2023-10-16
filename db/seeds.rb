@@ -1,20 +1,16 @@
 puts "🌱 Seeding data..."
 
-User.destroy_all
+# User.destroy_all
 Team.destroy_all
 ClimbingSet.destroy_all
 Climb.destroy_all
 
-Team.create([
-    {
-        team_name: "The Slabberz",
-        team_points: 150
-    },
-    {
-        team_name: "The Ascenders",
-        team_points: 100
-    }
-])
+25.times do
+    Team.create({
+        team_name: Faker::Team.unique.name,
+        team_points: Faker::Number.within(range: 100..1000)
+    })
+  end
 
 # User.create([
 #   {

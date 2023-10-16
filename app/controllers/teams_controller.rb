@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
 
     def index
-        render json: Team.all.order(:team_name), status: :ok
+        render json: Team.all.order(team_points: :desc), status: :ok
     end
 
     def show

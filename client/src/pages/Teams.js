@@ -6,9 +6,6 @@ const Teams = () => {
 
     const teams = useSelector(state => state.teams)
 
-    console.log(teams)
-
-
   return (
     <div>
         <h1>Teams</h1>
@@ -17,7 +14,7 @@ const Teams = () => {
                 <h1>{t.team_name} - {t.id}</h1>
                 <h2>{t.team_points} points</h2>
                 <h2> Members: {t.members.map(m => (
-                    <div>
+                    <div key={m.id}>
                         <h2>{m}</h2>
                     </div>
                 ))}</h2>
@@ -31,3 +28,6 @@ export default Teams
 
 
 // create a teams details page that shows the members of the team and maybe a pixcture if i end up using ACtive Strorgae
+
+
+//team card compnent to render each team? Maybe not necessary with the lack of information the teams actually have

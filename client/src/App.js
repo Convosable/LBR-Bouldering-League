@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Teams from './pages/Teams';
+import Leaderboards from './pages/Leaderboards';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/user';
@@ -37,11 +38,12 @@ function App() {
 
   return (
       <div className="App">
-        <h1>{user.username}{user.id}</h1>
+        <h1>{user.username}</h1>
         <NavBar />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/teams' element={<Teams />} />
+            <Route path='/standings' element={<Leaderboards />} />
           </Routes>
       </div>
   );
