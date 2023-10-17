@@ -6,12 +6,15 @@ export const teamsSlice = createSlice({
     reducers: {
         setTeams: (state, action) => {
             return action.payload;
-            }
+        },
+        addTeam: (state, action) => {
+            state.push(action.payload);
+        }
     }
 });
 
 // this is for dispatch
-export const { setTeams } = teamsSlice.actions;
+export const { setTeams, addTeam } = teamsSlice.actions;
 
 // this is for configureStore
 export default teamsSlice.reducer;

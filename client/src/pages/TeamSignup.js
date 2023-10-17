@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { setNewTeamError } from '../redux/error'
+import { addTeam } from '../redux/teams'
 
 const TeamSignup = () => {
 
@@ -12,12 +13,14 @@ const TeamSignup = () => {
     const dispatch = useDispatch();
     const teams = useSelector(state => state.teams);
     const errors = useSelector(state => state.error.newTeamError);
+
+    
     
     const filterBySearch = teams?.filter(team => {
         return team.team_name.toLowerCase().includes(search.toLowerCase())
     })
 
-    function handleTeamCreate(e) {
+    function createTeam(e) {
         e.preventDefault()
         fetch('/teams', {
             method: 'POST',
@@ -28,7 +31,7 @@ const TeamSignup = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(team => console.log(team));
+                r.json().then(team => dispatch(addTeam(team)));
                 setTeamName('')
             } else {
                 r.json().then(error => dispatch(setNewTeamError(error.errors)));
@@ -37,42 +40,39 @@ const TeamSignup = () => {
         })
     }
 
-    // need to create a redux reducer to update state of teams (addTeam)
-    // need to create a redux reducer to handle the error message for new team (ex) team_name already exists... user can only create onwe team...)
-
-  return (
-    <div>
+    return (
         <div>
-            <h2>Create a team:</h2>
-            <form onSubmit = {handleTeamCreate}>
-                <label>Team Name:</label>
+            <div>
+                <h2>Create a team:</h2>
+                <form onSubmit = {createTeam}>
+                    <label>Team Name:</label>
+                    <input 
+                        type='text'
+                        name='team_name'
+                        value={teamName}
+                        onChange={(e) => setTeamName(e.target.value)}
+                    /> <br></br>
+                    <input type='submit'/>
+                </form>
+                {errors}
+            </div>
+            <div>
+                <h2>Find a team:</h2>
+                <label>Search existing teams:</label>
                 <input 
-                    type='text'
-                    name='team_name'
-                    value={teamName}
-                    onChange={(e) => setTeamName(e.target.value)}
-                /> <br></br>
-                <input type='submit'/>
-            </form>
-            {errors}
+                    type="text" 
+                    name="search" 
+                    value={search} 
+                    onChange = {(e) => setSearch(e.target.value)} 
+                />
+            </div>
+                {filterBySearch.map(team => (
+                    <Link key={team.id} to={`/teams/${team.team_name}`}>
+                        <h1>{team.team_name}</h1>
+                    </Link>
+                ))}
         </div>
-        <div>
-            <h2>Find a team:</h2>
-            <label>Search existing teams:</label>
-            <input 
-                type="text" 
-                name="search" 
-                value={search} 
-                onChange = {(e) => setSearch(e.target.value)} 
-            />
-        </div>
-            {filterBySearch.map(team => (
-                <Link key={team.id} to={`/teams/${team.team_name}`}>
-                    <h1>{team.team_name}</h1>
-                </Link>
-            ))}
-    </div>
-  )
+    )
 }
 
 export default TeamSignup
