@@ -13,8 +13,6 @@ const TeamSignup = () => {
     const dispatch = useDispatch();
     const teams = useSelector(state => state.teams);
     const errors = useSelector(state => state.error.newTeamError);
-
-    
     
     const filterBySearch = teams?.filter(team => {
         return team.team_name.toLowerCase().includes(search.toLowerCase())

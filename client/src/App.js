@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from './pages/Login';
 import Home from './pages/Home';
-import Teams from './pages/Teams';
+import TeamDetails from './pages/TeamDetails';
 import Leaderboards from './pages/Leaderboards';
 import TeamSignup from './pages/TeamSignup';
 
@@ -43,9 +43,9 @@ function App() {
         <NavBar />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/teams' element={<Teams />} />
-            <Route path='/standings' element={<Leaderboards />} />
-            <Route path='/team-signup' element={<TeamSignup />} />
+            <Route path='/teams/:teamName' element={<TeamDetails />} />
+            <Route path='/leaderboards' element={<Leaderboards />} />
+            <Route path='/teams/new' element={<TeamSignup />} />
           </Routes>
       </div>
   );

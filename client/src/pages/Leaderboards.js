@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { useSelector } from 'react-redux'
 
@@ -20,10 +21,13 @@ const Leaderboards = () => {
   
   return (
     <div>
-        <h1>Leaderboard</h1>
+        <h1>Leaderboards</h1>
         {teams.map((team, index) => (
           <div key={team.id}>
-            <h1>{`${ordinalSuffix(index + 1)} Place: ${team.team_name}`}</h1>
+            <h1>{`${ordinalSuffix(index + 1)} Place:`}</h1>
+            <Link to={`/teams/${team.team_name}`}>
+                <h1>{team.team_name}</h1>
+            </Link>
             <h2>{`${team.team_points} points`}</h2>
           </div>
         ))}
