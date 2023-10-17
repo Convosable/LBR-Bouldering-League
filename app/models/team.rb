@@ -6,4 +6,5 @@ class Team < ApplicationRecord
     def members
         users.where(team_id: self.id).pluck(:first_name) 
     end
+    
 end

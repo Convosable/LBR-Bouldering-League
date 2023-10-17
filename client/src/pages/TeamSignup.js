@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setNewTeamError } from '../redux/error'
 
 const TeamSignup = () => {
 
     const [search, setSearch] = useState('')
     const [teamName, setTeamName] = useState('')
 
-    const teams = useSelector(state => state.teams)
+    const dispatch = useDispatch();
+    const teams = useSelector(state => state.teams);
+    const errors = useSelector(state => state.error.newTeamError);
     
     const filterBySearch = teams?.filter(team => {
         return team.team_name.toLowerCase().includes(search.toLowerCase())
@@ -28,14 +31,11 @@ const TeamSignup = () => {
                 r.json().then(team => console.log(team));
                 setTeamName('')
             } else {
-                r.json().then(error => console.log(error.errors));
+                r.json().then(error => dispatch(setNewTeamError(error.errors)));
                 setTeamName('')
             }
         })
     }
-
-    //need to add current user to team 
-
 
     // need to create a redux reducer to update state of teams (addTeam)
     // need to create a redux reducer to handle the error message for new team (ex) team_name already exists... user can only create onwe team...)
@@ -54,6 +54,7 @@ const TeamSignup = () => {
                 /> <br></br>
                 <input type='submit'/>
             </form>
+            {errors}
         </div>
         <div>
             <h2>Find a team:</h2>

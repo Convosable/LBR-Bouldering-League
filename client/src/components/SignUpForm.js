@@ -12,7 +12,7 @@ const SignUpForm = () => {
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [email, setEmail] = useState("")
-    const [handicap, setHandicap] = useState("")
+    const [handicap, setHandicap] = useState(0)
 
     const dispatch = useDispatch();
     const error = useSelector((state) => state.error.signupError);

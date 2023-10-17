@@ -9,11 +9,18 @@ class TeamsController < ApplicationController
     end
 
     def create
-        new_team = Team.create!(team_params)
-        if new_team.persisted?
-            @current_user.update(team_id: new_team.id)
+        #should this be done via validations??
+        if @current_user.team.present?
+            render json: { errors: "User is already a member of a team" }, status: :unprocessable_entity
+        else
+            new_team = Team.create(team_params)
+            if new_team.persisted?
+                @current_user.update(team_id: new_team.id)
+                render json: new_team, status: :created
+            else
+                render json: { errors: new_team.errors.full_messages }, status: :unprocessable_entity
+            end
         end
-        render json: new_team, status: :created
     end
 
     def update

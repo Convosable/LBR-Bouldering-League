@@ -4,7 +4,8 @@ export const errorSlice = createSlice({
     name: 'error',
     initialState: {
         loginError: null,
-        signupError: null
+        signupError: null,
+        newTeamError: null
     },
     reducers: {
         setLoginError: (state, action) => {
@@ -12,12 +13,15 @@ export const errorSlice = createSlice({
           },
           setSignupError: (state, action) => {
             state.signupError = action.payload;
+          },
+          setNewTeamError: (state, action) => {
+            state.newTeamError = action.payload
           }
     }
 });
 
 // this is for dispatch
-export const {setLoginError, setSignupError } = errorSlice.actions;
+export const {setLoginError, setSignupError, setNewTeamError } = errorSlice.actions;
 
 // this is for configureStore
 export default errorSlice.reducer;
