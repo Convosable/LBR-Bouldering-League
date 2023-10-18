@@ -6,10 +6,12 @@ import Home from './pages/Home';
 import TeamDetails from './pages/TeamDetails';
 import Leaderboards from './pages/Leaderboards';
 import TeamSignup from './pages/TeamSignup';
+import ClimbingSets from './pages/ClimbingSets';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/user';
 import { setTeams } from './redux/teams';
+import { setClimbingSets } from './redux/climbingSets';
 
 
 function App() {
@@ -35,6 +37,15 @@ function App() {
       })
     },[])
 
+    useEffect(() => {
+      fetch("/climbing_sets")
+      .then((r) => {
+        if(r.ok) {
+          r.json().then(sets => {dispatch(setClimbingSets(sets))});
+        }
+      })
+    }, [])
+
     if (!user) return <Login />;
 
     console.log(user)
@@ -48,6 +59,7 @@ function App() {
             <Route path='/teams/:teamName' element={<TeamDetails />} />
             <Route path='/leaderboards' element={<Leaderboards />} />
             <Route path='/teams/new' element={<TeamSignup />} />
+            <Route path='/climbing_sets' element={<ClimbingSets />} />
           </Routes>
       </div>
   );

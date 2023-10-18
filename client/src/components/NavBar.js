@@ -25,7 +25,7 @@ const NavBar = () => {
     <div>
         <NavLink to="/" exact="true">Home</NavLink>
         <NavLink to="/leaderboards" exact="true">Leaderboards</NavLink>
-        <NavLink to="/climbing-sets" exact="true">Climbing Sets</NavLink>
+        <NavLink to="/climbing_sets" exact="true">Climbing Sets</NavLink>
         <NavLink to="/teams/new" exact="true">Team Signup</NavLink>
         <NavLink to="/profile" exact="true">Profile</NavLink>
         <button onClick = {() => handleLogout()}>Logout</button>
