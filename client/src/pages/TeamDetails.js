@@ -12,8 +12,6 @@ const TeamDetails = () => {
 
     const team = teams?.find((team) => team.team_name === teamName)
     if(!team) return <h1>Loading...</h1>
-
-    console.log(team)
    
     return (
         <div>
@@ -26,7 +24,6 @@ const TeamDetails = () => {
                     <ul>{member.points} points</ul>
                     <ul>Handicap: {member.handicap}</ul>
                 </div>
-
             ))}
         </div>
     )

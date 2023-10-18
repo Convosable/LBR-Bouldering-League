@@ -7,6 +7,7 @@ import TeamDetails from './pages/TeamDetails';
 import Leaderboards from './pages/Leaderboards';
 import TeamSignup from './pages/TeamSignup';
 import ClimbingSets from './pages/ClimbingSets';
+import ClimbingSetDetails from './pages/ClimbingSetDetails';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/user';
@@ -60,6 +61,7 @@ function App() {
             <Route path='/leaderboards' element={<Leaderboards />} />
             <Route path='/teams/new' element={<TeamSignup />} />
             <Route path='/climbing_sets' element={<ClimbingSets />} />
+            <Route path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
           </Routes>
       </div>
   );
