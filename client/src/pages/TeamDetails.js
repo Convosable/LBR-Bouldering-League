@@ -15,14 +15,18 @@ const TeamDetails = () => {
 
     console.log(team)
    
-
     return (
         <div>
             <h1>{team.team_name}</h1>
             <h2>{team.team_points} points</h2>
             <h2>Members</h2>
             {team.members.map((member) => (
-                <ul>{member}</ul>
+                <div key={member.id}>
+                    <ul>{member.first_name} {member.last_name}</ul>
+                    <ul>{member.points} points</ul>
+                    <ul>Handicap: {member.handicap}</ul>
+                </div>
+
             ))}
         </div>
     )
@@ -30,6 +34,6 @@ const TeamDetails = () => {
 
 export default TeamDetails;
 
-//i want to change members to an arrayy of objects so that i can displaty individual points as well
+//need to adjust what is sent through wioth member... shouldnt be sending all of the member data, just what is necessary,... name points handicap
 
 //team image via Active storage?

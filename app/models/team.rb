@@ -4,7 +4,7 @@ class Team < ApplicationRecord
     validates :team_name, presence: true, uniqueness: true
 
     def members
-        users.where(team_id: self.id).pluck(:first_name) 
+        users.where(team_id: self.id)
     end
     
 end

@@ -37,6 +37,8 @@ function App() {
 
     if (!user) return <Login />;
 
+    console.log(user)
+
   return (
       <div className="App">
         <h1>{user.username}</h1>
