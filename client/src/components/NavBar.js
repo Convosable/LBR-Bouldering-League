@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../redux/user';
 
 
@@ -9,6 +9,7 @@ import { setUser } from '../redux/user';
 const NavBar = () => {
 
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
 
     function handleLogout() {
         fetch('/logout', {
@@ -27,7 +28,7 @@ const NavBar = () => {
         <NavLink to="/leaderboards" exact="true">Leaderboards</NavLink>
         <NavLink to="/climbing_sets" exact="true">Climbing Sets</NavLink>
         <NavLink to="/teams/new" exact="true">Team Signup</NavLink>
-        <NavLink to="/profile" exact="true">Profile</NavLink>
+        <NavLink to={`/${user.username}`}exact="true">Profile</NavLink>
         <button onClick = {() => handleLogout()}>Logout</button>
     </div>
   )

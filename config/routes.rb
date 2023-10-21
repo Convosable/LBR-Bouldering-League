@@ -5,11 +5,18 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
+  
   resources :user_climbs
   resources :climbs
   resources :climbing_sets
-  resources :users
   resources :teams
+    
+  resources :users do
+    member do
+      patch 'join_team'
+    end
+  end
+
 
   
 

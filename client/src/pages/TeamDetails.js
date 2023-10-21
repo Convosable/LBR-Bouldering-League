@@ -7,11 +7,30 @@ const TeamDetails = () => {
 
     const { teamName } = useParams();
 
-    const teams = useSelector(state => state.teams)
-
+    const teams = useSelector(state => state.teams);
+    const user = useSelector(state => state.user);
+    
 
     const team = teams?.find((team) => team.team_name === teamName)
     if(!team) return <h1>Loading...</h1>
+
+    function handleJoinTeam(e) {
+        e.preventDefault()
+        fetch(`/users/${user.id}/join_team`, {
+            method: 'PATCH',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({
+                team_id: team.id
+            })
+        })
+            .then((r) => {
+                if(r.ok) {
+                    r.json().then(data => console.log(data));
+                }
+            })
+    }
+
+    //joins team succesdfully... need to update state now for team and error handling (ex user is already on team etc)
    
     return (
         <div>
@@ -25,12 +44,11 @@ const TeamDetails = () => {
                     <ul>Handicap: {member.handicap}</ul>
                 </div>
             ))}
+            <button onClick={handleJoinTeam}>Join Team</button>
         </div>
     )
 }
 
 export default TeamDetails;
-
-//need to adjust what is sent through wioth member... shouldnt be sending all of the member data, just what is necessary,... name points handicap
 
 //team image via Active storage?

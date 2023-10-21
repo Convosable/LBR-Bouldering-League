@@ -12,7 +12,13 @@ class UsersController < ApplicationController
     def show
         render json: @current_user, status: :ok
     end
-    
+
+
+    def join_team
+        @team = Team.find(params[:team_id])
+        @current_user.update(team: @team)
+        render json: @current_user, include: :team
+    end
 
 
 # USING FOR POSTMANTESTING

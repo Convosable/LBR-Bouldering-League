@@ -38,6 +38,8 @@ const TeamSignup = () => {
         })
     }
 
+    
+
     return (
         <div>
             <div>
