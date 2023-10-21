@@ -12,7 +12,7 @@ const ClimbingSets = () => {
   return (
     <div>
         <h1> Climbing Sets</h1>
-        {climbingSets.map((set) => (
+        {climbingSets?.map((set) => (
             <div key={set.id}>
                 <h1>Week: {set.week} - {set.set_name}</h1>
                 <p>Include an image of the set via Active Storage here</p> 

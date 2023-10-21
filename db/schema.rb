@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_220232) do
   create_table "climbs", force: :cascade do |t|
     t.integer "grade"
     t.string "color"
+    t.integer "points"
     t.integer "climbing_set_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

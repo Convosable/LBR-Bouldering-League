@@ -19,6 +19,8 @@ function App() {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
+  const teams = useSelector(state => state.teams)
+  const climbingSets = useSelector(state => state.climbingSets)
 
     useEffect(() => {
       fetch("/me")
@@ -56,12 +58,12 @@ function App() {
         <h1>{user.username}</h1>
         <NavBar />
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/teams/:teamName' element={<TeamDetails />} />
-            <Route path='/leaderboards' element={<Leaderboards />} />
-            <Route path='/teams/new' element={<TeamSignup />} />
-            <Route path='/climbing_sets' element={<ClimbingSets />} />
-            <Route path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/teams/:teamName' element={<TeamDetails />} />
+            <Route exact path='/leaderboards' element={<Leaderboards />} />
+            <Route exact path='/teams/new' element={<TeamSignup />} />
+            <Route exact path='/climbing_sets' element={<ClimbingSets />} />
+            <Route exact path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
           </Routes>
       </div>
   );

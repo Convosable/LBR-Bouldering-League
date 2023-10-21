@@ -22,7 +22,7 @@ const Leaderboards = () => {
   return (
     <div>
         <h1>Leaderboards</h1>
-        {teams.map((team, index) => (
+        {teams?.map((team, index) => (
           <div key={team.id}>
             <h1>{`${ordinalSuffix(index + 1)} Place:`}</h1>
             <Link to={`/teams/${team.team_name}`}>

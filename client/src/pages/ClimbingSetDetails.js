@@ -20,6 +20,22 @@ const ClimbingSetDetails = () => {
         }
     }
 
+    function handleSubmit(e) {
+        e.preventDefault()
+        fetch('/user_climbs', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                climb_id: completedClimbs
+            })
+        })
+        .then((r) => {
+            if(r.ok) {
+                r.json().then(data => console.log(data));
+            }
+        })
+    }
+
     console.log(completedClimbs)
 
     // on submit, i need to handle a adding the completion status of climb to the user
@@ -33,7 +49,7 @@ const ClimbingSetDetails = () => {
             <p>Image here for set picture via active storage</p>
             <h2>{set.date_start} - {set.date_end}</h2>
             <h3></h3>
-            <form>
+            <form onSubmit={handleSubmit}>
                 {set.climbs.map((climb) => (
                     <div key={climb.id}>
                         <h1>{climb.color} V{climb.grade}</h1>
@@ -56,3 +72,5 @@ export default ClimbingSetDetails;
 // i want to display the date as Oct. 16, 2023
 
 // update the mapped climbs to be a input forms field to enter completion status for user to submuit their completed climbs
+
+//change to link click here to log climbs??

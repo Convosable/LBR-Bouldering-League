@@ -9,3 +9,5 @@ class CreateUserClimbs < ActiveRecord::Migration[7.1]
     end
   end
 end
+
+# remove completion status as an attribute

@@ -6,5 +6,4 @@ class Team < ApplicationRecord
     def members
         users.where(team_id: self.id)
     end
-    
 end

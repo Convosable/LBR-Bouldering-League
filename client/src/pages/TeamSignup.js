@@ -64,7 +64,7 @@ const TeamSignup = () => {
                     onChange = {(e) => setSearch(e.target.value)} 
                 />
             </div>
-                {filterBySearch.map(team => (
+                {filterBySearch?.map(team => (
                     <Link key={team.id} to={`/teams/${team.team_name}`}>
                         <h1>{team.team_name}</h1>
                     </Link>
