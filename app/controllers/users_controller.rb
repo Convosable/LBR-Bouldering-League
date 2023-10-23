@@ -19,6 +19,11 @@ class UsersController < ApplicationController
         render json: team, status: :accepted
     end
 
+    def leave_team
+        @current_user.update(team: nil)
+        render json: { message: 'left the team' }, status: :accepted
+    end
+
 
 # USING FOR POSTMANTESTING
 

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       patch 'join_team'
+      patch 'leave_team'
     end
   end
 

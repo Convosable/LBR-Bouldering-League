@@ -2,7 +2,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { updateTeamMember } from '../redux/teams'
+import { addTeamMember } from '../redux/teams'
+import { removeTeamMember } from '../redux/teams'
 
 const TeamDetails = () => {
 
@@ -14,7 +15,6 @@ const TeamDetails = () => {
     
 
     const team = teams?.find((team) => team.team_name === teamName)
-    if(!team) return <h1>Loading...</h1>
 
     function handleJoinTeam(e) {
         e.preventDefault()
@@ -25,13 +25,34 @@ const TeamDetails = () => {
                 team_id: team.id
             })
         })
-            .then((r) => {
-                if(r.ok) {
-                    r.json().then(updatedTeam => dispatch(updateTeamMember(updatedTeam)));
-                }
+        .then((r) => {
+            if(r.ok) {
+                r.json().then(updatedTeam => dispatch(addTeamMember(updatedTeam)));
+            }
+        })
+    }
+
+    function handleLeaveTeam(e) {
+        e.preventDefault();
+        fetch(`/users/${user.id}/leave_team`, {
+            method: 'PATCH',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({
+                team_id: null
             })
+        })
+        .then((r) => {
+            if(r.ok) {
+                r.json().then(response => {
+                    dispatch(removeTeamMember({ teamId: team.id, userId: user.id }));
+                    console.log(response); // change to save in state to display message for 3 seconds
+                });
+            }
+        })
     }
    
+    if(!team) return <h1>Loading...</h1>
+
     return (
         <div>
             <h1>{team.team_name}</h1>
@@ -44,7 +65,8 @@ const TeamDetails = () => {
                     <ul>Handicap: {member.handicap}</ul>
                 </div>
             ))}
-            <button onClick={handleJoinTeam}>Join Team</button>
+            { user.team_id === null ? <button onClick={handleJoinTeam}>Join Team</button> : null }
+            { team.id === user.team_id ? <button onClick={handleLeaveTeam}>Leave Team</button> : null }
         </div>
     )
 }
@@ -52,3 +74,4 @@ const TeamDetails = () => {
 export default TeamDetails;
 
 //team image via Active storage?
+
