@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addTeamMember } from '../redux/teams'
 import { removeTeamMember } from '../redux/teams'
+import { addUserTeam } from '../redux/user'
+import { removeUserTeam } from '../redux/user'
 
 const TeamDetails = () => {
 
@@ -27,7 +29,11 @@ const TeamDetails = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(updatedTeam => dispatch(addTeamMember(updatedTeam)));
+                r.json().then(updatedTeam => {
+                    console.log(updatedTeam);
+                    dispatch(addTeamMember(updatedTeam))
+                    dispatch(addUserTeam(updatedTeam.id))
+                });
             }
         })
     }
@@ -44,7 +50,8 @@ const TeamDetails = () => {
         .then((r) => {
             if(r.ok) {
                 r.json().then(response => {
-                    dispatch(removeTeamMember({ teamId: team.id, userId: user.id }));
+                    dispatch(removeTeamMember({teamId: team.id, userId: user.id}))
+                    dispatch(removeUserTeam())
                     console.log(response); // change to save in state to display message for 3 seconds
                 });
             }

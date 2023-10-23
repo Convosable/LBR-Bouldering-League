@@ -51,7 +51,7 @@ function App() {
     }, [])
 
     if (!user) return <Login />;
-    
+
   return (
       <div className="App">
         <h1>{user.username}</h1>
