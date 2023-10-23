@@ -4,6 +4,8 @@ class Team < ApplicationRecord
     validates :team_name, presence: true, uniqueness: true
 
     def members
-        users.where(team_id: self.id)
+        self.users
     end
+
+    
 end

@@ -31,7 +31,7 @@ class ClimbingSetsController < ApplicationController
     end
 
     def climbing_set_params
-        params.permit(:set_name, :week, :date_start, :date_end, :notes)
+        params.require(:climbing_set).permit(:set_name, :week, :date_start, :date_end, :notes)
     end
     
 end

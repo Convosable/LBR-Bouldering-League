@@ -13,11 +13,10 @@ class UsersController < ApplicationController
         render json: @current_user, status: :ok
     end
 
-
     def join_team
-        @team = Team.find(params[:team_id])
-        @current_user.update(team: @team)
-        render json: @current_user, include: :team
+        team = Team.find(params[:team_id])
+        @current_user.update(team: team)
+        render json: team, status: :accepted
     end
 
 
@@ -43,9 +42,8 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:first_name, :last_name, :username, :password, :password_confirmation, :email, :handicap, :points, :team_id)
+        params.require(:user).permit(:first_name, :last_name, :username, :password, :password_confirmation, :email, :handicap, :points, :team_id)
     end
-
     #upon initial creation of user, team_id not included, when the user signs up for a team, team id will be given a value
 
 end

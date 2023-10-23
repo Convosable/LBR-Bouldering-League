@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
   
   resources :user_climbs
   resources :climbs
@@ -16,9 +15,6 @@ Rails.application.routes.draw do
       patch 'join_team'
     end
   end
-
-
-  
 
   get '*path',
       to: 'fallback#index',

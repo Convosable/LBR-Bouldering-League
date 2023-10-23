@@ -1,12 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateTeamMember } from '../redux/teams'
 
 const TeamDetails = () => {
 
     const { teamName } = useParams();
 
+    const dispatch = useDispatch();
     const teams = useSelector(state => state.teams);
     const user = useSelector(state => state.user);
     
@@ -25,12 +27,10 @@ const TeamDetails = () => {
         })
             .then((r) => {
                 if(r.ok) {
-                    r.json().then(data => console.log(data));
+                    r.json().then(updatedTeam => dispatch(updateTeamMember(updatedTeam)));
                 }
             })
     }
-
-    //joins team succesdfully... need to update state now for team and error handling (ex user is already on team etc)
    
     return (
         <div>

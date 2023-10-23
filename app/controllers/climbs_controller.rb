@@ -32,7 +32,7 @@ class ClimbsController < ApplicationController
     end
 
     def climb_params
-        params.permit(:grade, :color)
+        params.require(:climbs).permit(:grade, :color)
     end
 
     def find_climbing_set

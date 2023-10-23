@@ -9,12 +9,21 @@ export const teamsSlice = createSlice({
         },
         addTeam: (state, action) => {
             state.push(action.payload);
+        },
+        updateTeamMember: (state, action) => {
+            const updatedTeam = action.payload;
+            return state.map((team) => {
+                if (team.id === updatedTeam.id) {
+                  return updatedTeam;
+                }
+                return team;
+              });
         }
     }
 });
 
 // this is for dispatch
-export const { setTeams, addTeam } = teamsSlice.actions;
+export const { setTeams, addTeam, updateTeamMember } = teamsSlice.actions;
 
 // this is for configureStore
 export default teamsSlice.reducer;
