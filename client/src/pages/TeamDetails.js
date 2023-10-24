@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -10,6 +10,7 @@ import { removeUserTeam } from '../redux/user'
 const TeamDetails = () => {
 
     const { teamName } = useParams();
+    const [leaveRes, setLeaveRes] = useState(null);
 
     const dispatch = useDispatch();
     const teams = useSelector(state => state.teams);
@@ -17,6 +18,7 @@ const TeamDetails = () => {
     
 
     const team = teams?.find((team) => team.team_name === teamName)
+    console.log(team)
 
     function handleJoinTeam(e) {
         e.preventDefault()
@@ -52,7 +54,10 @@ const TeamDetails = () => {
                 r.json().then(response => {
                     dispatch(removeTeamMember({teamId: team.id, userId: user.id}))
                     dispatch(removeUserTeam())
-                    console.log(response); // change to save in state to display message for 3 seconds
+                    setLeaveRes(response.message)
+                    setTimeout(() => {
+                        setLeaveRes(null);
+                      }, 2000);
                 });
             }
         })
@@ -65,15 +70,16 @@ const TeamDetails = () => {
             <h1>{team.team_name}</h1>
             <h2>{team.team_points} points</h2>
             <h2>Members</h2>
-            {team.members.map((member) => (
-                <div key={member.id}>
-                    <ul>{member.first_name} {member.last_name}</ul>
-                    <ul>{member.points} points</ul>
-                    <ul>Handicap: {member.handicap}</ul>
+            {team.users.map((user) => (
+                <div key={user.id}>
+                    <ul>{user.first_name} {user.last_name}</ul>
+                    <ul>{user.points} points</ul>
+                    <ul>Handicap: {user.handicap}</ul>
                 </div>
             ))}
             { user.team_id === null ? <button onClick={handleJoinTeam}>Join Team</button> : null }
             { team.id === user.team_id ? <button onClick={handleLeaveTeam}>Leave Team</button> : null }
+            {leaveRes ? <h2>{user.first_name} {leaveRes}.</h2> : null}
         </div>
     )
 }

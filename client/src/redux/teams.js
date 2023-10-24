@@ -12,7 +12,7 @@ export const teamsSlice = createSlice({
         },
         addTeamMember: (state, action) => {
             const updatedTeam = action.payload;
-            
+
             return state.map((team) => {
                 if (team.id === updatedTeam.id) {
                   return updatedTeam;
@@ -25,8 +25,8 @@ export const teamsSlice = createSlice({
 
             return state.map((team) => {
                 if (team.id === teamId) {
-                    const updatedMembers = team.members.filter((member) => member.id !== userId);
-                    return { ...team, members: updatedMembers };
+                    const updatedMembers = team.users.filter((user) => user.id !== userId);
+                    return { ...team, users: updatedMembers };
                 }
                 return team;
             });

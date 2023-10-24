@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { setNewTeamError } from '../redux/error'
 import { addTeam } from '../redux/teams'
+import { addUserTeam } from '../redux/user'
 
 const TeamSignup = () => {
 
     const [search, setSearch] = useState('')
     const [teamName, setTeamName] = useState('')
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const teams = useSelector(state => state.teams);
@@ -29,7 +31,12 @@ const TeamSignup = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(team => dispatch(addTeam(team)));
+                r.json().then(team => {
+                    dispatch(addTeam(team))
+                    dispatch(addUserTeam(team.id))
+                    navigate(`/teams/${team.team_name}`)
+                });
+
                 setTeamName('')
             } else {
                 r.json().then(error => dispatch(setNewTeamError(error.errors)));
