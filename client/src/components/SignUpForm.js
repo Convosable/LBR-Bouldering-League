@@ -26,13 +26,15 @@ const SignUpForm = () => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    username: username,
-                    password: password,
-                    password_confirmation: passwordConfirmation,
-                    first_name: firstName,
-                    last_name: lastName,
-                    email: email,
-                    handicap: handicap,
+                    user:{
+                        username: username,
+                        password: password,
+                        password_confirmation: passwordConfirmation,
+                        first_name: firstName,
+                        last_name: lastName,
+                        email: email,
+                        handicap: handicap,
+                    }
                 })
             })
             .then((r) => {

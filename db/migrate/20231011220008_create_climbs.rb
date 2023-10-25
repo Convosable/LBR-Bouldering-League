@@ -3,7 +3,7 @@ class CreateClimbs < ActiveRecord::Migration[7.1]
     create_table :climbs do |t|
       t.integer :grade
       t.string :color
-      t.integer :points
+      t.integer :points, default: 100
       t.integer :climbing_set_id
 
       t.timestamps

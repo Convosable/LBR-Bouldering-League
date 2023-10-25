@@ -25,37 +25,31 @@ Climb.create([
     {
         grade: 1,
         color: "red",
-        points: 10,
         climbing_set_id: 1
     },
     {
         grade: 1,
         color: "yellow",
-        points: 10,
         climbing_set_id: 1
     },
     {
         grade: 3,
         color: "green",
-        points: 10,
         climbing_set_id: 1
     },
     {
         grade: 7,
         color: "red",
-        points: 10,
         climbing_set_id: 1
     },
     {
         grade: 8,
         color: "pink",
-        points: 10,
         climbing_set_id: 1
     },
     {
         grade: 6,
         color: "white",
-        points: 10,
         climbing_set_id: 1
     }
 ])
