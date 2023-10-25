@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       patch 'join_team'
       patch 'leave_team'
+      patch 'update_climbs'
     end
   end
 

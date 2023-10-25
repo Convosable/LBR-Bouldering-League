@@ -12,7 +12,7 @@ const Profile = () => {
         <h1>{user.full_name}</h1>
         <p>insert user image via active stoarage</p>
         <h2>{user.points} points</h2>
-        <h2>{user.team.team_name}</h2>
+        { user.team ? <h2>{user.team.team_name}</h2> : <h2>No Team</h2> }
     </div>
   )
 }

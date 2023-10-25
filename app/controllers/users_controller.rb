@@ -24,6 +24,13 @@ class UsersController < ApplicationController
         render json: { message: 'left the team' }, status: :accepted
     end
 
+    def update_climbs
+        @current_user.user_climbs.clear
+        climb_ids = params[:user][:climbs]
+        climb_ids.each { |climb_id| @current_user.user_climbs.create(climb_id: climb_id) }
+        render json: @current_user, status: :accepted
+    end
+
 
 # USING FOR POSTMANTESTING
 
@@ -37,9 +44,8 @@ class UsersController < ApplicationController
     # end
 
     # def update
-    #     user = User.find(params[:id])
-    #     user.update!(user_params)
-    #     render json: user, status: :accepted
+    #     @current_user.update!(user_params)
+    #     render json: @current_user, status: :accepted
     # end
 
    
@@ -49,7 +55,6 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:first_name, :last_name, :username, :password, :password_confirmation, :email, :handicap, :points, :team_id)
     end
-    #upon initial creation of user, team_id not included, when the user signs up for a team, team id will be given a value
 
 end
 

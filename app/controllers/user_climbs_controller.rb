@@ -4,6 +4,7 @@ class UserClimbsController < ApplicationController
         render json: UserClimb.all 
     end
 
+
     private
 
     def user_climb_params

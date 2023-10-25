@@ -6,27 +6,47 @@ import { useSelector } from 'react-redux';
 const ClimbingSetDetails = () => {
 
     const [completedClimbs, setCompletedClimbs] = useState([]);
-    const {setName} = useParams()
+    const {setName} = useParams();
 
-
-    const climbingSets = useSelector(state => state.climbingSets)
-    const set = climbingSets?.find(set => set.set_name === setName)
+    const user = useSelector(state => state.user);
+    const climbingSets = useSelector(state => state.climbingSets);
+    const set = climbingSets?.find(set => set.set_name === setName);
 
     function handleClimbToggle(climbId) {
         if (completedClimbs.includes(climbId)) {
-            setCompletedClimbs(completedClimbs.filter(id => id !== climbId))
+            setCompletedClimbs(completedClimbs.filter(climb => climb.id !== climbId));
         } else {
             setCompletedClimbs([...completedClimbs, climbId])
         }
     }
 
+    console.log(user)
+
+    // function handleSubmit(e) {
+    //     e.preventDefault()
+    //     fetch('/user_climbs', {
+    //         method: 'POST',
+    //         headers: { 'content-type': 'application/json' },
+    //         body: JSON.stringify({
+    //             climb_id: completedClimbs
+    //         })
+    //     })
+    //     .then((r) => {
+    //         if(r.ok) {
+    //             r.json().then(data => console.log(data));
+    //         }
+    //     })
+    // }
+
     function handleSubmit(e) {
         e.preventDefault()
-        fetch('/user_climbs', {
-            method: 'POST',
+        fetch(`/users/${user.id}/update_climbs`, {
+            method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({
-                climb_id: completedClimbs
+                user: {
+                    climbs: completedClimbs
+                }
             })
         })
         .then((r) => {
@@ -38,7 +58,7 @@ const ClimbingSetDetails = () => {
 
     console.log(completedClimbs)
 
-    // on submit, i need to handle a adding the completion status of climb to the user
+    // need to updaTE USER STATE after form submit
 
 
     if(!set) return <h1>Loading...</h1>
@@ -69,8 +89,6 @@ const ClimbingSetDetails = () => {
 
 export default ClimbingSetDetails;
 
+//upon submition of form, redirect to profile page and show updated completed climbs?? 
+
 // i want to display the date as Oct. 16, 2023
-
-// update the mapped climbs to be a input forms field to enter completion status for user to submuit their completed climbs
-
-//change to link click here to log climbs??
