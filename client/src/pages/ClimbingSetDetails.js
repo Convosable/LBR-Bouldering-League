@@ -1,15 +1,21 @@
 import React, { useState} from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../redux/user';
 
 const ClimbingSetDetails = () => {
 
     const [completedClimbs, setCompletedClimbs] = useState([]);
     const {setName} = useParams();
+    const navigate = useNavigate();
 
+
+    const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const climbingSets = useSelector(state => state.climbingSets);
+
+
     const set = climbingSets?.find(set => set.set_name === setName);
 
     function handleClimbToggle(climbId) {
@@ -19,24 +25,6 @@ const ClimbingSetDetails = () => {
             setCompletedClimbs([...completedClimbs, climbId])
         }
     }
-
-    console.log(user)
-
-    // function handleSubmit(e) {
-    //     e.preventDefault()
-    //     fetch('/user_climbs', {
-    //         method: 'POST',
-    //         headers: { 'content-type': 'application/json' },
-    //         body: JSON.stringify({
-    //             climb_id: completedClimbs
-    //         })
-    //     })
-    //     .then((r) => {
-    //         if(r.ok) {
-    //             r.json().then(data => console.log(data));
-    //         }
-    //     })
-    // }
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -51,15 +39,11 @@ const ClimbingSetDetails = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(data => console.log(data));
+                r.json().then(user => dispatch(updateUser(user)));
             }
         })
+        navigate(`/${user.username}`)
     }
-
-    console.log(completedClimbs)
-
-    // need to updaTE USER STATE after form submit
-
 
     if(!set) return <h1>Loading...</h1>
 

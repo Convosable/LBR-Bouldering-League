@@ -21,5 +21,5 @@ class User < ApplicationRecord
         self.points = self.climbs.sum(:points)
         save
     end
-    
+
 end

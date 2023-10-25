@@ -13,12 +13,15 @@ export const userSlice = createSlice({
         },
         removeUserTeam: (state, action) => {
             state.team_id = null;
+        },
+        updateUser: (state, action) => {
+            return action.payload;
         }
     }
 });
 
 // this is for dispatch
-export const { setUser, addUserTeam, removeUserTeam } = userSlice.actions;
+export const { setUser, addUserTeam, removeUserTeam, updateUser } = userSlice.actions;
 
 // this is for configureStore
 export default userSlice.reducer;
