@@ -33,6 +33,7 @@ class UsersController < ApplicationController
             @current_user.user_climbs.create(climb_id: climb_id)
         end
         @current_user.update_points
+        @current_user.team.calculate_team_points
         render json: @current_user, status: :accepted
     end
 

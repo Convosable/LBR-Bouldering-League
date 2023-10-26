@@ -30,12 +30,21 @@ export const teamsSlice = createSlice({
                 }
                 return team;
             });
+        },
+        updateTeamPoints: (state, action) => {
+            const { teamId, points } = action.payload
+            return state.map((team) => {
+                if (team.id === teamId) {
+                    return {...team, team_points: points}
+                }
+                return team;
+            });
         }
     }
 });
 
 // this is for dispatch
-export const { setTeams, addTeam, addTeamMember, removeTeamMember } = teamsSlice.actions;
+export const { setTeams, addTeam, addTeamMember, removeTeamMember, updateTeamPoints } = teamsSlice.actions;
 
 // this is for configureStore
 export default teamsSlice.reducer;

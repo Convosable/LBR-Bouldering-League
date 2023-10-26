@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../redux/user';
+import { updateTeamPoints } from '../redux/teams';
 
 const ClimbingSetDetails = () => {
 
@@ -15,8 +16,9 @@ const ClimbingSetDetails = () => {
     const user = useSelector(state => state.user);
     const climbingSets = useSelector(state => state.climbingSets);
 
-
     const set = climbingSets?.find(set => set.set_name === setName);
+
+
 
     function handleClimbToggle(climbId) {
         if (completedClimbs.includes(climbId)) {
@@ -39,7 +41,10 @@ const ClimbingSetDetails = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(user => dispatch(updateUser(user)));
+                r.json().then(user => {
+                    dispatch(updateTeamPoints({ teamId: user.team_id, points: user.team.team_points}))
+                    dispatch(updateUser(user))
+                });
             }
         })
         navigate(`/${user.username}`)
