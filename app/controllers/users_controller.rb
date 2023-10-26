@@ -27,7 +27,11 @@ class UsersController < ApplicationController
     def update_climbs
         @current_user.user_climbs.clear
         climb_ids = params[:user][:climbs]
-        climb_ids.each { |climb_id| @current_user.user_climbs.create(climb_id: climb_id) }
+        climb_ids.each do |climb_id|
+            climb = Climb.find(climb_id)
+            climb.calculate_points(@current_user)
+            @current_user.user_climbs.create(climb_id: climb_id)
+        end
         @current_user.update_points
         render json: @current_user, status: :accepted
     end
