@@ -17,9 +17,14 @@ class User < ApplicationRecord
         "#{first_name} #{last_name}"
     end
     
+    # def update_points
+    #     self.points = self.climbs.sum(:points)
+    #     save
+    # end
+
     def update_points
-        self.points = self.climbs.sum(:points)
-        save
+        updated_points = climbs.map { |climb| climb.calculate_points(self) }
+        self.points = updated_points.sum
     end
 
 end

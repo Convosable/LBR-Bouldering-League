@@ -53,6 +53,8 @@ class UsersController < ApplicationController
 
     def update
         @current_user.update!(user_params)
+        @current_user.update_points
+        #need to update change inpoints if handicap is changed
         render json: @current_user, status: :accepted
     end
 

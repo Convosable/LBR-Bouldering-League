@@ -18,8 +18,9 @@ class Climb < ApplicationRecord
         else
             self.points = 0
         end
-        save
+        points
     end
+
 end
 
 # need to update point system... currentloy if a user is has a highher handicap, they are able to score more points...
