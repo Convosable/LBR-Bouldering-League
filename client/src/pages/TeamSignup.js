@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setNewTeamError } from '../redux/error'
 import { addTeam } from '../redux/teams'
-import { addUserTeam } from '../redux/user'
+import { updateUserTeam } from '../redux/user'
 
 const TeamSignup = () => {
 
@@ -33,7 +33,7 @@ const TeamSignup = () => {
             if(r.ok) {
                 r.json().then(team => {
                     dispatch(addTeam(team))
-                    dispatch(addUserTeam(team.id))
+                    dispatch(updateUserTeam(team.id))
                     navigate(`/teams/${team.team_name}`)
                 });
 

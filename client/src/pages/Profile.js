@@ -1,15 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
 const Profile = () => {
 
     const user = useSelector((state) => state.user);
+    const navigate = useNavigate();
 
     return (
         <div>
+            <h1>{user.username}</h1>
             <h1>{user.full_name}</h1>
+            <button onClick={() => navigate(`/${user.username}/edit`)}>Edit Profile</button>
             <p>insert user image via active stoarage</p>
             <h2>{user.points} points</h2>
             { user.team 
