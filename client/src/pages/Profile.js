@@ -11,7 +11,7 @@ const Profile = () => {
             <h1>{user.full_name}</h1>
             <p>insert user image via active stoarage</p>
             <h2>{user.points} points</h2>
-            { user.team ? <h2>{user.team.team_name}</h2> : <h2>No Team</h2> }
+            { user.team ? <h2>{user.team.team_name} - {user.team.team_points} points</h2> : <h2>No Team</h2> }
             <h2>Completed Climbs</h2>
             {user.climbs.map((climb) => (
                 <li key={climb.id}>{climb.color} V{climb.grade} - {climb.points} points</li>
