@@ -11,6 +11,7 @@ const TeamDetails = () => {
 
     const { teamName } = useParams();
     const [leaveRes, setLeaveRes] = useState(null);
+    const [errors, setErrors] = useState(null);
 
     const dispatch = useDispatch();
     const teams = useSelector(state => state.teams);
@@ -36,6 +37,8 @@ const TeamDetails = () => {
                     dispatch(addTeamMember(updatedTeam))
                     dispatch(addUserTeam(updatedTeam.id))
                 });
+            } else {
+                r.json().then((err => setErrors(err.errors)));
             }
         })
     }
@@ -77,9 +80,10 @@ const TeamDetails = () => {
                     <ul>Handicap: {user.handicap}</ul>
                 </div>
             ))}
-            { user.team_id === null ? <button onClick={handleJoinTeam}>Join Team</button> : null }
-            { team.id === user.team_id ? <button onClick={handleLeaveTeam}>Leave Team</button> : null }
+            {user.team_id === null && team.users.length < 4 ? <button onClick={handleJoinTeam}>Join Team</button>: null}     
+            {team.id === user.team_id ? <button onClick={handleLeaveTeam}>Leave Team</button> : null }
             {leaveRes ? <h2>{user.first_name} {leaveRes}.</h2> : null}
+            {errors ? <h3>{errors}</h3> : null}
         </div>
     )
 }

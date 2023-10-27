@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
     skip_before_action :authorize, only: :create
+    before_action :check_team_member_limit, only: [:join_team]
+
 
     
     def create 
@@ -60,6 +62,13 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:first_name, :last_name, :username, :password, :password_confirmation, :email, :handicap, :points, :team_id)
+    end
+
+    def check_team_member_limit
+        team = Team.find(params[:team_id])
+        if team.users.count >= 4
+          render json: { errors: "The team is already full." }, status: :unprocessable_entity
+        end
     end
 
 end

@@ -6,6 +6,6 @@ class Team < ApplicationRecord
     def calculate_team_points
         self.team_points = users.sum(:points)
         save
-      end
+    end
     
 end

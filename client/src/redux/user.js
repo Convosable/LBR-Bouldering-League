@@ -9,10 +9,10 @@ export const userSlice = createSlice({
             return action.payload;
         },
         addUserTeam: (state, action) => {
-            state.team_id = action.payload;
+            return { ...state, team_id: action.payload}
         },
         removeUserTeam: (state, action) => {
-            state.team_id = null;
+            return { ...state, team_id: null }
         },
         updateUser: (state, action) => {
             return action.payload;
@@ -25,3 +25,6 @@ export const { setUser, addUserTeam, removeUserTeam, updateUser } = userSlice.ac
 
 // this is for configureStore
 export default userSlice.reducer;
+
+
+// dispatch(addUserTeam(team.id))
