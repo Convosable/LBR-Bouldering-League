@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateUser } from '../redux/user'
 import { setProfileUpdateError } from '../redux/error'
+import { updateTeamPoints } from '../redux/teams'
 
 const EditProfile = () => {
 
@@ -20,7 +21,7 @@ const EditProfile = () => {
 
     function handleEditProfile(e) {
         e.preventDefault();
-        fetch('/users/${user.id', {
+        fetch(`/users/${user.id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json'},
             body: JSON.stringify({
@@ -33,7 +34,10 @@ const EditProfile = () => {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((user) => dispatch(updateUser(user)))
+                r.json().then((user) => {
+                    dispatch(updateUser(user))
+                    dispatch(updateTeamPoints({ teamId: user.team_id, points: user.team.team_points, userPoints: user.points, userId: user.id}))
+                })
                 navigate(`/${user.username}`)
             }
             else {
@@ -46,6 +50,7 @@ const EditProfile = () => {
     }
 
     // handicap change should only be allowed by admin?
+    //when page reloads, it recalulates the points based on the team  state i think?? but user handicap is still changed
     console.log(errors)
 
     return (

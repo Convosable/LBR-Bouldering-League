@@ -18,6 +18,7 @@ class Climb < ApplicationRecord
         else
             self.points = 0
         end
+        save
         points
     end
 
