@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { addTeamMember } from '../redux/teams'
+import { deleteTeam } from '../redux/teams'
 import { removeTeamMember } from '../redux/teams'
 import { updateUserTeam } from '../redux/user'
 
@@ -11,6 +12,8 @@ const TeamDetails = () => {
     const { teamName } = useParams();
     const [leaveRes, setLeaveRes] = useState(null);
     const [errors, setErrors] = useState(null);
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const teams = useSelector(state => state.teams);
@@ -54,6 +57,7 @@ const TeamDetails = () => {
         .then((r) => {
             if(r.ok) {
                 r.json().then(response => {
+                    dispatch(deleteTeam(team.id))
                     dispatch(removeTeamMember({teamId: team.id, userId: user.id}))
                     dispatch(updateUserTeam(null))
                     setLeaveRes(response.message)
@@ -63,6 +67,9 @@ const TeamDetails = () => {
                 });
             }
         })
+        .then(() => {
+            navigate(`/teams/new`);
+          });
     }
    
     if(!team) return <h1>Loading...</h1>

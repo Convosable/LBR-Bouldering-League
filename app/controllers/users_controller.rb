@@ -22,8 +22,14 @@ class UsersController < ApplicationController
     end
 
     def leave_team
+        team = @current_user.team
         @current_user.update(team: nil)
-        render json: { message: 'left the team' }, status: :accepted
+        if team.users.empty?
+            team.destroy
+            render json: { message: 'Team deleted because it has no members' }, status: :accepted
+        else
+            render json: { message: 'left the team' }, status: :accepted
+        end
     end
 
     def update_climbs
