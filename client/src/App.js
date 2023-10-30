@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useEffect } from 'react'
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -11,6 +12,7 @@ import ClimbingSetDetails from './pages/ClimbingSetDetails';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import NotFound from './pages/NotFound';
+import LoadingPage from './pages/LoadingPage';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from './redux/user';
@@ -22,9 +24,11 @@ function App() {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
-
   const climbingSetsLoading = useSelector(state => state.climbingSets.loading);
   const teamsLoading = useSelector(state => state.teams.loading);
+
+  console.log(climbingSetsLoading)
+  console.log(teamsLoading)
 
     useEffect(() => {
       fetch("/me")
@@ -34,7 +38,8 @@ function App() {
         }
       });
     }, []);
-
+    
+    
     useEffect(() => {
       fetch("/teams")
       .then((r) => {
@@ -53,7 +58,11 @@ function App() {
       })
     }, [])
 
-    if (!user || climbingSetsLoading || teamsLoading) return <Login />;
+    if (!user ) return <Login />;
+
+    if (climbingSetsLoading || teamsLoading ) return <LoadingPage />;
+
+    // some laoding page after login complete if (climbingSetsLoading || teamsLoading) return <Loading />;
 
     //look over climb Sets loading..... maybe have to change user loading as welkl???? 
 

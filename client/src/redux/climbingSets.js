@@ -8,8 +8,11 @@ export const climbingSetsSlice = createSlice({
     },
     reducers: {
         setClimbingSets: (state, action) => {
-            state.data = action.payload;
-            state.loading = false;
+            return {
+                ...state,
+                data: action.payload,
+                loading: false,
+              };
         }
     }
 });

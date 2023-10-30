@@ -4,13 +4,16 @@ export const teamsSlice = createSlice({
     name: 'teams',
     initialState: {
         data:[],
-        isLoading: true
+        loading: true
     },
     reducers: {
         setTeams: (state, action) => {
-            state.data = action.payload;
-            state.isLoading = false;
-        },
+            return {
+              ...state,
+              data: action.payload,
+              loading: false,
+            };
+          },
         addTeam: (state, action) => {
             return [...state, action.payload];
         },
