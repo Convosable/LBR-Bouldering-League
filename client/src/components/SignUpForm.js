@@ -12,7 +12,7 @@ const SignUpForm = () => {
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [email, setEmail] = useState("")
-    const [handicap, setHandicap] = useState(0)
+    const [handicap, setHandicap] = useState('')
 
     const dispatch = useDispatch();
     const error = useSelector((state) => state.error.signupError);
@@ -50,61 +50,52 @@ const SignUpForm = () => {
     }
 
     return (
-        <div>
-            <h1>Signup:</h1>
-
+        <div className = 'login-signup-form' >
             <form onSubmit = {handleSignup}>
-                <label>First Name: </label>
                 <input 
                     type = "text"
                     name = "firstname"
+                    placeholder='First Name'
                     value = {firstName}
                     onChange = {(e) => setFirstName(e.target.value)} 
                 /> <br></br>
-
-                <label>Last Name: </label>
                 <input 
                     type = "text"
                     name = "lastname"
+                    placeholder='Last Name'
                     value = {lastName}
                     onChange = {(e) => setLastName(e.target.value)} 
                 /> <br></br>  
-                      
-                <label>Username: </label>
                 <input 
                     type = "text" 
                     name = "username" 
+                    placeholder='Username'
                     value = {username} 
                     onChange = {(e) => setUsername(e.target.value)} 
                 /> <br></br>
-
-                <label>Password: </label>
                 <input 
                     type = "password"
                     name = "password"
+                    placeholder='Password'
                     value = {password}
                     onChange = {(e) => setPassword(e.target.value)} 
                 /> <br></br>
-
-                <label>Password Confirmation: </label>
                 <input 
                     type = "password"
                     name = "passwordConfirmation"
+                    placeholder='Password Confirmation'
                     value = {passwordConfirmation}
                     onChange = {(e) => setPasswordConfirmation(e.target.value)} 
                 /> <br></br>
-
-
-                <label>Email: </label>
                 <input 
                     type = "text"
                     name = "email"
+                    placeholder='Email'
                     value = {email}
                     onChange = {(e) => setEmail(e.target.value)} 
                 /> <br></br>
-
-                <label>Handicap: </label>
                 <select value = {handicap} onChange = {(e) => setHandicap(e.target.value)}>
+                    <option value="" disabled>Select a Handicap</option>
                     {Array.from({ length: 11 }, (i, index) => (
                         <option key={index} value={index}>
                             V{index}

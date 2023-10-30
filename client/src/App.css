@@ -33,9 +33,9 @@
 
 /* Login Form */
 
-.login-form input[type="text"],
-.login-form input[type="password"],
-.login-form input[type="submit"] {
+.login-signup-form input[type="text"],
+.login-signup-form input[type="password"],
+.login-signup-form input[type="submit"] {
   box-sizing: border-box;
   width: 100%;
   height: 40px;
@@ -45,11 +45,22 @@
   margin-bottom: 10px;
 }
 
-.login-form input[type="submit"] {
+.login-signup-form input[type="submit"] {
   background-color: #0074d9;
   color: #fff;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-signup-form select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
 
