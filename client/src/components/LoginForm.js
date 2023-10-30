@@ -39,7 +39,7 @@ const LoginForm = () => {
 
 
   return (
-    <div onSubmit = {handleSubmit}>
+    <div className = 'login-form' onSubmit = {handleSubmit}>
         <form>
             <input 
                 type="text" 
