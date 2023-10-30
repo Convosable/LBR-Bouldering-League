@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const Leaderboards = () => {
 
-  const teams = useSelector(state => state.teams)
+  const teams = useSelector(state => state.teams.data)
 
   function ordinalSuffix(number) {
     if (number === 1 || (number > 20 && number % 10 === 1)) {

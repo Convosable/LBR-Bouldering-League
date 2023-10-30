@@ -2,10 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const climbingSetsSlice = createSlice({
     name: 'climbingSets',
-    initialState: [],
+    initialState: {
+        data: [],
+        loading: true
+    },
     reducers: {
         setClimbingSets: (state, action) => {
-            return action.payload;
+            state.data = action.payload;
+            state.loading = false;
         }
     }
 });

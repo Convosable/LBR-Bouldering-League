@@ -22,8 +22,9 @@ function App() {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
-  const teams = useSelector(state => state.teams)
-  const climbingSets = useSelector(state => state.climbingSets)
+
+  const climbingSetsLoading = useSelector(state => state.climbingSets.loading);
+  const teamsLoading = useSelector(state => state.teams.loading);
 
     useEffect(() => {
       fetch("/me")
@@ -52,7 +53,9 @@ function App() {
       })
     }, [])
 
-    if (!user) return <Login />;
+    if (!user || climbingSetsLoading || teamsLoading) return <Login />;
+
+    //look over climb Sets loading..... maybe have to change user loading as welkl???? 
 
   return (
       <div className="App">

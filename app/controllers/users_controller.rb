@@ -37,16 +37,20 @@ class UsersController < ApplicationController
     end
 
     def update_climbs
-        @current_user.user_climbs.clear
-        climb_ids = params[:user][:climbs]
-        climb_ids.each do |climb_id|
-            climb = Climb.find(climb_id)
-            climb.calculate_points(@current_user)
-            @current_user.user_climbs.create(climb_id: climb_id)
+        if @current_user.team.present?
+            @current_user.user_climbs.clear
+            climb_ids = params[:user][:climbs]
+            climb_ids.each do |climb_id|
+                climb = Climb.find(climb_id)
+                climb.calculate_points(@current_user)
+                @current_user.user_climbs.create(climb_id: climb_id)
+            end
+            @current_user.update_points
+            @current_user.team.calculate_team_points
+            render json: @current_user, status: :accepted
+        else
+            render json: {errors: "Must be on a team before you can submit completed climbs."}, status: :unprocessable_entity
         end
-        @current_user.update_points
-        @current_user.team.calculate_team_points
-        render json: @current_user, status: :accepted
     end
 
 

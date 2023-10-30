@@ -5,19 +5,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addTeamMember } from '../redux/teams'
 import { deleteTeam } from '../redux/teams'
 import { removeTeamMember } from '../redux/teams'
-import { updateUserTeam } from '../redux/user'
 import { updateUser } from '../redux/user'
 
 const TeamDetails = () => {
 
     const { teamName } = useParams();
-    const [leaveRes, setLeaveRes] = useState(null);
     const [errors, setErrors] = useState(null);
 
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const teams = useSelector(state => state.teams);
+    const teams = useSelector(state => state.teams.data);
     const user = useSelector(state => state.user);
     
 
@@ -84,7 +82,6 @@ const TeamDetails = () => {
             ))}
             {user.team_id === null && team.users.length < 4 ? <button onClick={handleJoinTeam}>Join Team</button>: null}     
             {team.id === user.team_id ? <button onClick={handleLeaveTeam}>Leave Team</button> : null }
-            {leaveRes ? <h2>{user.first_name} {leaveRes}.</h2> : null}
             {errors ? <h3>{errors}</h3> : null}
         </div>
     )

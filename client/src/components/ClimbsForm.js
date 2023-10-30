@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../redux/user';
 import { updateTeamPoints } from '../redux/teams';
+import { setClimbsFormError } from '../redux/error';
 
 
 const ClimbsForm = ({ set }) => {
@@ -14,6 +15,7 @@ const ClimbsForm = ({ set }) => {
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+    const error = useSelector(state => state.error.climbsFormError)
 
     function handleClimbToggle(climbId) {
         if (completedClimbs.includes(climbId)) {
@@ -37,33 +39,39 @@ const ClimbsForm = ({ set }) => {
         .then((r) => {
             if(r.ok) {
                 r.json().then(user => {
-                    dispatch(updateTeamPoints({ teamId: user.team_id, points: user.team.team_points, userPoints: user.points, userId: user.id}))
+                    dispatch(updateTeamPoints({ 
+                        teamId: user.team_id, 
+                        points: user.team.team_points, 
+                        userPoints: user.points, 
+                        userId: user.id}))
                     dispatch(updateUser(user))
+                    navigate(`/${user.username}`)
+                });
+            } else {
+                r.json().then(error => {
+                    dispatch(setClimbsFormError(error.errors))
                 });
             }
         })
-        navigate(`/${user.username}`)
     }
-
-    //user ponits arent updating on the team side of things
-
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                    {set.climbs.map((climb) => (
-                        <div key={climb.id}>
-                            <h1>{climb.color} V{climb.grade}</h1>
-                            <label>Completed: </label>
-                            <input 
-                                type="checkbox" 
-                                checked={completedClimbs.includes(climb.id)}
-                                onChange={() => handleClimbToggle(climb.id)}
-                            />
-                        </div>
-                    ))}
-                    <input type='submit'/>
-                </form>
+                {set.climbs.map((climb) => (
+                    <div key={climb.id}>
+                        <h1>{climb.color} V{climb.grade}</h1>
+                        <label>Completed: </label>
+                        <input 
+                            type="checkbox" 
+                            checked={completedClimbs.includes(climb.id)}
+                            onChange={() => handleClimbToggle(climb.id)}
+                        />
+                    </div>
+                ))}
+                <input type='submit'/>
+            </form>
+            {error ? <h2>{error}</h2> : null}
         </div>
     )
 }

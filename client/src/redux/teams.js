@@ -2,10 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const teamsSlice = createSlice({
     name: 'teams',
-    initialState: [],
+    initialState: {
+        data:[],
+        isLoading: true
+    },
     reducers: {
         setTeams: (state, action) => {
-            return action.payload;
+            state.data = action.payload;
+            state.isLoading = false;
         },
         addTeam: (state, action) => {
             return [...state, action.payload];

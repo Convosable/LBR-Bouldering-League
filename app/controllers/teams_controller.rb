@@ -9,7 +9,6 @@ class TeamsController < ApplicationController
     end
 
     def create
-        #should this be done via validations??
         if @current_user.team.present?
             render json: { errors: "User is already a member of a team" }, status: :unprocessable_entity
         else
