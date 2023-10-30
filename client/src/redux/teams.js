@@ -18,11 +18,11 @@ export const teamsSlice = createSlice({
             return state;
         },
         addTeamMember: (state, action) => {
-            const updatedTeam = action.payload;
+            const user = action.payload;
 
             return state.map((team) => {
-                if (team.id === updatedTeam.id) {
-                  return updatedTeam;
+                if (team.id === user.team.id) {
+                  return {...team, users: [...team.users, user]};
                 }
                 return team;
               });

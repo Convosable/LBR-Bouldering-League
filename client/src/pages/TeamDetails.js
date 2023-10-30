@@ -6,6 +6,7 @@ import { addTeamMember } from '../redux/teams'
 import { deleteTeam } from '../redux/teams'
 import { removeTeamMember } from '../redux/teams'
 import { updateUserTeam } from '../redux/user'
+import { updateUser } from '../redux/user'
 
 const TeamDetails = () => {
 
@@ -34,10 +35,9 @@ const TeamDetails = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(updatedTeam => {
-                    console.log(updatedTeam);
-                    dispatch(addTeamMember(updatedTeam))
-                    dispatch(updateUserTeam(updatedTeam.id))
+                r.json().then(user => {
+                    dispatch(addTeamMember(user))
+                    dispatch(updateUser(user))
                 });
             } else {
                 r.json().then((err => setErrors(err.errors)));
@@ -56,14 +56,10 @@ const TeamDetails = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(response => {
+                r.json().then(user => {
                     dispatch(deleteTeam(team.id))
                     dispatch(removeTeamMember({teamId: team.id, userId: user.id}))
-                    dispatch(updateUserTeam(null))
-                    setLeaveRes(response.message)
-                    setTimeout(() => {
-                        setLeaveRes(null);
-                      }, 2000);
+                    dispatch(updateUser(user))
                 });
             }
         })

@@ -15,10 +15,16 @@ class UsersController < ApplicationController
         render json: @current_user, status: :ok
     end
 
+    # def join_team
+    #     team = Team.find(params[:team_id])
+    #     @current_user.update(team: team)
+    #     render json: team, status: :accepted
+    # end
+
     def join_team
         team = Team.find(params[:team_id])
         @current_user.update(team: team)
-        render json: team, status: :accepted
+        render json: @current_user, status: :accepted
     end
 
     def leave_team
@@ -26,10 +32,8 @@ class UsersController < ApplicationController
         @current_user.update(team: nil)
         if team.users.empty?
             team.destroy
-            render json: { message: 'Team deleted because it has no members' }, status: :accepted
-        else
-            render json: { message: 'left the team' }, status: :accepted
         end
+        render json: @current_user, status: :accepted
     end
 
     def update_climbs
