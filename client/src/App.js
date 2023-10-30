@@ -68,7 +68,6 @@ function App() {
 
   return (
       <div className="App">
-        <h1>{user.username}</h1>
         <NavBar />
           <Routes>
             <Route exact path='/' element={<Home />} />

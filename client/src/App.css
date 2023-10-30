@@ -31,7 +31,7 @@
 }
 
 
-/* Login Form */
+/* Login/Signup Form */
 
 .login-signup-form input[type="text"],
 .login-signup-form input[type="password"],
@@ -65,3 +65,33 @@
 }
 
 
+/* NavBar */
+
+.navbar {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar a,
+.navbar button {
+  background-color: #7e5454;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 16px; /* Set the font size to match the other links */
+  line-height: 1.5;
+}
+
+.navbar a:hover,
+.navbar button:hover {
+  background-color: #a97979;
+}
+
+.navbar img{
+  width: 170px;
+  padding-right: 30px;
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import logo from '../images/LBR-logo-bubble.png'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../redux/user';
@@ -23,7 +24,8 @@ const NavBar = () => {
     }
 
   return (
-    <div>
+    <div className='navbar'>
+        <img src={logo} alt='lbr-logo-bubble' />
         <NavLink to="/" exact="true">Home</NavLink>
         <NavLink to="/leaderboards" exact="true">Leaderboards</NavLink>
         <NavLink to="/climbing_sets" exact="true">Climbing Sets</NavLink>
