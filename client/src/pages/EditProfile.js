@@ -50,8 +50,6 @@ const EditProfile = () => {
     }
 
     // handicap change should only be allowed by admin?
-    //when page reloads, it recalulates the points based on the team  state i think?? but user handicap is still changed
-    console.log(errors)
 
     return (
         <div>

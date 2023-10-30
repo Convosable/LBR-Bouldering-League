@@ -10,9 +10,10 @@ import ClimbingSets from './pages/ClimbingSets';
 import ClimbingSetDetails from './pages/ClimbingSetDetails';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
+import NotFound from './pages/NotFound';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from './redux/user';
+import { updateUser } from './redux/user';
 import { setTeams } from './redux/teams';
 import { setClimbingSets } from './redux/climbingSets';
 
@@ -28,7 +29,7 @@ function App() {
       fetch("/me")
       .then((r) => {
         if (r.ok) {
-          r.json().then((user) => dispatch(setUser(user)));
+          r.json().then((user) => dispatch(updateUser(user)));
         }
       });
     }, []);
@@ -64,8 +65,9 @@ function App() {
             <Route exact path='/teams/new' element={<TeamSignup />} />
             <Route exact path='/climbing_sets' element={<ClimbingSets />} />
             <Route exact path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
-            <Route exact path='/:username' element={<Profile />} />
-            <Route exact path='/:username/edit' element={<EditProfile />} />
+            <Route exact path={`/${user.username}`} element={<Profile />} />
+            <Route exact path={`/${user.username}/edit`} element={<EditProfile />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
       </div>
   );

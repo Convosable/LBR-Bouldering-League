@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../redux/user';
+import { updateUser } from '../redux/user';
 import { setLoginError } from '../redux/error';
 
 const LoginForm = () => {
@@ -26,7 +26,7 @@ const LoginForm = () => {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((user) => dispatch(setUser(user)));
+                r.json().then((user) => dispatch(updateUser(user)));
             } else {
                 r.json().then((errors) => {
                     dispatch(setLoginError(errors.errors))

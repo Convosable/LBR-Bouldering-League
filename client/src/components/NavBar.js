@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../redux/user';
+import { updateUser } from '../redux/user';
 
 
 
@@ -17,7 +17,7 @@ const NavBar = () => {
         })
         .then((r) => {
             if(r.ok) {
-                dispatch(setUser(null));
+                dispatch(updateUser(null));
             }
         })
     }
