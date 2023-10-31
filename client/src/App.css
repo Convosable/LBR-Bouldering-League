@@ -167,6 +167,7 @@
   margin: 0 auto; 
   margin-bottom: 10px;
   border-radius: 5px;
+  max-width: 500px;
 }
 
 .climbing-sets a {
@@ -189,3 +190,40 @@
   margin: 10px 300px 10px 300px;
 }
 
+.climbing-set-details img  {
+  max-width: 500px;
+}
+
+/* Climbs Form */
+
+.climbs {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.climbs input {
+    transform: scale(1.2);
+    margin-left: 10px;
+}
+
+.climbs-form input[type="submit"]  {
+  box-sizing: border-box;
+  width: 500px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #2e7fc7;
+  background-color: #2e7fc7;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.climbs-form input[type="submit"]:hover {
+  background-color: #0074d9;
+}

@@ -9,7 +9,6 @@ import { setClimbsFormError } from '../redux/error';
 
 const ClimbsForm = ({ set }) => {
 
-
     const [completedClimbs, setCompletedClimbs] = useState([]);
     const navigate = useNavigate();
 
@@ -57,11 +56,11 @@ const ClimbsForm = ({ set }) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form  className='climbs-form' onSubmit={handleSubmit}>
+                <h2>Submit climbs here:</h2>
                 {set.climbs.map((climb) => (
-                    <div key={climb.id}>
-                        <h1>{climb.color} V{climb.grade}</h1>
-                        <label>Completed: </label>
+                    <div className='climbs' key={climb.id}>
+                        <h2>{climb.color} V{climb.grade}</h2>
                         <input 
                             type="checkbox" 
                             checked={completedClimbs.includes(climb.id)}
@@ -77,3 +76,5 @@ const ClimbsForm = ({ set }) => {
 }
 
 export default ClimbsForm;
+
+//preload wioth data ?? ye si should do that 
