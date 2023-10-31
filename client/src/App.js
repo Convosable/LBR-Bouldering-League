@@ -24,11 +24,6 @@ function App() {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
-  const climbingSetsLoading = useSelector(state => state.climbingSets.loading);
-  const teamsLoading = useSelector(state => state.teams.loading);
-
-  console.log(climbingSetsLoading)
-  console.log(teamsLoading)
 
     useEffect(() => {
       fetch("/me")
@@ -59,8 +54,6 @@ function App() {
     }, [])
 
     if (!user ) return <Login />;
-
-    if (climbingSetsLoading || teamsLoading ) return <LoadingPage />;
 
     // some laoding page after login complete if (climbingSetsLoading || teamsLoading) return <Loading />;
 

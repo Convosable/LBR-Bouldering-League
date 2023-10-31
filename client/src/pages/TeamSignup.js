@@ -13,7 +13,7 @@ const TeamSignup = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const teams = useSelector(state => state.teams.data);
+    const teams = useSelector(state => state.teams);
     const errors = useSelector(state => state.error.newTeamError);
     
     const filterBySearch = teams?.filter(team => {

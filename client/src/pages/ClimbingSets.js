@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const ClimbingSets = () => {
 
-    const climbingSets = useSelector(state => state.climbingSets.data)
+    const climbingSets = useSelector(state => state.climbingSets)
 
     return (
         <div>

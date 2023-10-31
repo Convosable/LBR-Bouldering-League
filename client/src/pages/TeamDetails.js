@@ -15,7 +15,7 @@ const TeamDetails = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const teams = useSelector(state => state.teams.data);
+    const teams = useSelector(state => state.teams);
     const user = useSelector(state => state.user);
     
 

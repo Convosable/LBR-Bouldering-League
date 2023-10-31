@@ -29,6 +29,7 @@ const Home = () => {
             <li>V8-V9: 0 points... Chris needs to move up his handicapo level</li>
 
         <h2>Rules</h2>
+          <li>Each team will consist of 4 climbers.</li>
           <li>Every climber has one week to complete and submit their climbs to recieve full points.</li>
           <li>Points will still be awarded if climbs are completed late, but at a lesser value: 80% for a week after, 60% for 2 weeks after.</li>
           <li>Each week of boudlering league will begin on the Tuesday and endf the following Tuesday. This gives every climber 8 days to complete and submit their climbs.  </li>

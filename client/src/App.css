@@ -82,7 +82,7 @@
   color: #fff;
   text-decoration: none;
   margin: 0 15px;
-  font-size: 16px; /* Set the font size to match the other links */
+  font-size: 16px;
   line-height: 1.5;
 }
 
@@ -94,4 +94,57 @@
 .navbar img{
   width: 170px;
   padding-right: 30px;
+}
+
+/* Home */
+
+.home{
+  padding-left: 20px;
+}
+.home h1,
+.home h2 {
+  text-align: center;
+}
+
+
+/* Leaderboards */
+
+.leaderboards {
+  text-align: center;
+}
+.leaderboard-team-card {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  max-width: 1000px;
+}
+
+.leaderboard-team-card a {
+  text-decoration: none;
+  color: black;
+}
+
+.leaderboard-team-card a:hover {
+  text-decoration: underline;
+}
+
+.leaderboard-team-card h1 {
+  margin: 0;
+  padding: 20px;
+}
+
+.leaderboard-1st {
+  background-color: gold;
+}
+
+.leaderboard-2nd{
+  background-color: silver;
+}
+
+.leaderboard-3rd {
+  background-color: #CD7F32;
 }

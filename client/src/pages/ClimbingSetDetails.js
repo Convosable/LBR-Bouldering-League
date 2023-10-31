@@ -8,7 +8,7 @@ const ClimbingSetDetails = () => {
 
     const {setName} = useParams();
 
-    const climbingSets = useSelector(state => state.climbingSets.data);
+    const climbingSets = useSelector(state => state.climbingSets);
 
     const set = climbingSets?.find(set => set.set_name === setName);
 
