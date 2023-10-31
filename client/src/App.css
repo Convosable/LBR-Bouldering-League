@@ -150,7 +150,7 @@
 }
 
 
-/* Leaderboards */
+/* Climbing Sets */
 
 .climbing-sets-container {
   text-align: center;
@@ -179,3 +179,13 @@
   display: inline-block;
   text-align: center;
 }
+
+/* Climbing Set Details */
+
+.climbing-set-details {
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 10px 300px 10px 300px;
+}
+
