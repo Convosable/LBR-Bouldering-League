@@ -48,14 +48,14 @@ const TeamSignup = () => {
     
 
     return (
-        <div>
-            <div>
+        <div className='team-sign-up-container'>
+            <div className='create-team'>
                 <h2>Create a team:</h2>
                 <form onSubmit = {createTeam}>
-                    <label>Team Name:</label>
                     <input 
                         type='text'
                         name='team_name'
+                        placeholder='Team Name'
                         value={teamName}
                         onChange={(e) => setTeamName(e.target.value)}
                     /> <br></br>
@@ -63,20 +63,21 @@ const TeamSignup = () => {
                 </form>
                 {errors}
             </div>
-            <div>
+            <div className='find-team'>
                 <h2>Find a team:</h2>
-                <label>Search existing teams:</label>
                 <input 
                     type="text" 
                     name="search" 
+                    placeholder='Search existing teams'
                     value={search} 
                     onChange = {(e) => setSearch(e.target.value)} 
                 />
             </div>
+        
                 {filterBySearch?.map(team => (
-                    <Link key={team.id} to={`/teams/${team.team_name}`}>
-                        <h1>{team.team_name}</h1>
-                    </Link>
+                        <Link className='find-team-card' key={team.id} to={`/teams/${team.team_name}`}>
+                            <h1>{team.team_name}</h1>
+                        </Link>
                 ))}
         </div>
     )

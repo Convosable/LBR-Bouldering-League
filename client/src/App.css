@@ -208,8 +208,8 @@
 }
 
 .climbs input {
-    transform: scale(1.2);
-    margin-left: 10px;
+  transform: scale(1.2);
+  margin-left: 10px;
 }
 
 .climbs-form input[type="submit"]  {
@@ -226,4 +226,67 @@
 
 .climbs-form input[type="submit"]:hover {
   background-color: #0074d9;
+}
+
+/* Team Sign Up */
+
+.team-sign-up-container {
+  text-align: center;
+}
+
+.create-team input[type="text"] {
+  box-sizing: border-box;
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.create-team input[type="submit"] {
+  box-sizing: border-box;
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #2e7fc7;
+  background-color: #2e7fc7;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.create-team input[type="submit"]:hover {
+  background-color: #0074d9;
+}
+
+.find-team input[type="text"] {
+  box-sizing: border-box;
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.find-team-card {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  width: 300px;
+  max-width: 400px;
+  text-decoration: none;
+  color: black;
+  font-size: 10px;
+}
+
+.find-team-card:hover {
+  text-decoration: none;
+  color: black;
+  background-color: #d3d3d3;
 }

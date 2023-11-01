@@ -5,9 +5,9 @@ const Home = () => {
     <div className='home'>
         <h1>Welcome to Long Beach Rising Bouldering Leage!</h1>
 
-          <p>Remember, the main goals of boudlering league are to:</p>  
+          <p>Remember, the main goals of bouldering league are to:</p>  
             <li>Try your hardest and become a better and strong climber.</li>
-            <li>Get to know other members in our community and climb with and create new friends</li>
+            <li>Get to know other members in our community and climb with and create new friends.</li>
             <li>NOT GET INJURED... please warm up accordingly and remember no climb is worth an injury. Listen to your body and rest when needed!</li>
   
         <h2>Points System</h2>
@@ -34,6 +34,7 @@ const Home = () => {
           <li>Points will still be awarded if climbs are completed late, but at a lesser value: 80% for a week after, 60% for 2 weeks after.</li>
           <li>Each week of boudlering league will begin on the Tuesday and endf the following Tuesday. This gives every climber 8 days to complete and submit their climbs.  </li>
           <li>If you are sick, or traveling for an extended period of time, just let us know and we can figure something out for you.</li>
+        
         <h2>Prizes</h2>
           <li>insert prizes here </li>
     </div>

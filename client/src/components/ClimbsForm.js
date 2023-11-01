@@ -18,7 +18,7 @@ const ClimbsForm = ({ set }) => {
 
     function handleClimbToggle(climbId) {
         if (completedClimbs.includes(climbId)) {
-            setCompletedClimbs(completedClimbs.filter(climb => climb.id !== climbId));
+            setCompletedClimbs(completedClimbs.filter(id => id !== climbId));
         } else {
             setCompletedClimbs([...completedClimbs, climbId])
         }
