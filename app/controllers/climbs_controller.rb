@@ -13,6 +13,12 @@ class ClimbsController < ApplicationController
         render json: new_climb, status: :created
     end
 
+    #for postman 
+    # def create
+    #     new_climb = Climb.create!(climb_params)
+    #     render json: new_climb, status: :created
+    # end
+
     def update
         climb = find_climbing_set.climbs.find(params[:id])
         climb.update!(climb_params)
@@ -32,7 +38,7 @@ class ClimbsController < ApplicationController
     end
 
     def climb_params
-        params.require(:climbs).permit(:grade, :color)
+        params.require(:climb).permit(:grade, :color)
     end
 
     def find_climbing_set

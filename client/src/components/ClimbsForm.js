@@ -16,22 +16,36 @@ const ClimbsForm = ({ set }) => {
     const user = useSelector(state => state.user);
     const error = useSelector(state => state.error.climbsFormError)
 
+    // function handleClimbToggle(climbId) {
+    //     if (completedClimbs.includes(climbId)) {
+    //         setCompletedClimbs(completedClimbs.filter(id => id !== climbId));
+    //     } else {
+    //         setCompletedClimbs([...completedClimbs, climbId])
+    //     }
+    // }
+
     function handleClimbToggle(climbId) {
-        if (completedClimbs.includes(climbId)) {
-            setCompletedClimbs(completedClimbs.filter(id => id !== climbId));
-        } else {
-            setCompletedClimbs([...completedClimbs, climbId])
-        }
+        setCompletedClimbs((prevCompletedClimbs) => {
+            if (prevCompletedClimbs.includes(climbId)) {
+                return prevCompletedClimbs.filter(id => id !== climbId);
+            } else {
+                return [...prevCompletedClimbs, climbId];
+            }
+        });
     }
 
     function handleSubmit(e) {
         e.preventDefault()
+        const climbsData = completedClimbs.map((climbId) => ({
+            id: climbId,
+            completed: true
+        }));
         fetch(`/users/${user.id}/update_climbs`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({
                 user: {
-                    climbs: completedClimbs
+                    climbs: climbsData
                 }
             })
         })

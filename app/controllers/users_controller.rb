@@ -15,12 +15,6 @@ class UsersController < ApplicationController
         render json: @current_user, status: :ok
     end
 
-    # def join_team
-    #     team = Team.find(params[:team_id])
-    #     @current_user.update(team: team)
-    #     render json: team, status: :accepted
-    # end
-
     def join_team
         team = Team.find(params[:team_id])
         @current_user.update(team: team)
@@ -38,12 +32,14 @@ class UsersController < ApplicationController
 
     def update_climbs
         if @current_user.team.present?
-            @current_user.user_climbs.clear
-            climb_ids = params[:user][:climbs]
-            climb_ids.each do |climb_id|
+            climbs_data = params[:user][:climbs]
+            climbs_data.each do |user_climb|
+                climb_id = user_climb[:id]
+                completed = user_climb[:completed]
+
                 climb = Climb.find(climb_id)
                 climb.calculate_points(@current_user)
-                @current_user.user_climbs.create(climb_id: climb_id)
+                @current_user.user_climbs.create(climb_id: climb_id, completed: completed)
             end
             @current_user.update_points
             @current_user.team.calculate_team_points
@@ -52,6 +48,8 @@ class UsersController < ApplicationController
             render json: {errors: "Must be on a team before you can submit completed climbs."}, status: :unprocessable_entity
         end
     end
+
+    ## nned to fix update climbsd to handle diffrent climbing sets
 
 
 # USING FOR POSTMANTESTING

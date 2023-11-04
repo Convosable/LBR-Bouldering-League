@@ -2,30 +2,54 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
+import ClimbingSets from './ClimbingSets';
 
 const Profile = () => {
 
     const user = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const climbingSets = useSelector(state => state.climbingSets)
 
     return (
-        <div>
-            <h1>{user.username}</h1>
-            <h1>{user.full_name}</h1>
-            <button onClick={() => navigate(`/${user.username}/edit`)}>Edit Profile</button>
-            <p>insert user image via active stoarage</p>
-            <h2>{user.points} points</h2>
+        <div className='profile'>
+            <div className='profile-header'>
+                <img src='https://t4.ftcdn.net/jpg/05/42/36/11/360_F_542361185_VFRJWpR2FH5OiAEVveWO7oZnfSccZfD3.jpg' alt='image-placeholder' />
+                <h1>{user.username}</h1>
+                <button onClick={() => navigate(`/${user.username}/edit`)}>Edit Profile</button>
+            </div>
+
+            <h1>{user.full_name} - {user.points} points</h1>
             { user.team 
             ? <h2><Link to={`/teams/${user.team.team_name}`}>{user.team.team_name} - {user.team.team_points} points</Link></h2> 
             : <h2>No Team</h2> }
-            <h2>Completed Climbs</h2>
-            {user.climbs.map((climb) => (
-                <li key={climb.id}>{climb.color} V{climb.grade} - {climb.points} points</li>
-            ))}
+            
+            <h2>Completed Climbs:</h2>
+            <div className='week-set-container'>
+                {climbingSets.map((week) => {
+                    const completedClimbs = user.climbs.filter((climb) => climb.climbing_set_id === week.id);
+
+                    return (
+                        <div key={week.id} className="set-week">
+                            <h2>Week {week.week}: {week.set_name}</h2>
+                            {completedClimbs.map((climb) => (
+                                <li key={climb.id}>
+                                    {climb.color} V{climb.grade} - {climb.points} points
+                                </li>
+                            ))}
+                        </div>
+                    );
+                })}
+            </div>    
         </div>
-    )
-}
+    );
+};
+
+
 
 export default Profile;
 
 //display climbing_set via climbingset.find(set => set.id === climb.climbing_set_id)
+
+// replace ima ge holder with active storage photo upload]
+
+//comleted climbs week 1 -5 columns of completitons for css

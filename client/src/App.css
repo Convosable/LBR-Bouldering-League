@@ -290,3 +290,48 @@
   color: black;
   background-color: #d3d3d3;
 }
+
+
+/* Profile */
+
+.profile-header img{
+  max-width: 100px;
+  height: auto;
+}
+.profile-header {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-header button {
+  background-color: #7e5454;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.profile {
+  text-align: center;
+}
+
+.set-week-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.set-week {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 300px;
+}
