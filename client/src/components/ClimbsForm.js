@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,31 +9,26 @@ import { setClimbsFormError } from '../redux/error';
 
 const ClimbsForm = ({ set }) => {
 
-    const [completedClimbs, setCompletedClimbs] = useState([]);
-    const navigate = useNavigate();
-
-    const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const error = useSelector(state => state.error.climbsFormError)
 
-    // function handleClimbToggle(climbId) {
-    //     if (completedClimbs.includes(climbId)) {
-    //         setCompletedClimbs(completedClimbs.filter(id => id !== climbId));
-    //     } else {
-    //         setCompletedClimbs([...completedClimbs, climbId])
-    //     }
-    // }
+    const [completedClimbs, setCompletedClimbs] = useState([]);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        setCompletedClimbs(user.climbs.map(climb => climb.id));
+    }, [user.climbs]);
+
 
     function handleClimbToggle(climbId) {
-        setCompletedClimbs((prevCompletedClimbs) => {
-            if (prevCompletedClimbs.includes(climbId)) {
-                return prevCompletedClimbs.filter(id => id !== climbId);
-            } else {
-                return [...prevCompletedClimbs, climbId];
-            }
-        });
+        if (completedClimbs.includes(climbId)) {
+            setCompletedClimbs(completedClimbs.filter(id => id !== climbId))
+        } else {
+            setCompletedClimbs([...completedClimbs, climbId])
+        }
     }
-
+    
     function handleSubmit(e) {
         e.preventDefault()
         const climbsData = completedClimbs.map((climbId) => ({
@@ -68,6 +63,7 @@ const ClimbsForm = ({ set }) => {
         })
     }
 
+
     return (
         <div>
             <form  className='climbs-form' onSubmit={handleSubmit}>
@@ -90,5 +86,3 @@ const ClimbsForm = ({ set }) => {
 }
 
 export default ClimbsForm;
-
-//preload wioth data ?? ye si should do that 

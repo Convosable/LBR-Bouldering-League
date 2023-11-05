@@ -30,26 +30,57 @@ class UsersController < ApplicationController
         render json: @current_user, status: :accepted
     end
 
+    # def update_climbs
+    #     if @current_user.team.present?
+    #         climbs_data = params[:user][:climbs]
+    #         climbs_data.each do |user_climb|
+    #             climb_id = user_climb[:id]
+    #             completed = user_climb[:completed]
+
+    #             climb = Climb.find(climb_id)
+    #             climb.calculate_points(@current_user)
+    #             @current_user.user_climbs.create(climb_id: climb_id, completed: completed)
+    #         end
+    #         @current_user.update_points
+    #         @current_user.team.calculate_team_points
+    #         render json: @current_user, status: :accepted
+    #     else
+    #         render json: {errors: "Must be on a team before you can submit completed climbs."}, status: :unprocessable_entity
+    #     end
+    # end
+
     def update_climbs
         if @current_user.team.present?
-            climbs_data = params[:user][:climbs]
-            climbs_data.each do |user_climb|
-                climb_id = user_climb[:id]
-                completed = user_climb[:completed]
-
-                climb = Climb.find(climb_id)
-                climb.calculate_points(@current_user)
-                @current_user.user_climbs.create(climb_id: climb_id, completed: completed)
+          climbs_data = params[:user][:climbs]
+          updated_climbs = []
+      
+          climbs_data.each do |user_climb|
+            climb_id = user_climb[:id]
+            completed = user_climb[:completed]
+      
+            climb = Climb.find(climb_id)
+            climb.calculate_points(@current_user)
+      
+            # Only create or update the user_climb if completed is true
+            if completed
+              user_climb = @current_user.user_climbs.find_or_initialize_by(climb_id: climb_id)
+              user_climb.save
+              updated_climbs << climb_id
             end
-            @current_user.update_points
-            @current_user.team.calculate_team_points
-            render json: @current_user, status: :accepted
+          end
+      
+          # Remove any user_climbs that are not in the updated_climbs list
+          @current_user.user_climbs.where.not(climb_id: updated_climbs).destroy_all
+      
+          @current_user.update_points
+          @current_user.team.calculate_team_points
+          render json: @current_user, status: :accepted
         else
-            render json: {errors: "Must be on a team before you can submit completed climbs."}, status: :unprocessable_entity
+          render json: { errors: "Must be on a team before you can submit completed climbs." }, status: :unprocessable_entity
         end
-    end
+      end
 
-    ## nned to fix update climbsd to handle diffrent climbing sets
+    ## need to uopdate how points are calculated now
 
 
 # USING FOR POSTMANTESTING
