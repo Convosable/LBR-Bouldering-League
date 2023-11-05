@@ -321,17 +321,18 @@
   text-align: center;
 }
 
-.set-week-container {
+.week-set-container {
   display: flex;
   text-align: center;
   justify-content: center;
-  align-items: center;
+  align-items: top;
 }
 
-.set-week {
+.week-set {
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   max-width: 300px;
+  text-align: left;
 }

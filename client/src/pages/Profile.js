@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
-import ClimbingSets from './ClimbingSets';
 
 const Profile = () => {
 
@@ -19,6 +18,7 @@ const Profile = () => {
             </div>
 
             <h1>{user.full_name} - {user.points} points</h1>
+            <h2>Handicap: V{user.handicap}</h2>
             { user.team 
             ? <h2><Link to={`/teams/${user.team.team_name}`}>{user.team.team_name} - {user.team.team_points} points</Link></h2> 
             : <h2>No Team</h2> }
@@ -29,7 +29,7 @@ const Profile = () => {
                     const completedClimbs = user.climbs.filter((climb) => climb.climbing_set_id === week.id);
 
                     return (
-                        <div key={week.id} className="set-week">
+                        <div key={week.id} className="week-set">
                             <h2>Week {week.week}: {week.set_name}</h2>
                             {completedClimbs.map((climb) => (
                                 <li key={climb.id}>
