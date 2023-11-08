@@ -23,4 +23,8 @@ class User < ApplicationRecord
         save
     end
 
+    def ordered_climbs_by_grade
+        self.climbs.order("climbs.grade DESC")
+    end
+
 end

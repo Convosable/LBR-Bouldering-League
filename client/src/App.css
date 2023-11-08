@@ -291,7 +291,6 @@
   background-color: #d3d3d3;
 }
 
-
 /* Profile */
 
 .profile-header img{
@@ -335,4 +334,39 @@
   border-radius: 5px;
   max-width: 300px;
   text-align: left;
+}
+
+/* Team Details */
+
+.team-details {
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #d4d4d4;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.team-member {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #efefef;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.team-details button {
+  box-sizing: border-box;
+  width: 400px;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #2e7fc7;
+  background-color: #2e7fc7;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.team-details button:hover {
+  background-color: #0074d9;
 }

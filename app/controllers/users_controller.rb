@@ -85,14 +85,20 @@ class UsersController < ApplicationController
 
 # USING FOR POSTMANTESTING
 
-    # def index
-    #     render json: User.all
-    # end
+  #   def index
+  #       render json: User.all
+  #   end
 
-    # def show
-    #     user = User.find(params[:id])
-    #     render json: user, status: :ok
-    # end
+  #   def show
+  #       user = User.find(params[:id])
+  #       render json: user, status: :ok
+  #   end
+
+  #   def destroy
+  #     user = User.find(params[:id])
+  #     user.delete
+  #     head :no_content
+  # end
 
     def update
         @current_user.update!(user_params)

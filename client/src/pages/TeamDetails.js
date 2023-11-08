@@ -20,7 +20,6 @@ const TeamDetails = () => {
     
 
     const team = teams?.find((team) => team.team_name === teamName)
-    console.log(team)
 
     function handleJoinTeam(e) {
         e.preventDefault()
@@ -69,15 +68,14 @@ const TeamDetails = () => {
     if(!team) return <h1>Loading...</h1>
 
     return (
-        <div>
+        <div className='team-details'>
             <h1>{team.team_name}</h1>
             <h2>{team.team_points} points</h2>
-            <h2>Members</h2>
             {team.users.map((user) => (
-                <div key={user.id}>
-                    <ul>{user.first_name} {user.last_name}</ul>
-                    <ul>{user.points} points</ul>
-                    <ul>Handicap: {user.handicap}</ul>
+                <div className='team-member' key={user.id}>
+                    <h4>{user.first_name} {user.last_name}</h4>
+                    <h4>{user.points} points</h4>
+                    <h4>Handicap: V{user.handicap}</h4>
                 </div>
             ))}
             {user.team_id === null && team.users.length < 4 ? <button onClick={handleJoinTeam}>Join Team</button>: null}     
