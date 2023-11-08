@@ -14,7 +14,7 @@ const Profile = () => {
     return (
         <div className='profile'>
             <div className='profile-header'>
-                <img src='https://t4.ftcdn.net/jpg/05/42/36/11/360_F_542361185_VFRJWpR2FH5OiAEVveWO7oZnfSccZfD3.jpg' alt='image-placeholder' />
+                <img src={user.image_url} alt='image-placeholder' />
                 <h1>{user.username}</h1>
                 <button onClick={() => navigate(`/${user.username}/edit`)}>Edit Profile</button>
             </div>

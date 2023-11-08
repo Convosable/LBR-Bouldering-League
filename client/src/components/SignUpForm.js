@@ -13,40 +13,43 @@ const SignUpForm = () => {
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [email, setEmail] = useState("")
     const [handicap, setHandicap] = useState('')
+    const [image, setImage] = useState(null);
 
     const dispatch = useDispatch();
     const error = useSelector((state) => state.error.signupError);
 
+    function handleImageChange(e) {
+        setImage(e.target.files[0]);
+    }
 
     function handleSignup(e) {
         e.preventDefault()
-            fetch('/signup', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    user:{
-                        username: username,
-                        password: password,
-                        password_confirmation: passwordConfirmation,
-                        first_name: firstName,
-                        last_name: lastName,
-                        email: email,
-                        handicap: handicap,
-                    }
+
+        const formData = new FormData();
+        formData.append('user[username]', username);
+        formData.append('user[password]', password);
+        formData.append('user[password_confirmation]', passwordConfirmation);
+        formData.append('user[first_name]', firstName);
+        formData.append('user[last_name]', lastName);
+        formData.append('user[email]', email);
+        formData.append('user[handicap]', handicap);
+        formData.append('image', image);
+
+        fetch('/signup', {
+            method: 'POST',
+            body: formData
+        })
+        .then((r) => {
+            if (r.ok) {
+                // r.json().then((user) => dispatch(updateUser(user)))
+                r.json().then((data) => console.log(data))
+            }
+            else {
+                r.json().then((errors) => {
+                    dispatch(setSignupError(errors.errors))
                 })
-            })
-            .then((r) => {
-                if (r.ok) {
-                    r.json().then((user) => dispatch(updateUser(user)))
-                }
-                else {
-                    r.json().then((errors) => {
-                        dispatch(setSignupError(errors.errors))
-                    })
-                }
-            })
+            }
+        })
     }
 
     return (
@@ -59,6 +62,7 @@ const SignUpForm = () => {
                     value = {firstName}
                     onChange = {(e) => setFirstName(e.target.value)} 
                 /> <br></br>
+
                 <input 
                     type = "text"
                     name = "lastname"
@@ -66,6 +70,7 @@ const SignUpForm = () => {
                     value = {lastName}
                     onChange = {(e) => setLastName(e.target.value)} 
                 /> <br></br>  
+
                 <input 
                     type = "text" 
                     name = "username" 
@@ -73,6 +78,7 @@ const SignUpForm = () => {
                     value = {username} 
                     onChange = {(e) => setUsername(e.target.value)} 
                 /> <br></br>
+
                 <input 
                     type = "password"
                     name = "password"
@@ -80,6 +86,7 @@ const SignUpForm = () => {
                     value = {password}
                     onChange = {(e) => setPassword(e.target.value)} 
                 /> <br></br>
+
                 <input 
                     type = "password"
                     name = "passwordConfirmation"
@@ -87,6 +94,7 @@ const SignUpForm = () => {
                     value = {passwordConfirmation}
                     onChange = {(e) => setPasswordConfirmation(e.target.value)} 
                 /> <br></br>
+
                 <input 
                     type = "text"
                     name = "email"
@@ -94,6 +102,7 @@ const SignUpForm = () => {
                     value = {email}
                     onChange = {(e) => setEmail(e.target.value)} 
                 /> <br></br>
+
                 <select value = {handicap} onChange = {(e) => setHandicap(e.target.value)}>
                     <option value="" disabled>Select a Handicap</option>
                     {Array.from({ length: 11 }, (i, index) => (
@@ -102,6 +111,9 @@ const SignUpForm = () => {
                         </option>
                     ))}
                 </select> <br></br>
+                <label>Profile Picture:</label>
+                <input type="file" accept="image/*" onChange={handleImageChange} />
+
                 <input type="submit" value="Sign Up" />
             </form>
             {error?.map((err) => (

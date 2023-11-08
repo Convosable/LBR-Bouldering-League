@@ -2,6 +2,7 @@ class User < ApplicationRecord
     belongs_to :team, optional: true
     has_many :user_climbs
     has_many :climbs, through: :user_climbs
+    has_one_attached :image
 
     has_secure_password
 
