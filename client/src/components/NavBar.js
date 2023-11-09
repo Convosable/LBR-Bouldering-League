@@ -23,6 +23,8 @@ const NavBar = () => {
         })
     }
 
+    console.log(user)
+
   return (
     <div className='navbar'>
         <img src={logo} alt='lbr-logo-bubble' />
@@ -31,6 +33,7 @@ const NavBar = () => {
         <NavLink to="/climbing_sets" exact="true">Climbing Sets</NavLink>
         <NavLink to="/teams/new" exact="true">Team Signup</NavLink>
         <NavLink to={`/${user.username}`}exact="true">Profile</NavLink>
+        {user.admin === true ? <NavLink to="/admin-tools" exact="true">Admin Tools</NavLink> : null}
         <button onClick = {() => handleLogout()}>Logout</button>
     </div>
   )

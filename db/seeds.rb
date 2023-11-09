@@ -5,6 +5,17 @@ Team.destroy_all
 ClimbingSet.destroy_all
 Climb.destroy_all
 
+User.create(
+    {
+        first_name: "Admin",
+        last_name: "Account",
+        username: "admin",
+        password_digest: BCrypt::Password.create("password"),
+        email: 'admin@lbr.com',
+        handicap: 0,
+        admin: true
+    }
+)
 
 ClimbingSet.create([
     {
