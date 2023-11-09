@@ -294,7 +294,7 @@
 /* Profile */
 
 .profile-header img{
-  max-width: 100px;
+  width: 100px;
   height: auto;
 }
 .profile-header {

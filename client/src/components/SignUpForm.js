@@ -41,8 +41,7 @@ const SignUpForm = () => {
         })
         .then((r) => {
             if (r.ok) {
-                // r.json().then((user) => dispatch(updateUser(user)))
-                r.json().then((data) => console.log(data))
+                r.json().then((user) => dispatch(updateUser(user)))
             }
             else {
                 r.json().then((errors) => {

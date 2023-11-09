@@ -1,56 +1,116 @@
 puts "🌱 Seeding data..."
 
-# User.destroy_all
+User.destroy_all
 Team.destroy_all
 ClimbingSet.destroy_all
 Climb.destroy_all
 
-5.times do
-    Team.create({
-        team_name: Faker::Team.unique.name,
-        team_points: Faker::Number.within(range: 100..1000)
-    })
-  end
 
 ClimbingSet.create([
     {
-        set_name: "Beer-Wall",
+        set_name: "Beer Wall",
         week: 1,
-        date_start: "2023-10-09",
-        date_end: "2023-10-16"
+        date_start: "2023-10-31",
+        date_end: "2023-11-07"
+    },
+    {
+        set_name: "Slab",
+        week: 2,
+        date_start: "2023-11-07",
+        date_end: "2023-11-14"
     }
 ])
 
 Climb.create([
     {
         grade: 1,
-        color: "red",
+        color: "Red",
         climbing_set_id: 1
     },
     {
-        grade: 1,
-        color: "yellow",
+        grade: 2,
+        color: "Yellow",
         climbing_set_id: 1
     },
     {
         grade: 3,
-        color: "green",
+        color: "Green",
         climbing_set_id: 1
     },
     {
-        grade: 7,
-        color: "red",
+        grade: 4,
+        color: "Red",
         climbing_set_id: 1
     },
     {
-        grade: 8,
-        color: "pink",
+        grade: 5,
+        color: "Pink",
         climbing_set_id: 1
     },
     {
         grade: 6,
-        color: "white",
+        color: "White",
         climbing_set_id: 1
+    },
+    {
+        grade: 7,
+        color: "Red",
+        climbing_set_id: 1
+    },
+    {
+        grade: 8,
+        color: "Pink",
+        climbing_set_id: 1
+    },
+    {
+        grade: 9,
+        color: "White",
+        climbing_set_id: 1
+    },
+    {
+        grade: 1,
+        color: "Pink",
+        climbing_set_id: 2
+    },
+    {
+        grade: 2,
+        color: "Yellow",
+        climbing_set_id: 2
+    },
+    {
+        grade: 3,
+        color: "Blue",
+        climbing_set_id: 2
+    },
+    {
+        grade: 4,
+        color: "Orange",
+        climbing_set_id: 2
+    },
+    {
+        grade: 5,
+        color: "Yellow",
+        climbing_set_id: 2
+    },
+    {
+        grade: 6,
+        color: "White",
+        climbing_set_id: 2
+    },
+    {
+        grade: 7,
+        color: "White",
+        climbing_set_id: 2
+    },
+    {
+        grade: 8,
+        color: "Green",
+        climbing_set_id: 2
+    },
+    {
+        grade: 9,
+        color: "Red",
+        climbing_set_id: 2
     }
 ])
 
