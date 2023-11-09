@@ -1,5 +1,7 @@
 class ClimbingSet < ApplicationRecord
     has_many :climbs
+    has_one_attached :image
+
 
     validates :set_name, presence: true
     validates :week, presence: true

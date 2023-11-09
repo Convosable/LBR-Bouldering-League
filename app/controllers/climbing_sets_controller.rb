@@ -9,7 +9,9 @@ class ClimbingSetsController < ApplicationController
     end
 
     def create
-        new_climbing_set = ClimbingSet.create!(climbing_set_params)
+        new_climbing_set = ClimbingSet.new(climbing_set_params)
+        new_climbing_set.image.attach(params[:image])
+        new_climbing_set.save
         render json: new_climbing_set, status: :created
     end
 
@@ -31,7 +33,7 @@ class ClimbingSetsController < ApplicationController
     end
 
     def climbing_set_params
-        params.require(:climbing_set).permit(:set_name, :week, :date_start, :date_end, :notes)
+        params.require(:climbing_set).permit(:set_name, :week, :image, :image_url, :date_start, :date_end, :notes)
     end
     
 end
