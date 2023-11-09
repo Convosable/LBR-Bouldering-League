@@ -13,7 +13,9 @@ import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import NotFound from './pages/NotFound';
 import Admin from './pages/Admin';
+import NewClimbingSetForm from './pages/NewClimbingSetForm';
 import LoadingPage from './pages/LoadingPage';
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from './redux/user';
@@ -72,7 +74,8 @@ function App() {
             <Route exact path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
             <Route exact path={`/${user.username}`} element={<Profile />} />
             <Route exact path={`/${user.username}/edit`} element={<EditProfile />} />
-            <Route exact path={`/admin-tools`} element={<Admin />} />            
+            <Route exact path={`/admin-tools`} element={<Admin />} />     
+            <Route exact path={`/admin-tools/climbing_sets/new`} element={<NewClimbingSetForm />} />     
             <Route path="*" element={<NotFound />} />
           </Routes>
       </div>
