@@ -13,7 +13,7 @@ const ClimbingSets = () => {
             {climbingSets?.map((set) => (
                 <div className='climbing-sets' key={set.id}>
                     <h1>Week: {set.week} - {set.set_name}</h1>
-                    <img src='https://images.squarespace-cdn.com/content/v1/5ec6f17371904f56da2f0c57/1654992599448-A449ZBCS76RM6G2U0036/long+beach+rising.png?format=500w' alt= 'sample-photo' />
+                    <img src= {set.image_url} alt={set.set_name} />
                     <Link to={`/climbing_sets/${set.set_name}`}>
                         <p>Set Details / Log climbs</p>
                     </Link>
@@ -24,11 +24,3 @@ const ClimbingSets = () => {
 }
 
 export default ClimbingSets;
-
-//oirder by week (descendingf) 
-
-//display all climbing sets week adn inam,ge with link to log climbs for specific week
-
-//look into getting rid of %20 space in url (ex) http://localhost:4000/climbing_sets/Beer%20Wall)
-
-//switch out photo with a photo submitted via active storage via admin user

@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   
   resources :user_climbs
-  resources :climbs
-  resources :climbing_sets
+
   resources :teams
+
+  resources :climbing_sets do
+      resources :climbs
+  end
     
   resources :users do
     member do

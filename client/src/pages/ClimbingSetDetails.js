@@ -18,12 +18,10 @@ const ClimbingSetDetails = () => {
         <div className='climbing-set-details'>
             <h1>Week {set.week} - {set.set_name}</h1>
             <h2>{set.formatted_start_date} - {set.formatted_end_date}</h2>
-            <img src='https://images.squarespace-cdn.com/content/v1/5ec6f17371904f56da2f0c57/1654992599448-A449ZBCS76RM6G2U0036/long+beach+rising.png?format=500w' alt= 'sample-photo' />
+            <img src= {set.image_url} alt= {set.set_name} />
             <ClimbsForm set = {set}/>
         </div>
     )
 }
 
 export default ClimbingSetDetails;
-
-//replace image with active storage img 

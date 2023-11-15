@@ -75,7 +75,7 @@ function App() {
             <Route exact path={`/${user.username}`} element={<Profile />} />
             <Route exact path={`/${user.username}/edit`} element={<EditProfile />} />
             <Route exact path={`/admin-tools`} element={<Admin />} />     
-            <Route exact path={`/admin-tools/climbing_sets/new`} element={<NewClimbingSetForm />} />     
+            <Route exact path={`/admin-tools/climbing_sets/new`} element={<NewClimbingSetForm />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
       </div>
@@ -83,3 +83,5 @@ function App() {
 }
 
 export default App;
+
+// change profile to /:username so other users can view other people profiles
