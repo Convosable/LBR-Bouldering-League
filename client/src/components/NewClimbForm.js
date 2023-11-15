@@ -32,6 +32,7 @@ const NewClimbForm = ({ set }) => {
         })
     }
 
+        // need to uupdate state accordingly for climbingsetsclimbs
     return (
         <div>
             <form onSubmit={handleSubmit}>

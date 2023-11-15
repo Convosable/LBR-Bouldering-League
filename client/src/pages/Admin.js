@@ -21,14 +21,15 @@ function Admin() {
           {climbingSets.map((set) => (
             <div key={set.id}>
               <h1>{set.set_name} - Week {set.week}</h1>
+              <button onClick = {() => toggleFormVisibility(set.id)}>
+                {showFormForSet[set.id] ? 'Hide' : 'Add Climbs'}
+              </button>
+              {showFormForSet[set.id] && <NewClimbForm set={set} />}
               <h2>Current Climbs:</h2>
               {set.climbs.map((climb) => (
                 <li key={climb.id}>{climb.color} V{climb.grade}</li>
               ))}
-              <button onClick = {() => toggleFormVisibility(set.id)}>
-                {showFormForSet[set.id] ? 'Hide Form' : 'Add Climbs'}
-              </button>
-              {showFormForSet[set.id] && <NewClimbForm set={set} />}
+              
             </div>
           ))}
 

@@ -6,12 +6,18 @@ export const climbingSetsSlice = createSlice({
     reducers: {
         setClimbingSets: (state, action) => {
             return action.payload;
+        },
+        updateClimbingSets: (state, action) => {
+            return [...state, action.payload]
+        },
+        updateClimbingSetClimbs: (state, action) => {
+
         }
     }
 });
 
 // this is for dispatch
-export const { setClimbingSets } = climbingSetsSlice.actions;
+export const { setClimbingSets, updateClimbingSets, updateClimbingSetClimbs } = climbingSetsSlice.actions;
 
 // this is for configureStore
 export default climbingSetsSlice.reducer;

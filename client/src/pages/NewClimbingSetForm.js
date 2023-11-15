@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { updateClimbingSets } from '../redux/climbingSets'
+import { setNewClimbingSetError } from '../redux/error'
+
 function NewClimbingSetForm() {
 
     const [setName, setSetName] = useState('')
@@ -8,6 +12,10 @@ function NewClimbingSetForm() {
     const [dateEnd, setDateEnd] = useState('')
     const [notes, setNotes] = useState('')
     const [image, setImage] = useState(null)
+
+    const dispatch = useDispatch()
+    const errors = useSelector((state) => state.error.newClimbingSetError);
+
 
     function handleImageChange(e) {
         setImage(e.target.files[0]);
@@ -30,19 +38,13 @@ function NewClimbingSetForm() {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((data) => {
-                    console.log(data)
-                })
+                r.json().then((newSet) => {dispatch(updateClimbingSets(newSet))})
             }
             else {
-                r.json().then((err) => {
-                    console.log(err.errors)
-                })
+                r.json().then((err) => {dispatch(setNewClimbingSetError(err.errors))});
             }
         })
     }
-
-    //need to update state, and chagne the image rendering for each climbing set 
 
     return (
         <div>
@@ -70,6 +72,11 @@ function NewClimbingSetForm() {
                 <br></br>
                 <input type="submit" value="Submit New Climbing Set" />
             </form>
+            {errors?.map((err) => (
+                <li key={err}>
+                    {err}
+                </li>
+            ))}
         </div>
     )
 }

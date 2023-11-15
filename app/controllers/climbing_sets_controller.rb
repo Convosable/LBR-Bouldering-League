@@ -1,35 +1,43 @@
 class ClimbingSetsController < ApplicationController
 
+    before_action :find_climbing_set, except: [:index, :create]
+
     def index
         render json: ClimbingSet.all.order(:week), status: :ok
     end
 
     def show
-        render json: find_climbing_set, status: :ok
+        render json: @climbing_set, status: :ok
     end
 
     def create
         new_climbing_set = ClimbingSet.new(climbing_set_params)
-        new_climbing_set.image.attach(params[:image])
-        new_climbing_set.save
-        render json: new_climbing_set, status: :created
+
+        if params[:image] && params[:image] != "null"
+            new_climbing_set.image.attach(params[:image])
+        end
+
+        if new_climbing_set.save
+            render json: new_climbing_set, status: :created
+        else
+            render json: { errors: new_climbing_set.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def update
-        climbing_set = find_climbing_set
-        climbing_set.update!(climbing_set_params)
+        @climbing_set.update!(climbing_set_params)
         render json: climbing_set, status: :accepted
     end
 
     def destroy
-        find_climbing_set.delete
+        @climbing_set.delete
         head :no_content
     end
 
     private
 
     def find_climbing_set
-        ClimbingSet.find(params[:id])
+        @climbing_set = ClimbingSet.find(params[:id])
     end
 
     def climbing_set_params
