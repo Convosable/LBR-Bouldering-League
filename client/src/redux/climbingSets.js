@@ -11,7 +11,14 @@ export const climbingSetsSlice = createSlice({
             return [...state, action.payload]
         },
         updateClimbingSetClimbs: (state, action) => {
+            const newClimb = action.payload
 
+            return state.map((set) => {
+                if (set.id === newClimb.climbing_set_id) {
+                    return {...set, climbs: [...set.climbs, newClimb]}
+                }
+                return set;
+            });
         }
     }
 });

@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 
-const NewClimbForm = ({ set }) => {
+import { useDispatch } from 'react-redux'
+import { updateClimbingSetClimbs } from '../redux/climbingSets'
 
-    console.log(set)
+const NewClimbForm = ({ set }) => {
 
     const [grade, setGrade] = useState('')
     const [color, setColor] = useState('')
+
+    const dispatch = useDispatch();
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -20,19 +23,12 @@ const NewClimbForm = ({ set }) => {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((data) => {
-                    console.log(data)
-                })
-            }
-            else {
-                r.json().then((err) => {
-                    console.log(err.errors)
+                r.json().then((newClimb) => {dispatch(updateClimbingSetClimbs(newClimb))
                 })
             }
         })
     }
 
-        // need to uupdate state accordingly for climbingsetsclimbs
     return (
         <div>
             <form onSubmit={handleSubmit}>

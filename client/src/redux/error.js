@@ -8,7 +8,8 @@ export const errorSlice = createSlice({
         newTeamError: null,
         profileUpdateError: null,
         climbsFormError: null,
-        newClimbingSetError: null
+        newClimbingSetError: null,
+        newClimbError: null
     },
     reducers: {
         setLoginError: (state, action) => {
