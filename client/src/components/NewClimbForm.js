@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import { useDispatch } from 'react-redux'
-import { updateClimbingSetClimbs } from '../redux/climbingSets'
+import { addClimbingSetClimb } from '../redux/climbingSets'
 
 const NewClimbForm = ({ set }) => {
 
@@ -23,7 +23,7 @@ const NewClimbForm = ({ set }) => {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((newClimb) => {dispatch(updateClimbingSetClimbs(newClimb))
+                r.json().then((newClimb) => {dispatch(addClimbingSetClimb(newClimb))
                 })
             }
         })

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import NewClimbForm from '../components/NewClimbForm';
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeClimbingSetClimb } from '../redux/climbingSets';
 
 function Admin() {
 
@@ -11,9 +12,18 @@ function Admin() {
 
     const climbingSets = useSelector(state => state.climbingSets);
 
+    const dispatch = useDispatch();
+
     function toggleFormVisibility(setId) {
       setShowFormForSet((prevState) => ({ ...prevState, [setId]: !prevState[setId]}));
     };
+
+    function deleteClimb(climb) {
+      fetch(`/climbing_sets/${climb.climbing_set_id}/climbs/${climb.id}`, {
+        method: 'DELETE'
+      })
+      .then(() => dispatch(removeClimbingSetClimb(climb)));
+    }
 
     return (
       <div>
@@ -27,9 +37,11 @@ function Admin() {
               {showFormForSet[set.id] && <NewClimbForm set={set} />}
               <h2>Current Climbs:</h2>
               {set.climbs.map((climb) => (
-                <li key={climb.id}>{climb.color} V{climb.grade}</li>
+                <div>
+                  <h3 key={climb.id}>{climb.color} V{climb.grade}</h3>
+                  <button onClick = {() => deleteClimb(climb)}>Delete</button>
+                </div>
               ))}
-              
             </div>
           ))}
 
@@ -38,8 +50,5 @@ function Admin() {
 }
 
 export default Admin;
-
-
-// change lin to just a form to show up for climbing sets/new? or change foprms to links? maybe opage could open over admin page and dim background
 
 //import all admin tool component directly here?
