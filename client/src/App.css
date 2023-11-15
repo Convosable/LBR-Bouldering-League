@@ -370,3 +370,68 @@
 .team-details button:hover {
   background-color: #0074d9;
 }
+
+/* Admin Tools */
+
+.admin-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.admin-tools a{
+  border: 1px solid #2e7fc7;
+  background-color: #2e7fc7;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.admin-tools a:hover {
+  background-color: #0074d9;
+}
+
+.admin-climbing-sets-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: top;
+  gap: 20px;
+}
+
+.admin-climbing-sets-container button{
+  border: 1px solid #2e7fc7;
+  background-color: #2e7fc7;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 5px;
+  height: auto
+}
+
+.admin-climbing-sets-container button:hover {
+  background-color: #0074d9;
+}
+
+.admin-climbing-set {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #efefef;
+  margin: 20px auto;
+  width: 20%;
+}
+
+.admin-climbs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.admin-climbs h3 {
+  margin-right: 10px;
+}

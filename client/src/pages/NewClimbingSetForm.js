@@ -46,6 +46,8 @@ function NewClimbingSetForm() {
         })
     }
 
+    // add a navigate to admin tools after creation of set 
+
     return (
         <div>
             <form onSubmit={handleCreateSet}>
@@ -60,6 +62,7 @@ function NewClimbingSetForm() {
                     <option value="2">Week 2</option>
                     <option value="3">Week 3</option>
                     <option value="4">Week 4</option>
+                    <option value="5">Week 5</option>
                 </select>
                 <br></br>
                 <label>Start Date:</label>

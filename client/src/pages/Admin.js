@@ -26,24 +26,26 @@ function Admin() {
     }
 
     return (
-      <div>
+      <div className='admin-tools'>
           <Link to='climbing_sets/new'>Upload New Climbing Set</Link>
-          {climbingSets.map((set) => (
-            <div key={set.id}>
-              <h1>{set.set_name} - Week {set.week}</h1>
-              <button onClick = {() => toggleFormVisibility(set.id)}>
-                {showFormForSet[set.id] ? 'Hide' : 'Add Climbs'}
-              </button>
-              {showFormForSet[set.id] && <NewClimbForm set={set} />}
-              <h2>Current Climbs:</h2>
-              {set.climbs.map((climb) => (
-                <div>
-                  <h3 key={climb.id}>{climb.color} V{climb.grade}</h3>
-                  <button onClick = {() => deleteClimb(climb)}>Delete</button>
-                </div>
-              ))}
-            </div>
-          ))}
+          <div className='admin-climbing-sets-container'>
+            {climbingSets.map((set) => (
+              <div className='admin-climbing-set' key={set.id}>
+                <h1>{set.set_name} - Week {set.week}</h1>
+                <button onClick = {() => toggleFormVisibility(set.id)}>
+                  {showFormForSet[set.id] ? 'Hide' : 'Add Climbs'}
+                </button>
+                {showFormForSet[set.id] && <NewClimbForm set={set} />}
+                <h2>Current Climbs:</h2>
+                {set.climbs.map((climb) => (
+                  <div className='admin-climbs'>
+                    <h3 key={climb.id}>{climb.color} V{climb.grade}</h3>
+                    <button onClick = {() => deleteClimb(climb)}>Delete</button>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
 
       </div>
     )
