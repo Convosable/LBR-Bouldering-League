@@ -5,6 +5,7 @@ import NewClimbForm from '../components/NewClimbForm';
 
 import { useDispatch, useSelector } from 'react-redux'
 import { removeClimbingSetClimb } from '../redux/climbingSets';
+import { removeClimbingSet } from '../redux/climbingSets';
 
 function Admin() {
 
@@ -18,15 +19,18 @@ function Admin() {
       setShowFormForSet((prevState) => ({ ...prevState, [setId]: !prevState[setId]}));
     };
 
-    function deleteClimb(climb) {
+    function handleDeleteClimb(climb) {
       fetch(`/climbing_sets/${climb.climbing_set_id}/climbs/${climb.id}`, {
         method: 'DELETE'
       })
       .then(() => dispatch(removeClimbingSetClimb(climb)));
     }
 
-    function handleDeleteSet(e) {
-      e.preventDefault()
+    function handleDeleteSet(set) {
+      fetch(`/climbing_sets/${set.id}`, {
+        method: 'DELETE'
+      })
+      .then(() => dispatch(removeClimbingSet(set)));
     }
 
     return (
@@ -41,7 +45,7 @@ function Admin() {
                 <h4>End: {set.formatted_end_date}</h4>
                 <div className='admin-set-edit-delete'>
                   <Link to={`climbing_sets/${set.set_name}`}>Edit</Link>
-                  <button onClick={handleDeleteSet}>Delete Set</button>
+                  <button onClick={() => handleDeleteSet(set)}>Delete Set</button>
                 </div>
                 <button onClick = {() => toggleFormVisibility(set.id)}>
                   {showFormForSet[set.id] ? 'Hide' : 'Add Climbs'}
@@ -51,7 +55,7 @@ function Admin() {
                 {set.climbs.map((climb) => (
                   <div key={climb.id} className='admin-climbs'>
                     <h3 >{climb.color} V{climb.grade}</h3>
-                    <button onClick = {() => deleteClimb(climb)}>Delete</button>
+                    <button onClick = {() => handleDeleteClimb(climb)}>Delete</button>
                   </div>
                 ))}
               </div>

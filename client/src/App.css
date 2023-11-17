@@ -514,6 +514,14 @@
   gap: 10px;
 }
 
+.admin-set-edit-delete button{
+  background-color: rgb(234, 7, 7);
+}
+
+.admin-set-edit-delete button:hover{
+  background-color: rgb(195, 35, 35);
+}
+
 .admin-set-edit-delete a,
 .admin-set-edit-delete button {
   border: none;
