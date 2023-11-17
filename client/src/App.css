@@ -55,11 +55,15 @@
 }
 
 .login-signup-form input[type="submit"] {
-  background-color: #0074d9;
+  background-color: #2e7fc7;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.login-signup-form input[type="submit"]:hover {
+  background-color: #0074d9;
 }
 
 .login-signup-form select {
@@ -346,6 +350,46 @@
   border-radius: 5px;
   max-width: 300px;
   text-align: left;
+}
+
+/* Edit Profile */
+
+.edit-profile {
+  text-align: center;
+}
+
+.edit-profile input {
+  box-sizing: border-box;
+  width: 20%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.edit-profile select {
+  box-sizing: border-box;
+  width: 20%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.edit-profile label{
+  text-align: left;
+}
+
+.edit-profile input[type='submit'] {
+  background-color: #2e7fc7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-profile input[type='submit']:hover {
+  background-color: #0074d9;
 }
 
 /* Team Details */

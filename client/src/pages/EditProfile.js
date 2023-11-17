@@ -49,41 +49,21 @@ const EditProfile = () => {
         })
     }
 
-    // handicap change should only be allowed by admin?
-
     return (
-        <div>
+        <div className='edit-profile'>
+            <h1>Edit Profile</h1>
             <form onSubmit={handleEditProfile}>
                 <label>First Name: </label>
-                <input 
-                    type = "text"
-                    name = "firstname"
-                    value = {firstName}
-                    onChange = {(e) => setFirstName(e.target.value)} 
-                /> <br></br>
+                <input type = "text" name = "firstname" value = {firstName} onChange = {(e) => setFirstName(e.target.value)} /> <br></br>
 
                 <label>Last Name: </label>
-                <input 
-                    type = "text"
-                    name = "lastname"
-                    value = {lastName}
-                    onChange = {(e) => setLastName(e.target.value)} 
-                /> <br></br>  
+                <input type = "text" name = "lastname" value = {lastName} onChange = {(e) => setLastName(e.target.value)} /> <br></br>  
                       
                 <label>Username: </label>
-                <input 
-                    type = "text" 
-                    name = "username" 
-                    value = {username} 
-                    onChange = {(e) => setUsername(e.target.value)} 
-                /> <br></br>
+                <input type = "text"  name = "username" value = {username} onChange = {(e) => setUsername(e.target.value)} /> <br></br>
+
                 <label>Email: </label>
-                <input 
-                    type = "text"
-                    name = "email"
-                    value = {email}
-                    onChange = {(e) => setEmail(e.target.value)} 
-                /> <br></br>
+                <input type = "text" name = "email" value = {email} onChange = {(e) => setEmail(e.target.value)} /> <br></br>
 
                 <label>Handicap: </label>
                 <select value = {handicap} onChange = {(e) => setHandicap(e.target.value)}>

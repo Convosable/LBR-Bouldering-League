@@ -71,8 +71,14 @@ function App() {
             <Route exact path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
             <Route exact path={`/${user.username}`} element={<Profile />} />
             <Route exact path={`/${user.username}/edit`} element={<EditProfile />} />
-            {user.admin === true ? <Route exact path={`/admin-tools`} element={<Admin />} /> : <Route exact path="/admin-tools" element={<Navigate to="/access-denied" />} />}    
-            {user.admin === true ? <Route exact path={`/admin-tools/climbing_sets/new`} element={<NewClimbingSetForm />} /> : <Route exact path="/admin-tools/climbing_sets/new" element={<Navigate to="/access-denied" />} />}    
+            {user.admin === true ? 
+            <Route exact path='/admin-tools' element={<Admin />} /> : 
+            <Route exact path="/admin-tools" element={<Navigate to="/access-denied" />} 
+            />}    
+            {user.admin === true ? 
+            <Route exact path='/admin-tools/climbing_sets/new' element={<NewClimbingSetForm />} /> : 
+            <Route exact path='/admin-tools/climbing_sets/new' element={<Navigate to="/access-denied" />} 
+            />}    
             <Route exact path='access-denied' element={<AccessDenied/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
