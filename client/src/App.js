@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from './pages/Login';
 import Home from './pages/Home';
@@ -14,6 +14,7 @@ import EditProfile from './pages/EditProfile';
 import NotFound from './pages/NotFound';
 import Admin from './pages/Admin';
 import NewClimbingSetForm from './pages/NewClimbingSetForm';
+import AccessDenied from './pages/AccessDenied';
 import LoadingPage from './pages/LoadingPage';
 
 
@@ -70,8 +71,9 @@ function App() {
             <Route exact path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
             <Route exact path={`/${user.username}`} element={<Profile />} />
             <Route exact path={`/${user.username}/edit`} element={<EditProfile />} />
-            <Route exact path={`/admin-tools`} element={<Admin />} />     
-            <Route exact path={`/admin-tools/climbing_sets/new`} element={<NewClimbingSetForm />} />
+            {user.admin === true ? <Route exact path={`/admin-tools`} element={<Admin />} /> : <Route exact path="/admin-tools" element={<Navigate to="/access-denied" />} />}    
+            {user.admin === true ? <Route exact path={`/admin-tools/climbing_sets/new`} element={<NewClimbingSetForm />} /> : <Route exact path="/admin-tools/climbing_sets/new" element={<Navigate to="/access-denied" />} />}    
+            <Route exact path='access-denied' element={<AccessDenied/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
       </div>

@@ -546,3 +546,11 @@
 .admin-new-climbing-set input[type="submit"]:hover {
   background-color: #0074d9;
 }
+
+/* Access Denied */
+
+.access-denied {
+  text-align: center;
+  width: 40%;
+  margin: 0 auto;
+}
