@@ -1,6 +1,7 @@
 class ClimbsController < ApplicationController
 
     before_action :find_climbing_set, except: [:index]
+    
 
     def index
         render json: Climb.all.order(:grade), status: :ok

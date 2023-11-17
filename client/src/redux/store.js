@@ -9,6 +9,6 @@ export default configureStore({
     user: userReducer,
     error: errorReducer,
     teams: teamsReducer,
-    climbingSets: climbingSetsReducer
+    climbingSets: climbingSetsReducer,
   },
 });

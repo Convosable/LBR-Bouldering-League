@@ -16,9 +16,9 @@ const ClimbsForm = ({ set }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        setCompletedClimbs(user.climbs.map(climb => climb.id));
-    }, [user.climbs]);
+    // useEffect(() => {
+    //     setCompletedClimbs(user.climbs.map(climb => climb.id));
+    // }, [user.climbs]);
 
 
     function handleClimbToggle(climbId) {

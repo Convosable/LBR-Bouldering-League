@@ -48,8 +48,5 @@ const Profile = () => {
 
 export default Profile;
 
+//can update how completed climbs are displayed i think since the relation was updated in the serializer
 //display climbing_set via climbingset.find(set => set.id === climb.climbing_set_id)
-
-// replace ima ge holder with active storage photo upload]
-
-//comleted climbs week 1 -5 columns of completitons for css

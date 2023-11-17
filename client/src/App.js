@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from './pages/Login';
@@ -27,40 +27,36 @@ function App() {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user)
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-      fetch("/me")
-      .then((r) => {
-        if (r.ok) {
-          r.json().then((user) => dispatch(updateUser(user)));
+
+  useEffect(() => {
+    fetch("/me")
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((user) => dispatch(updateUser(user)));
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+      Promise.all([
+        fetch("/teams").then((r) => r.ok ? r.json() : null),
+        fetch("/climbing_sets").then((r) => r.ok ? r.json() : null)
+      ]).then(([teamsData, setsData]) => {
+        if (teamsData && setsData) {
+          dispatch(setTeams(teamsData));
+          dispatch(setClimbingSets(setsData));
         }
+        setLoading(false);
       });
-    }, []);
-    
-    
-    useEffect(() => {
-      fetch("/teams")
-      .then((r) => {
-        if(r.ok) {
-          r.json().then(teams => {dispatch(setTeams(teams))});
-        }
-      })
-    },[])
+  }, [user]);
 
-    useEffect(() => {
-      fetch("/climbing_sets")
-      .then((r) => {
-        if(r.ok) {
-          r.json().then(sets => {dispatch(setClimbingSets(sets))});
-        }
-      })
-    }, [])
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    if (!user ) return <Login />;
-
-    // some laoding page after login complete if (climbingSetsLoading || teamsLoading) return <Loading />;
-
-    //look over climb Sets loading..... maybe have to change user loading as welkl???? 
+  if (!user ) return <Login />;
 
   return (
       <div className="App">
