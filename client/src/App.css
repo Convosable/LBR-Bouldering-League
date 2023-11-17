@@ -417,12 +417,13 @@
 .team-member img{
   border: 2px solid black;
   border-radius: 5px;
-  max-width: 75px;
+  width: 75px;
   margin-right: 50px;
 }
 
 .team-member-info {
   text-align: left;
+  width: 150px;
 }
 
 .team-details button {
@@ -505,6 +506,13 @@
 
 .admin-climbs h3 {
   margin-right: 10px;
+}
+
+.admin-set-edit-delete {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 

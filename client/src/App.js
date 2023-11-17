@@ -15,6 +15,7 @@ import NotFound from './pages/NotFound';
 import Admin from './pages/Admin';
 import NewClimbingSetForm from './pages/NewClimbingSetForm';
 import AccessDenied from './pages/AccessDenied';
+import EditClimbingSetForm from './pages/EditClimbingSetForm';
 import LoadingPage from './pages/LoadingPage';
 
 
@@ -22,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from './redux/user';
 import { setTeams } from './redux/teams';
 import { setClimbingSets } from './redux/climbingSets';
+
 
 
 function App() {
@@ -70,7 +72,6 @@ function App() {
             <Route exact path='/climbing_sets' element={<ClimbingSets />} />
             <Route exact path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
             <Route exact path={`/${user.username}`} element={<Profile />} />
-            <Route exact path='/users/:username' element={<Profile />} />
             <Route exact path={`/${user.username}/edit`} element={<EditProfile />} />
             {user.admin === true ? 
             <Route exact path='/admin-tools' element={<Admin />} /> : 
@@ -79,7 +80,11 @@ function App() {
             {user.admin === true ? 
             <Route exact path='/admin-tools/climbing_sets/new' element={<NewClimbingSetForm />} /> : 
             <Route exact path='/admin-tools/climbing_sets/new' element={<Navigate to="/access-denied" />} 
-            />}    
+            />}
+            {user.admin === true ? 
+            <Route exact path='/admin-tools/climbing_sets/:setName' element={<EditClimbingSetForm />} /> : 
+            <Route exact path='/admin-tools/climbing_sets/:setName' element={<Navigate to="/access-denied" />} 
+            />}
             <Route exact path='access-denied' element={<AccessDenied/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -88,5 +93,3 @@ function App() {
 }
 
 export default App;
-
-// change profile to /:username so other users can view other people profiles

@@ -25,6 +25,10 @@ function Admin() {
       .then(() => dispatch(removeClimbingSetClimb(climb)));
     }
 
+    function handleDeleteSet(e) {
+      e.preventDefault()
+    }
+
     return (
       <div className='admin-tools'>
           <Link to='climbing_sets/new'>Upload New Climbing Set</Link>
@@ -35,6 +39,10 @@ function Admin() {
                 <h2>Week {set.week}</h2>
                 <h4>Start: {set.formatted_start_date}</h4>
                 <h4>End: {set.formatted_end_date}</h4>
+                <div className='admin-set-edit-delete'>
+                  <Link to={`climbing_sets/${set.set_name}`}>Edit</Link>
+                  <button onClick={handleDeleteSet}>Delete Set</button>
+                </div>
                 <button onClick = {() => toggleFormVisibility(set.id)}>
                   {showFormForSet[set.id] ? 'Hide' : 'Add Climbs'}
                 </button>
