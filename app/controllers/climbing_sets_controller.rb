@@ -24,9 +24,15 @@ class ClimbingSetsController < ApplicationController
         end
     end
 
+    ## use a bang for create as well??
+
     def update
+        if params[:image] && params[:image] != "null"
+            @climbing_set.image.attach(params[:image])
+        end
+
         @climbing_set.update!(climbing_set_params)
-        render json: climbing_set, status: :accepted
+        render json: @climbing_set, status: :accepted
     end
 
     def destroy

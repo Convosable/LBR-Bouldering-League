@@ -49,8 +49,8 @@ function Admin() {
                 {showFormForSet[set.id] && <NewClimbForm set={set} />}
                 <h2>Current Climbs:</h2>
                 {set.climbs.map((climb) => (
-                  <div className='admin-climbs'>
-                    <h3 key={climb.id}>{climb.color} V{climb.grade}</h3>
+                  <div key={climb.id} className='admin-climbs'>
+                    <h3 >{climb.color} V{climb.grade}</h3>
                     <button onClick = {() => deleteClimb(climb)}>Delete</button>
                   </div>
                 ))}

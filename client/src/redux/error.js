@@ -9,7 +9,8 @@ export const errorSlice = createSlice({
         profileUpdateError: null,
         climbsFormError: null,
         newClimbingSetError: null,
-        newClimbError: null
+        newClimbError: null,
+        updateClimbingSetError: null,
     },
     reducers: {
         setLoginError: (state, action) => {
@@ -29,12 +30,15 @@ export const errorSlice = createSlice({
         },
         setNewClimbingSetError: (state, action) => {
             state.newClimbingSetError = action.payload
+        },
+        setUpdateClimbingSetError: (state, action) => {
+            state.updateClimbingSetError = action.payload
         }
     }
 });
 
 // this is for dispatch
-export const {setLoginError, setSignupError, setNewTeamError, setProfileUpdateError, setClimbsFormError, setNewClimbingSetError } = errorSlice.actions;
+export const {setLoginError, setSignupError, setNewTeamError, setProfileUpdateError, setClimbsFormError, setNewClimbingSetError, setUpdateClimbingSetError } = errorSlice.actions;
 
 // this is for configureStore
 export default errorSlice.reducer;

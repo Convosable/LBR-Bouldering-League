@@ -512,7 +512,19 @@
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 10px;
+}
+
+.admin-set-edit-delete a,
+.admin-set-edit-delete button {
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  line-height: 1.5;
+  padding: 5px;
+  margin: 0 0 10px 0; /* top right bottom left*/
+  font-size: 13px;
+  cursor: pointer;
 }
 
 

@@ -8,7 +8,22 @@ export const climbingSetsSlice = createSlice({
             return action.payload;
         },
         updateClimbingSets: (state, action) => {
-            return [...state, action.payload]
+            const updatedClimbingSet = action.payload;
+
+            return state.map((set => {
+                if (set.id === updatedClimbingSet.id) {
+                    return {
+                        ...set,
+                        set_name: updatedClimbingSet.set_name,
+                        week: updatedClimbingSet.week,
+                        date_start: updatedClimbingSet.date_start,
+                        date_end: updatedClimbingSet.date_end,
+                        notes: updatedClimbingSet.notes,
+                        image_url: updatedClimbingSet.image_url
+                    }
+                }
+                return set;
+            }));
         },
         addClimbingSetClimb: (state, action) => {
             const newClimb = action.payload
