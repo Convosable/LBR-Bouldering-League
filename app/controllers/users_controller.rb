@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    skip_before_action :authorize, only: :create
+    skip_before_action :authorize, only: [:create]
     before_action :check_team_member_limit, only: [:join_team]
 
     def show
@@ -14,6 +14,14 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         render json: user, status: :created
     end
+
+    def update
+      @current_user.update!(user_params)
+      # if Hnadicap changes, then update point?
+      @current_user.update_points
+      @current_user.team.calculate_team_points
+      render json: @current_user, status: :accepted
+  end
 
     def join_team
         team = Team.find(params[:team_id])
@@ -61,6 +69,8 @@ class UsersController < ApplicationController
         end
     end
 
+    
+
 # USING FOR POSTMANTESTING
 
     def index
@@ -78,13 +88,7 @@ class UsersController < ApplicationController
   #     head :no_content
   # end
 
-    def update
-        @current_user.update!(user_params)
-        # if Hnadicap changes, then update point?
-        @current_user.update_points
-        @current_user.team.calculate_team_points
-        render json: @current_user, status: :accepted
-    end
+  
 
     private
 

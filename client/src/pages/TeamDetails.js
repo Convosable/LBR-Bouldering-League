@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { addTeamMember } from '../redux/teams'
@@ -64,7 +64,7 @@ const TeamDetails = () => {
             navigate(`/teams/new`);
           });
     }
-   
+
     if(!team) return <h1>Loading...</h1>
 
     return (
@@ -73,9 +73,12 @@ const TeamDetails = () => {
             <h2>{team.team_points} points</h2>
             {team.users.map((user) => (
                 <div className='team-member' key={user.id}>
-                    <h4>{user.first_name} {user.last_name}</h4>
-                    <h4>{user.points} points</h4>
-                    <h4>Handicap: V{user.handicap}</h4>
+                    <img src={user.image_url} alt={user.username} />
+                    <div className='team-member-info'>
+                        <h4>{user.first_name} {user.last_name}</h4>
+                        <h4>{user.points} points</h4>
+                        <h4>Handicap: V{user.handicap}</h4>
+                    </div>
                 </div>
             ))}
             {user.team_id === null && team.users.length < 4 ? <button onClick={handleJoinTeam}>Join Team</button>: null}     

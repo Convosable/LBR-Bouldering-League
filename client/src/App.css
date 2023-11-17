@@ -409,6 +409,20 @@
   background-color: #efefef;
   margin: 20px auto;
   max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-member img{
+  border: 2px solid black;
+  border-radius: 5px;
+  max-width: 75px;
+  margin-right: 50px;
+}
+
+.team-member-info {
+  text-align: left;
 }
 
 .team-details button {

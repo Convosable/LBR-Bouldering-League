@@ -70,6 +70,7 @@ function App() {
             <Route exact path='/climbing_sets' element={<ClimbingSets />} />
             <Route exact path='/climbing_sets/:setName' element={<ClimbingSetDetails />} />
             <Route exact path={`/${user.username}`} element={<Profile />} />
+            <Route exact path='/users/:username' element={<Profile />} />
             <Route exact path={`/${user.username}/edit`} element={<EditProfile />} />
             {user.admin === true ? 
             <Route exact path='/admin-tools' element={<Admin />} /> : 
