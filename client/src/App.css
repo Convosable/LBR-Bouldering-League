@@ -89,6 +89,7 @@
 .navbar a:hover,
 .navbar button:hover {
   background-color: #a97979;
+  cursor: pointer;
 }
 
 .navbar img{
@@ -434,4 +435,32 @@
 
 .admin-climbs h3 {
   margin-right: 10px;
+}
+/* Admin New Climb Form  */
+
+
+.admin-new-climb-form select {
+  box-sizing: border-box;
+  width: 40%;
+  height: 40px;
+  padding-left: 10px;
+  margin: 10px 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-new-climb-form input[type="submit"] {
+  box-sizing: border-box;
+  width: 40%;
+  height: 30px;
+  border: 1px solid #2e7fc7;
+  background-color: #2e7fc7;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.admin-new-climb-form input[type="submit"]:hover {
+  background-color: #0074d9;
 }

@@ -30,7 +30,7 @@ const NewClimbForm = ({ set }) => {
     }
 
     return (
-        <div>
+        <div className='admin-new-climb-form'>
             <form onSubmit={handleSubmit}>
                 <select name="color" value={color} onChange={(e) => setColor(e.target.value)}>
                     <option value="" disabled>Color</option>
