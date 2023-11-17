@@ -23,8 +23,9 @@ const NewClimbForm = ({ set }) => {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((newClimb) => {dispatch(addClimbingSetClimb(newClimb))
-                })
+                r.json().then((newClimb) => {dispatch(addClimbingSetClimb(newClimb))})
+                setGrade('')
+                setColor('')
             }
         })
     }
@@ -60,5 +61,3 @@ const NewClimbForm = ({ set }) => {
 }
 
 export default NewClimbForm;
-
-// i wantt to create the climbs all at once?? 

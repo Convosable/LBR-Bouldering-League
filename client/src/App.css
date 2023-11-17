@@ -401,6 +401,7 @@
   text-align: center;
   justify-content: center;
   align-items: top;
+  width: 95%;
   gap: 20px;
 }
 
@@ -436,6 +437,8 @@
 .admin-climbs h3 {
   margin-right: 10px;
 }
+
+
 /* Admin New Climb Form  */
 
 
@@ -462,5 +465,73 @@
 }
 
 .admin-new-climb-form input[type="submit"]:hover {
+  background-color: #0074d9;
+}
+
+/* Admin New Climbing Set  */
+
+.admin-new-climbing-set {
+  text-align: center;
+  margin: 20px auto;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #efefef;
+  width: 40%;
+  font-size: 16px;
+}
+
+.admin-new-climbing-set input[type='text'] {
+  margin-bottom: 10px;
+  width: 40%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.admin-new-climbing-set input[type='date'] {
+  margin-bottom: 20px;
+  width: 40%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.admin-new-climbing-set input[type='file'] {
+  margin-bottom: 10px;
+  width: 40%;
+  padding: 10px;
+}
+
+.admin-new-climbing-set select {
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-new-climbing-set textarea {
+  margin-bottom: 20px;
+  width: 300px;
+  height: 100px;
+}
+
+.admin-new-climbing-set input[type="submit"] {
+  box-sizing: border-box;
+  width: 40%;
+  height: 30px;
+  border: 1px solid #2e7fc7;
+  background-color: #2e7fc7;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.admin-new-climbing-set input[type="submit"]:hover {
   background-color: #0074d9;
 }

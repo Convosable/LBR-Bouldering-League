@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { updateClimbingSets } from '../redux/climbingSets'
@@ -6,14 +7,15 @@ import { setNewClimbingSetError } from '../redux/error'
 
 function NewClimbingSetForm() {
 
-    const [setName, setSetName] = useState('')
-    const [week, setWeek] = useState('')
-    const [dateStart, setDateStart] = useState('')
-    const [dateEnd, setDateEnd] = useState('')
-    const [notes, setNotes] = useState('')
-    const [image, setImage] = useState(null)
+    const [setName, setSetName] = useState('');
+    const [week, setWeek] = useState('');
+    const [dateStart, setDateStart] = useState('');
+    const [dateEnd, setDateEnd] = useState('');
+    const [notes, setNotes] = useState('');
+    const [image, setImage] = useState(null);
 
-    const dispatch = useDispatch()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const errors = useSelector((state) => state.error.newClimbingSetError);
 
 
@@ -39,6 +41,7 @@ function NewClimbingSetForm() {
         .then((r) => {
             if (r.ok) {
                 r.json().then((newSet) => {dispatch(updateClimbingSets(newSet))})
+                navigate('/admin-tools')
             }
             else {
                 r.json().then((err) => {dispatch(setNewClimbingSetError(err.errors))});
@@ -46,14 +49,13 @@ function NewClimbingSetForm() {
         })
     }
 
-    // add a navigate to admin tools after creation of set 
-
     return (
-        <div>
+        <div className='admin-new-climbing-set'>
+            <h1>New Climbing Set</h1>
             <form onSubmit={handleCreateSet}>
                 <input type = "text" name = "set_name" placeholder='Set Name' value = {setName} onChange = {(e) => setSetName(e.target.value)} />
                 <br></br>
-                <label>Climbing Set Image:</label>
+                <label>Image: </label>
                 <input type="file" accept="image/*" onChange={handleImageChange} />
                 <br></br>
                 <select value = {week} onChange = {(e) => setWeek(e.target.value)}>
@@ -65,10 +67,10 @@ function NewClimbingSetForm() {
                     <option value="5">Week 5</option>
                 </select>
                 <br></br>
-                <label>Start Date:</label>
+                <label>Start Date: </label>
                 <input type='date' name='date_start' value={dateStart} onChange={(e) => setDateStart(e.target.value)} />
                 <br></br>
-                <label>End Date:</label>
+                <label>End Date: </label>
                 <input type='date' name='date_end' value={dateEnd} onChange={(e) => setDateEnd(e.target.value)} />
                 <br></br>
                 <textarea name='notes' placeholder='Notes' value = {notes} onChange = {(e) => setNotes(e.target.value)} />

@@ -3,6 +3,11 @@ class ClimbingSetSerializer < ActiveModel::Serializer
 
   attributes :id, :set_name, :week, :image_url, :date_start, :date_end, :notes, :climbs, :formatted_start_date, :formatted_end_date
 
+  has_many :climbs do
+    object.climbs.order(grade: :asc)
+  end
+  
+  
   def image_url
     if object.image.attached?
       rails_blob_url(object.image, only_path: true)

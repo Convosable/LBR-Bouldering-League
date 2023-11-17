@@ -1,6 +1,7 @@
 class ClimbingSetsController < ApplicationController
 
     before_action :find_climbing_set, except: [:index, :create]
+    skip_before_action :authorize
 
     def index
         render json: ClimbingSet.all.order(:week), status: :ok

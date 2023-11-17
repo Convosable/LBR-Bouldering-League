@@ -31,7 +31,10 @@ function Admin() {
           <div className='admin-climbing-sets-container'>
             {climbingSets.map((set) => (
               <div className='admin-climbing-set' key={set.id}>
-                <h1>{set.set_name} - Week {set.week}</h1>
+                <h1>{set.set_name}</h1>
+                <h2>Week {set.week}</h2>
+                <h4>Start: {set.formatted_start_date}</h4>
+                <h4>End: {set.formatted_end_date}</h4>
                 <button onClick = {() => toggleFormVisibility(set.id)}>
                   {showFormForSet[set.id] ? 'Hide' : 'Add Climbs'}
                 </button>
@@ -54,3 +57,4 @@ function Admin() {
 export default Admin;
 
 //import all admin tool component directly here?
+// look into ordering all of the climbs by grade 
