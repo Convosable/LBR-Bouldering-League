@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { updateClimbingSets } from '../redux/climbingSets'
+import { addClimbingSet } from '../redux/climbingSets'
 import { setNewClimbingSetError } from '../redux/error'
 
 function NewClimbingSetForm() {
@@ -40,7 +40,7 @@ function NewClimbingSetForm() {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((newSet) => {dispatch(updateClimbingSets(newSet))})
+                r.json().then((newSet) => {dispatch(addClimbingSet(newSet))})
                 navigate('/admin-tools')
             }
             else {
