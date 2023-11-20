@@ -12,7 +12,7 @@ const Profile = () => {
     return (
         <div className='profile'>
             <div className='profile-header'>
-                <img src={user.image_url} alt='image-placeholder' />
+                <img src={user.image_url} alt='profile-pic' />
                 <h1>{user.username}</h1>
                 <button onClick={() => navigate(`/${user.username}/edit`)}>Edit Profile</button>
             </div>

@@ -67,6 +67,3 @@ function Admin() {
 }
 
 export default Admin;
-
-//import all admin tool component directly here?
-// look into ordering all of the climbs by grade 

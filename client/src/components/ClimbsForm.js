@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,11 +15,6 @@ const ClimbsForm = ({ set }) => {
     const [completedClimbs, setCompletedClimbs] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     setCompletedClimbs(user.climbs.map(climb => climb.id));
-    // }, [user.climbs]);
-
 
     function handleClimbToggle(climbId) {
         if (completedClimbs.includes(climbId)) {

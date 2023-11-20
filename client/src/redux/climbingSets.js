@@ -8,8 +8,6 @@ export const climbingSetsSlice = createSlice({
             return action.payload;
         },
         addClimbingSet: (state, action) => {
-            const climbingSet = action.payload;
-
             return [...state, action.payload]
         },
         updateClimbingSets: (state, action) => {
