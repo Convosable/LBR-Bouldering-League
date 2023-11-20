@@ -5,6 +5,15 @@ Team.destroy_all
 ClimbingSet.destroy_all
 Climb.destroy_all
 
+Team.create([
+    {
+        team_name: "The Rockers",
+    },
+    {
+        team_name: "The Rollers",
+    }
+])
+
 User.create([
     {
         first_name: "Admin",
@@ -65,15 +74,6 @@ User.create([
         handicap: 2,
         team_id: 2,
         admin: false
-    }
-])
-
-Team.create([
-    {
-        team_name: "The Rockers",
-    },
-    {
-        team_name: "The Rollers",
     }
 ])
 
