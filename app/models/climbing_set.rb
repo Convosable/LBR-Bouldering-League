@@ -7,7 +7,7 @@ class ClimbingSet < ApplicationRecord
     validates :week, presence: true
     validates :date_start, presence: true
     validates :date_end, presence: true
-    validate :image_presence
+    # validate :image_presence
 
     def formatted_start_date
         self.date_start.strftime('%B %d, %Y')
@@ -17,10 +17,12 @@ class ClimbingSet < ApplicationRecord
         self.date_end.strftime('%B %d, %Y')
     end
 
-    def image_presence
-        unless image.attached?
-          errors.add(:image, "must be attached")
-        end
-      end
+    ## disabled for seed data generation
+
+    # def image_presence
+    #     unless image.attached?
+    #       errors.add(:image, "must be attached")
+    #     end
+    # end
 
 end

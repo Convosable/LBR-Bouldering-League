@@ -5,7 +5,7 @@ Team.destroy_all
 ClimbingSet.destroy_all
 Climb.destroy_all
 
-User.create(
+User.create([
     {
         first_name: "Admin",
         last_name: "Account",
@@ -13,9 +13,71 @@ User.create(
         password_digest: BCrypt::Password.create("password"),
         email: 'admin@lbr.com',
         handicap: 0,
+        points: 0,
         admin: true
+    },
+    {
+        first_name: "Ben",
+        last_name: "Feldman",
+        username: "bfeld",
+        password_digest: BCrypt::Password.create("password"),
+        email: 'bfeld@lbr.com',
+        handicap: 6,
+        team_id: 2,
+        admin: false
+    },
+    {
+        first_name: "Marc",
+        last_name: "Weiner",
+        username: "marc",
+        password_digest: BCrypt::Password.create("password"),
+        email: 'marc@lbr.com',
+        handicap: 6,
+        team_id: 2,
+        admin: false
+    },
+    {
+        first_name: "Connor",
+        last_name: "Vosberg",
+        username: "convosable",
+        password_digest: BCrypt::Password.create("password"),
+        email: 'convosable@lbr.com',
+        handicap: 7,
+        team_id: 1,
+        admin: false
+    },
+    {
+        first_name: "Ziv",
+        last_name: "Elgar",
+        username: "zeev",
+        password_digest: BCrypt::Password.create("password"),
+        email: 'zeev@lbr.com',
+        handicap: 1,
+        team_id: 1,
+        admin: false
+    },
+    {
+        first_name: "Alex",
+        last_name: "Escobar",
+        username: "alex",
+        password_digest: BCrypt::Password.create("password"),
+        email: 'alex@lbr.com',
+        handicap: 2,
+        team_id: 2,
+        admin: false
     }
-)
+])
+
+Team.create([
+    {
+        team_name: "The Rockers",
+    },
+    {
+        team_name: "The Rollers",
+    }
+])
+
+## Have to comment out impage presence validation in ClimbingSetModel for seed data generation...
 
 ClimbingSet.create([
     {

@@ -12,7 +12,6 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     validates :handicap, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10  }
 
-    # add admin column to user? if admin, then can create a new ClimbingSet/New Climbs
 
     def full_name
         "#{first_name} #{last_name}"
