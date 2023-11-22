@@ -8,16 +8,23 @@ class UsersController < ApplicationController
     end
 
     def create 
-        user = User.new(user_params)
+      user = User.new(user_params)
+      if params[:image].present? && params[:image] != 'null'
         user.image.attach(params[:image])
-        user.save
+      else
+        default_image_path = Rails.root.join('app', 'assets', 'images', 'default_profile_pic.png')
+        user.image.attach(File.open(default_image_path))
+      end
+      if user.save
         session[:user_id] = user.id
         render json: user, status: :created
+      else
+        render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+      end
     end
 
     def update
       @current_user.update!(user_params)
-      # if Hnadicap changes, then update point?
       @current_user.update_points
       @current_user.team.calculate_team_points
       render json: @current_user, status: :accepted
