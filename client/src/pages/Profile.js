@@ -9,6 +9,8 @@ const Profile = () => {
     const navigate = useNavigate();
     const climbingSets = useSelector(state => state.climbingSets)
 
+    console.log(user)
+
     return (
         <div className='profile'>
             <div className='profile-header'>
