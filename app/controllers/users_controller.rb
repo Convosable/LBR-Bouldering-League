@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     before_action :check_team_member_limit, only: [:join_team]
 
     def show
-        render json: @current_user, status: :ok
+      render json: @current_user, status: :ok
     end
 
     def create 
@@ -28,75 +28,52 @@ class UsersController < ApplicationController
       @current_user.update_points
       @current_user.team.calculate_team_points
       render json: @current_user, status: :accepted
-  end
+    end
 
     def join_team
-        team = Team.find(params[:team_id])
-        @current_user.update(team: team)
-        render json: @current_user, status: :accepted
+      team = Team.find(params[:team_id])
+      @current_user.update(team: team)
+      render json: @current_user, status: :accepted
     end
 
     def leave_team
-        team = @current_user.team
-        @current_user.update(team: nil)
-        if team.users.empty?
-            team.destroy
-        end
-        render json: @current_user, status: :accepted
+      team = @current_user.team
+      @current_user.update(team: nil)
+      if team.users.empty?
+          team.destroy
+      end
+      render json: @current_user, status: :accepted
     end
 
     def update_climbs
-        if @current_user.team.present?
-          climbs_data = params[:user][:climbs]
-          updated_climbs = []
-      
-          climbs_data.each do |user_climb|
-            climb_id = user_climb[:id]
-            completed = user_climb[:completed]
-      
-            climb = Climb.find(climb_id)
-            climb.calculate_points(@current_user)
-      
-            # Only create or update the user_climb if completed is true
-            if completed
-              user_climb = @current_user.user_climbs.find_or_initialize_by(climb_id: climb_id)
-              user_climb.save
-              updated_climbs << climb_id
-            end
-          end
-      
-          # Remove any user_climbs that are not in the updated_climbs list
-          @current_user.user_climbs.where.not(climb_id: updated_climbs).destroy_all
-      
-          @current_user.update_points
-          @current_user.team.calculate_team_points
-          render json: @current_user, status: :accepted
-        else
-          render json: { errors: "Must be on a team before you can submit completed climbs." }, status: :unprocessable_entity
-        end
-    end
-
+      if @current_user.team.present?
+        climbs_data = params[:user][:climbs]
     
-
-# USING FOR POSTMANTESTING
-
-    def index
-        render json: User.all
+        climbs_data.each do |user_climb|
+          climb_id = user_climb[:id]
+          completed = user_climb[:completed]
+    
+          climb = Climb.find(climb_id)
+          climb.calculate_points(@current_user)
+    
+          if completed
+            user_climb = @current_user.user_climbs.find_or_initialize_by(climb_id: climb_id)
+            user_climb.save
+          end
+        end
+        
+        submitted_climb_ids = climbs_data.map { |user_climb| user_climb[:id] }
+        climbs_to_remove = @current_user.user_climbs.where.not(climb_id: submitted_climb_ids)
+        climbs_to_remove.destroy_all
+    
+        @current_user.update_points
+        @current_user.team.calculate_team_points
+        render json: @current_user, status: :accepted
+      else
+        render json: { errors: "Must be on a team before you can submit completed climbs." }, status: :unprocessable_entity
+      end
     end
-
-  #   def show
-  #       user = User.find(params[:id])
-  #       render json: user, status: :ok
-  #   end
-
-  #   def destroy
-  #     user = User.find(params[:id])
-  #     user.delete
-  #     head :no_content
-  # end
-
   
-
     private
 
     def user_params

@@ -11,8 +11,9 @@ const ClimbsForm = ({ set }) => {
 
     const user = useSelector(state => state.user);
     const error = useSelector(state => state.error.climbsFormError)
+    const userClimbIds = user.climbs.map(climb => climb.id);
 
-    const [completedClimbs, setCompletedClimbs] = useState([]);
+    const [completedClimbs, setCompletedClimbs] = useState(userClimbIds);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
