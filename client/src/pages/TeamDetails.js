@@ -9,7 +9,7 @@ import { updateUser } from '../redux/user'
 
 const TeamDetails = () => {
 
-    const { teamName } = useParams();
+    const { slug } = useParams();
     const [errors, setErrors] = useState(null);
 
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ const TeamDetails = () => {
     const user = useSelector(state => state.user);
     
 
-    const team = teams?.find((team) => team.team_name === teamName)
+    const team = teams?.find((team) => team.slug.toLowerCase() === slug.toLowerCase());
 
     function handleJoinTeam(e) {
         e.preventDefault()

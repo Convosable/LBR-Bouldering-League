@@ -7,5 +7,10 @@ class Team < ApplicationRecord
         self.team_points = users.sum(:points)
         save
     end
+
+    def slugify
+        self.team_name.parameterize
+    end
+
     
 end

@@ -66,7 +66,7 @@ function App() {
         <NavBar />
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route exact path='/teams/:teamName' element={<TeamDetails />} />
+            <Route exact path='/teams/:slug' element={<TeamDetails />} />
             <Route exact path='/leaderboards' element={<Leaderboards />} />
             <Route exact path='/teams/new' element={<TeamSignup />} />
             <Route exact path='/climbing_sets' element={<ClimbingSets />} />

@@ -75,7 +75,7 @@ const TeamSignup = () => {
             </div>
         
                 {filterBySearch?.map(team => (
-                        <Link className='find-team-card' key={team.id} to={`/teams/${team.team_name}`}>
+                        <Link className='find-team-card' key={team.id} to={`/teams/${team.slug}`}>
                             <h1>{team.team_name}</h1>
                         </Link>
                 ))}
