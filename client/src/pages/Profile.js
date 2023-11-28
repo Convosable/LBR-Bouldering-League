@@ -9,8 +9,6 @@ const Profile = () => {
     const navigate = useNavigate();
     const climbingSets = useSelector(state => state.climbingSets)
 
-    console.log(user)
-
     return (
         <div className='profile'>
             <div className='profile-header'>
@@ -46,9 +44,4 @@ const Profile = () => {
     );
 };
 
-
-
 export default Profile;
-
-//can update how completed climbs are displayed i think since the relation was updated in the serializer
-//display climbing_set via climbingset.find(set => set.id === climb.climbing_set_id)

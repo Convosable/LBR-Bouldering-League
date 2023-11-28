@@ -89,6 +89,3 @@ const TeamDetails = () => {
 }
 
 export default TeamDetails;
-
-//team image via Active storage?
-
