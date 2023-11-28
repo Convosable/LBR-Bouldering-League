@@ -25,4 +25,8 @@ class ClimbingSet < ApplicationRecord
     #     end
     # end
 
+    def slugify
+        self.set_name.parameterize
+    end
+
 end

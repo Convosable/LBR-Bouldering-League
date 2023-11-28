@@ -83,10 +83,6 @@ const TeamSignup = () => {
     )
 }
 
-export default TeamSignup
+export default TeamSignup;
 
 // select a team to join with a password lock
-
-// if team doesnt exist click here to create a new team
-
-//can i set up a password to join a team??

@@ -332,6 +332,11 @@
   cursor: pointer;
 }
 
+.profile-header button:hover {
+  background-color: #a97979;
+  cursor: pointer;
+}
+
 .profile {
   text-align: center;
 }

@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 
 const ClimbingSetDetails = () => {
 
-    const {setName} = useParams();
+    const { slug } = useParams();
 
     const climbingSets = useSelector(state => state.climbingSets);
 
-    const set = climbingSets?.find(set => set.set_name === setName);
+    const set = climbingSets?.find(set => set.slug.toLowerCase() === slug.toLowerCase());
 
     if (!set) return <h2>Loading...</h2>
 

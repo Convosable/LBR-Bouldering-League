@@ -14,7 +14,7 @@ const ClimbingSets = () => {
                 <div className='climbing-sets' key={set.id}>
                     <h1>Week: {set.week} - {set.set_name}</h1>
                     <img src= {set.image_url} alt={set.set_name} />
-                    <Link to={`/climbing_sets/${set.set_name}`}>
+                    <Link to={`/climbing_sets/${set.slug}`}>
                         <p>Set Details / Log climbs</p>
                     </Link>
                 </div>
