@@ -12,6 +12,7 @@ const ClimbingSetDetails = () => {
 
     const set = climbingSets?.find(set => set.slug.toLowerCase() === slug.toLowerCase());
 
+
     if (!set) return <h2>Loading...</h2>
 
     return (

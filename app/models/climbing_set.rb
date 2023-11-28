@@ -17,8 +17,6 @@ class ClimbingSet < ApplicationRecord
         self.date_end.strftime('%B %d, %Y')
     end
 
-    ## disabled for seed data generation
-
     # def image_presence
     #     unless image.attached?
     #       errors.add(:image, "must be attached")

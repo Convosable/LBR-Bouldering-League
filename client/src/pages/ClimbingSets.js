@@ -7,6 +7,8 @@ const ClimbingSets = () => {
 
     const climbingSets = useSelector(state => state.climbingSets)
 
+    console.log(climbingSets)
+
     return (
         <div className='climbing-sets-container'>
             <h1> Climbing Sets</h1>

@@ -25,7 +25,7 @@ const Leaderboards = () => {
           {teams?.map((team, index) => (
             <div className={`leaderboard-team-card ${index === 0 ? 'leaderboard-1st' : index === 1 ? 'leaderboard-2nd' : index === 2 ? 'leaderboard-3rd' : ''}`} key={team.id}>
               <h1>{`${ordinalSuffix(index + 1)} Place:`}</h1>
-              <Link to={`/teams/${team.team_name}`}>
+              <Link to={`/teams/${team.slug}`}>
                   <h1>{team.team_name}</h1>
               </Link>
               <h1>{`${team.team_points} points`}</h1>
@@ -36,5 +36,3 @@ const Leaderboards = () => {
 }
 
 export default Leaderboards;
-
-//add a search for teams section
