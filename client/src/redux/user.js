@@ -19,6 +19,3 @@ export const { updateUser, addUserTeam } = userSlice.actions;
 
 // this is for configureStore
 export default userSlice.reducer;
-
-
-// dispatch(addUserTeam(team.id))
