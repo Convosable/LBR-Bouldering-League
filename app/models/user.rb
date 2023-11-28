@@ -12,9 +12,16 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     validates :handicap, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10  }
 
+    validate :username_one_word
 
     def full_name
         "#{first_name} #{last_name}"
+    end
+
+    def username_one_word
+        unless username =~ /\A\w+([-_.]\w+)*\z/
+          errors.add(:username, 'must be one word with optional underscores, dashes, or periods')
+        end
     end
 
     def update_points
