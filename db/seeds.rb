@@ -107,7 +107,8 @@ week1 = ClimbingSet.create(
         set_name: "Cave",
         week: 1,
         date_start: "2023-10-31",
-        date_end: "2023-11-07"
+        date_end: "2023-11-07",
+        notes: "First week! Start off strong!"
     }
 )
 week1.image.attach(
@@ -122,7 +123,8 @@ week1.image.attach(
         set_name: "Back Island",
         week: 2,
         date_start: "2023-11-07",
-        date_end: "2023-11-14"
+        date_end: "2023-11-14",
+        notes: "Good luck!"
     }
  )
  week2.image.attach(
