@@ -22,7 +22,6 @@ admin = User.create(
         password_digest: BCrypt::Password.create("password"),
         email: 'admin@lbr.com',
         handicap: 0,
-        points: 0,
         admin: true
     }
 )
