@@ -3,6 +3,8 @@ class Climb < ApplicationRecord
     has_many :users, through: :user_climbs
     belongs_to :climbing_set
 
+    attribute :points, :integer
+
     validates :grade, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10 }
     validates :color, presence: true
 
