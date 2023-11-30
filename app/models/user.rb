@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    attribute :points, :integer
+
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :username, presence: true, uniqueness: true
