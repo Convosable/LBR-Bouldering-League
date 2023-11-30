@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
     has_many :users
 
-    attribute :team_points, :integer
+    attribute :team_points, :integer, default: 0
 
     validates :team_name, presence: true, uniqueness: true
 
