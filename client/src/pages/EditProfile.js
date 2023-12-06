@@ -36,8 +36,11 @@ const EditProfile = () => {
             if (r.ok) {
                 r.json().then((user) => {
                     dispatch(updateUser(user))
-                    dispatch(updateTeamPoints({ teamId: user.team_id, points: user.team.team_points, userPoints: user.points, userId: user.id}))
-                })
+                    if (user.team !== null) {
+                        dispatch(updateTeamPoints({ teamId: user.team_id, points: user.team.team_points, userPoints: user.points, userId: user.id}))
+                    }
+                    })
+
                 navigate(`/${user.username}`)
             }
             else {

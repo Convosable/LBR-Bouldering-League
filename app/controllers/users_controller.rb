@@ -26,7 +26,9 @@ class UsersController < ApplicationController
     def update
       @current_user.update!(user_params)
       @current_user.update_points
-      @current_user.team.calculate_team_points
+      if @current_user.team
+        @current_user.team.calculate_team_points
+      end
       render json: @current_user, status: :accepted
     end
 
