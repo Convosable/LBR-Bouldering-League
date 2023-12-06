@@ -34,7 +34,7 @@ const TeamSignup = () => {
                 r.json().then(team => {
                     dispatch(addTeam(team))
                     dispatch(addUserTeam(team))
-                    navigate(`/teams/${team.team_name}`)
+                    navigate(`/teams/${team.slug}`)
                 });
 
                 setTeamName('')
@@ -44,7 +44,6 @@ const TeamSignup = () => {
             }
         })
     }
-
     
 
     return (

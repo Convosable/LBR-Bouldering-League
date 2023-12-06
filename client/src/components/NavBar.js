@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import logo from '../images/LBR-logo-bubble.png'
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { updateUser } from '../redux/user';
 
 const NavBar = () => {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
 
@@ -19,6 +20,7 @@ const NavBar = () => {
         .then((r) => {
             if(r.ok) {
                 dispatch(updateUser(null));
+                navigate('/');
             }
         })
     }

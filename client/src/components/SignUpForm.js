@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../redux/user';
@@ -14,6 +16,8 @@ const SignUpForm = () => {
     const [email, setEmail] = useState("")
     const [handicap, setHandicap] = useState('')
     const [image, setImage] = useState(null);
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const error = useSelector((state) => state.error.signupError);
@@ -41,7 +45,10 @@ const SignUpForm = () => {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((user) => dispatch(updateUser(user)))
+                r.json().then((user) => {
+                    dispatch(updateUser(user))
+                    navigate('/')
+                })
             }
             else {
                 r.json().then((errors) => {
