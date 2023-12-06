@@ -101,6 +101,23 @@ user4.image.attach(
 )
 
 
+
+user5 = User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    username: Faker::Internet.username,
+    password_digest: BCrypt::Password.create("password"),
+    email: Faker::Internet.email,
+    handicap: rand(10),
+    team_id: 2,
+    admin: false
+)
+user5.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/default_profile_pic.png')), 
+    filename: 'default_profile_pic.png'
+)
+
+
     
 week1 = ClimbingSet.create(
     {
@@ -133,20 +150,88 @@ week1.image.attach(
 )
 
 
+
 (1..9).each do |grade|
     Climb.create(
-      grade: grade,
-      color: Faker::Color.color_name,
-      climbing_set_id: 1
+        grade: grade,
+        color: Faker::Color.color_name,
+        climbing_set_id: 1
     )
 end
 
 (1..9).each do |grade|
     Climb.create(
-      grade: grade,
-      color: Faker::Color.color_name,
-      climbing_set_id: 2
+        grade: grade,
+        color: Faker::Color.color_name,
+        climbing_set_id: 2
     )
 end
+
+
+
+UserClimb.create(
+    [
+        {
+            climb_id: 1,
+            user_id: user1.id
+        },
+        {
+            climb_id: 3,
+            user_id: user1.id
+        },
+        {
+            climb_id: 5,
+            user_id: user1.id
+        },
+        {
+            climb_id: 7,
+            user_id: user1.id
+        },
+        {
+            climb_id: 2,
+            user_id: user2.id
+        },
+        {
+            climb_id: 8,
+            user_id: user2.id
+        },
+        {
+            climb_id: 12,
+            user_id: user2.id
+        },
+        {
+            climb_id: 13,
+            user_id: user2.id
+        },{
+            climb_id: 6,
+            user_id: user5.id
+        },
+        {
+            climb_id: 9,
+            user_id: user5.id
+        },
+        {
+            climb_id: 15,
+            user_id: user5.id
+        },
+        {
+            climb_id: 16,
+            user_id: user5.id
+        }
+    ]
+)
+
+
+
+user1.update_points
+user1.team.calculate_team_points
+
+user2.update_points
+user2.team.calculate_team_points
+
+user5.update_points
+user5.team.calculate_team_points
+
+
 
 puts "✅ Done seeding!"

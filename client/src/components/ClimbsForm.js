@@ -59,7 +59,6 @@ const ClimbsForm = ({ set }) => {
         })
     }
 
-
     return (
         <div>
             <form  className='climbs-form' onSubmit={handleSubmit}>

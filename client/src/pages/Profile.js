@@ -20,7 +20,7 @@ const Profile = () => {
             <h1>{user.full_name} - {user.points} points</h1>
             <h2>Handicap: V{user.handicap}</h2>
             { user.team 
-            ? <h2><Link to={`/teams/${user.team.team_name}`}>{user.team.team_name} - {user.team.team_points} points</Link></h2> 
+            ? <h2><Link to={`/teams/${user.team.slug}`}>{user.team.team_name} - {user.team.team_points} points</Link></h2> 
             : <h2>No Team</h2> }
             
             <h2>Completed Climbs:</h2>
