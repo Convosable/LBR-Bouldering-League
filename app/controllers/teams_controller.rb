@@ -15,6 +15,7 @@ class TeamsController < ApplicationController
             new_team = Team.create(team_params)
             if new_team.persisted?
                 @current_user.update(team_id: new_team.id)
+                new_team.calculate_team_points
                 render json: new_team, status: :created
             else
                 render json: { errors: new_team.errors.full_messages }, status: :unprocessable_entity

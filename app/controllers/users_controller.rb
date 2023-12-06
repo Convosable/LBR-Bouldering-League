@@ -35,12 +35,14 @@ class UsersController < ApplicationController
     def join_team
       team = Team.find(params[:team_id])
       @current_user.update(team: team)
+      team.calculate_team_points
       render json: @current_user, status: :accepted
     end
 
     def leave_team
       team = @current_user.team
       @current_user.update(team: nil)
+      team.calculate_team_points
       if team.users.empty?
           team.destroy
       end
