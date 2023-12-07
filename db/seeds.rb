@@ -222,13 +222,15 @@ UserClimb.create(
 )
 
 
-
+user1.reload
 user1.update_points
 user1.team.calculate_team_points
 
+user2.reload
 user2.update_points
 user2.team.calculate_team_points
 
+user3.reload
 user5.update_points
 user5.team.calculate_team_points
 

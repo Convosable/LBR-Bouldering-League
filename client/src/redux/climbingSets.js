@@ -21,6 +21,8 @@ export const climbingSetsSlice = createSlice({
                         week: updatedClimbingSet.week,
                         date_start: updatedClimbingSet.date_start,
                         date_end: updatedClimbingSet.date_end,
+                        formatted_start_date: updatedClimbingSet.formatted_start_date,
+                        formatted_end_date: updatedClimbingSet.formatted_end_date,
                         notes: updatedClimbingSet.notes,
                         image_url: updatedClimbingSet.image_url
                     }

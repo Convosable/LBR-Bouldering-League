@@ -44,10 +44,7 @@ const EditProfile = () => {
 
             }
             else {
-                r.json().then((errors) => {
-                    console.log(errors)
-                    dispatch(setProfileUpdateError(errors.errors))
-                })
+                r.json().then((errors) => dispatch(setProfileUpdateError(errors.errors)))
             }
         })
     }
