@@ -32,12 +32,11 @@ const TeamSignup = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(data => {
-                    const {team, user, slug} = data;
-                    dispatch(addTeam(team))
-                    dispatch(addUserTeam(team))
+                r.json().then(user => {
+                    dispatch(addTeam(user.team))
+                    dispatch(addUserTeam(user.team))
                     dispatch(updateUser(user))
-                    navigate(`/teams/${slug}`)
+                    navigate(`/teams/${user.team.slug}`)
                 });
 
                 setTeamName('')

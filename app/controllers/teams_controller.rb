@@ -16,12 +16,8 @@ class TeamsController < ApplicationController
             if new_team.persisted?
                 @current_user.update(team_id: new_team.id)
                 new_team.calculate_team_points
-                slug = new_team.slugify
-                render json: { 
-                    team: new_team, 
-                    user: @current_user,
-                    slug: slug
-                    }, status: :created
+                # slug = new_team.slugify
+                render json: @current_user, status: :created
             else
                 render json: { errors: new_team.errors.full_messages }, status: :unprocessable_entity
             end
