@@ -191,6 +191,9 @@ GEM
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
+    seed-fu (2.3.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     spring (4.1.1)
     stringio (3.0.8)
     thor (1.2.2)
@@ -219,6 +222,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.0)
+  seed-fu
   spring
   tzinfo-data
 
