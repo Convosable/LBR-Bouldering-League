@@ -43,11 +43,14 @@ function EditClimbingSetForm() {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((updatedSet) => {dispatch(updateClimbingSets(updatedSet))})
+                r.json().then((updatedSet) => {
+                    dispatch(updateClimbingSets(updatedSet))
+                    dispatch(setUpdateClimbingSetError(null))
+                })
                 navigate('/admin-tools')
             }
             else {
-                r.json().then((err) => {dispatch(setUpdateClimbingSetError(err.errors))});
+                r.json().then((err) => dispatch(setUpdateClimbingSetError(err.errors)));
             }
         })
     }

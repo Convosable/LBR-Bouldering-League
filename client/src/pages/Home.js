@@ -41,6 +41,4 @@ const Home = () => {
   )
 }
 
-export default Home
-
-// add to ponits system (submitting climbs late = 80 percent one week l;ate and 60 2 weeks and so on)
+export default Home;

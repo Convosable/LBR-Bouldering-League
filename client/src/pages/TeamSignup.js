@@ -41,13 +41,17 @@ const TeamSignup = () => {
 
                 setTeamName('')
             } else {
-                r.json().then(error => dispatch(setNewTeamError(error.errors)));
+                r.json().then(error => {
+                    dispatch(setNewTeamError(error.errors))
+                    setTimeout(() => {
+                        dispatch(setNewTeamError(null));
+                    }, 3000);
+                });
                 setTeamName('')
             }
         })
     }
     
-
     return (
         <div className='team-sign-up-container'>
             <div className='create-team'>

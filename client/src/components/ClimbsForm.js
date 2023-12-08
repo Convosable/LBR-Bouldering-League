@@ -17,6 +17,7 @@ const ClimbsForm = ({ set }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+
     function handleClimbToggle(climbId) {
         if (completedClimbs.includes(climbId)) {
             setCompletedClimbs(completedClimbs.filter(id => id !== climbId))
@@ -54,6 +55,9 @@ const ClimbsForm = ({ set }) => {
             } else {
                 r.json().then(error => {
                     dispatch(setClimbsFormError(error.errors))
+                    setTimeout(() => {
+                        dispatch(setClimbsFormError(null));
+                    }, 3000);
                 });
             }
         })
@@ -73,9 +77,9 @@ const ClimbsForm = ({ set }) => {
                         />
                     </div>
                 ))}
+                {error ? <h2>{error}</h2> : null}
                 <input type='submit'/>
             </form>
-            {error ? <h2>{error}</h2> : null}
         </div>
     )
 }

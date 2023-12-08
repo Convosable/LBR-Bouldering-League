@@ -47,6 +47,7 @@ const SignUpForm = () => {
             if (r.ok) {
                 r.json().then((user) => {
                     dispatch(updateUser(user))
+                    dispatch(setSignupError(null))
                     navigate('/')
                 })
             }

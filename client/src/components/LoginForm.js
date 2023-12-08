@@ -31,18 +31,18 @@ const LoginForm = () => {
             if (r.ok) {
                 r.json().then((user) => {
                     dispatch(updateUser(user))
+                    dispatch(setLoginError(null));
                     navigate('/')
                 });
             } else {
                 r.json().then((errors) => {
                     dispatch(setLoginError(errors.errors))
+                    setUsername('');
+                    setPassword('');
                 })
             }
         })  
     }
-
-    //reminder to clear form if error is hit
-
 
   return (
     <div className = 'login-signup-form' onSubmit = {handleSubmit}>

@@ -40,11 +40,14 @@ function NewClimbingSetForm() {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((newSet) => {dispatch(addClimbingSet(newSet))})
+                r.json().then((newSet) => {
+                    dispatch(addClimbingSet(newSet))
+                    dispatch(setNewClimbingSetError(null))
+                })
                 navigate('/admin-tools')
             }
             else {
-                r.json().then((err) => {dispatch(setNewClimbingSetError(err.errors))});
+                r.json().then((err) => dispatch(setNewClimbingSetError(err.errors)));
             }
         })
     }
