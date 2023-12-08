@@ -19,7 +19,7 @@ export const teamsSlice = createSlice({
         },
         addTeamMember: (state, action) => {
             const user = action.payload;
-            
+
             return state.map((team) => {
                 if (team.id === user.team_id) {
                   return {...team, users: [...team.users, user]};
@@ -55,10 +55,6 @@ export const teamsSlice = createSlice({
         }
     }
 });
-
-//is this bad to update the teams points and user points for the team state?? i thpught if i updated the user state gloabally it would auto update in team, but its nots unless i reload the page
-//but i am holding state for teams separtate than for users 
-
 
 // this is for dispatch
 export const { setTeams, addTeam, deleteTeam, addTeamMember, removeTeamMember, updateTeamPoints } = teamsSlice.actions;

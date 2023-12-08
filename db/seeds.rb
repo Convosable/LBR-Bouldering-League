@@ -6,13 +6,24 @@ ClimbingSet.destroy_all
 Climb.destroy_all
 
 
-5.times do 
-    Team.create(
-        {
-            team_name: Faker::Team.unique.name
-        }
-    )
-end
+Team.create([
+    {
+        team_name: "Team A"
+    },
+    {
+        team_name: "Team B"
+    },
+    {
+        team_name: "Team C"
+    },
+    {
+        team_name: "Team D"
+    },
+    {
+        team_name: "Team E"
+    }
+])
+
 
 admin = User.create(
     {
@@ -222,17 +233,14 @@ UserClimb.create(
 )
 
 
-user1.reload
 user1.update_points
-user1.team.calculate_team_points
+user1.team.calculate_team_points if user1.team.present?
 
-user2.reload
 user2.update_points
-user2.team.calculate_team_points
+user2.team.calculate_team_points if user2.team.present?
 
-user3.reload
 user5.update_points
-user5.team.calculate_team_points
+user5.team.calculate_team_points if user5.team.present?
 
 
 

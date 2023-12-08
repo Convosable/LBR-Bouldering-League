@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setNewTeamError } from '../redux/error'
 import { addTeam } from '../redux/teams'
 import { addUserTeam } from '../redux/user'
+import { updateUser } from '../redux/user'
 
 const TeamSignup = () => {
 
@@ -31,10 +32,12 @@ const TeamSignup = () => {
         })
         .then((r) => {
             if(r.ok) {
-                r.json().then(team => {
+                r.json().then(data => {
+                    const {team, user, slug} = data;
                     dispatch(addTeam(team))
                     dispatch(addUserTeam(team))
-                    navigate(`/teams/${team.slug}`)
+                    dispatch(updateUser(user))
+                    navigate(`/teams/${slug}`)
                 });
 
                 setTeamName('')
@@ -83,5 +86,3 @@ const TeamSignup = () => {
 }
 
 export default TeamSignup;
-
-// select a team to join with a password lock

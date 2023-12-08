@@ -19,7 +19,10 @@ const TeamDetails = () => {
     const user = useSelector(state => state.user);
     
 
-    const team = teams?.find((team) => team.slug.toLowerCase() === slug.toLowerCase());
+    const team = teams?.find((team) => team.slug === slug);
+
+    console.log(team);
+    console.log(user);
 
     function handleJoinTeam(e) {
         e.preventDefault()
