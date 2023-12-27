@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../redux/user';
+import { setUser } from '../redux/user';
 import { setSignupError } from '../redux/error';
+import { setLoginError } from '../redux/error';
+
 
 const SignUpForm = () => {
 
@@ -46,8 +48,9 @@ const SignUpForm = () => {
         .then((r) => {
             if (r.ok) {
                 r.json().then((user) => {
-                    dispatch(updateUser(user))
+                    dispatch(setUser(user))
                     dispatch(setSignupError(null))
+                    dispatch(setLoginError(null))
                     navigate('/')
                 })
             }

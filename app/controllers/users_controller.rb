@@ -9,6 +9,13 @@ class UsersController < ApplicationController
 
     def create 
       user = User.new(user_params)
+
+      if User.count.zero?
+        user.admin = true
+      else
+        user.admin = false
+      end
+    
       if params[:image].present? && params[:image] != 'null'
         user.image.attach(params[:image])
       else

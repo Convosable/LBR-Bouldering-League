@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import logo from '../images/LBR-logo-bubble.png'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../redux/user';
+import { setUser } from '../redux/user';
 
 
 
@@ -19,7 +19,7 @@ const NavBar = () => {
         })
         .then((r) => {
             if(r.ok) {
-                dispatch(updateUser(null));
+                dispatch(setUser(null));
                 navigate('/');
             }
         })

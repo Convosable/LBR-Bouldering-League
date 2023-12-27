@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../redux/user';
+import { setUser } from '../redux/user';
 import { setLoginError } from '../redux/error';
+import { setSignupError } from '../redux/error';
+
 
 const LoginForm = () => {
 
@@ -14,6 +16,7 @@ const LoginForm = () => {
 
     const dispatch = useDispatch();
     const error = useSelector((state) => state.error.loginError);
+
 
 
     function handleSubmit(e) {
@@ -30,8 +33,9 @@ const LoginForm = () => {
         .then((r) => {
             if (r.ok) {
                 r.json().then((user) => {
-                    dispatch(updateUser(user))
+                    dispatch(setUser(user))
                     dispatch(setLoginError(null));
+                    dispatch(setSignupError(null));
                     navigate('/')
                 });
             } else {

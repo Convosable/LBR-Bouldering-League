@@ -5,8 +5,11 @@ export const userSlice = createSlice({
     initialState: null,
 
     reducers: {
-        updateUser: (state, action) => {
+        setUser: (state, action) => {
             return action.payload;
+        },
+        updateUser: (state, action) => {
+            return { ...state, ...action.payload };
         },
         addUserTeam: (state, action) => {
             return { ...state, team: action.payload };
@@ -15,7 +18,7 @@ export const userSlice = createSlice({
 });
 
 // this is for dispatch
-export const { updateUser, addUserTeam } = userSlice.actions;
+export const { setUser, updateUser, addUserTeam } = userSlice.actions;
 
 // this is for configureStore
 export default userSlice.reducer;
