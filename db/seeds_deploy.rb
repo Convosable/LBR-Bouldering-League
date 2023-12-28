@@ -1,9 +1,9 @@
 puts "🌱 Seeding data..."
 
-# User.destroy_all
-# Team.destroy_all
-# ClimbingSet.destroy_all
-# Climb.destroy_all
+User.destroy_all
+Team.destroy_all
+ClimbingSet.destroy_all
+Climb.destroy_all
 
 # admin = User.create(
 #     {
