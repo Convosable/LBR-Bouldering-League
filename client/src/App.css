@@ -108,14 +108,14 @@
   padding-right: 30px;
 }
 
-.dropdown {
+.dropdown-menu {
   display: none;
 }
 
 /* Home */
 
 .home{
-  padding-left: 20px;
+  margin: 10px;
 }
 .home h1,
 .home h2 {
@@ -315,6 +315,7 @@
   padding-right: 10px;
 }
 .profile-header {
+  margin-top: 20px;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -658,13 +659,36 @@
   .navbar {
     display: none;
   }
-  .dropdown {
+  .dropdown-menu {
     display: block;
   }
+
+  .dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dropdown select{
+    cursor: pointer;
+    background-color: #7e5454;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1.5;
+    width: 245px;
+    text-align: center;
+  }
   
-  .dropdown img {
+  .dropdown-menu img {
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
+  }
+
+  .leaderboard-team-card {
+    width: 90%;
   }
 }
