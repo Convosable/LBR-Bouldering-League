@@ -7,15 +7,6 @@
   max-width: 30%;
 }
 
-@media (max-width: 768px) {
-  .login-container {
-    text-align: center;
-    padding: 20px;
-    margin: 100px auto;
-    max-width: 90%;
-  }
-}
-
 .login-container button {
   border: none;
   border-radius: 5px;
@@ -115,6 +106,10 @@
 .navbar img{
   width: 170px;
   padding-right: 30px;
+}
+
+.dropdown {
+  display: none;
 }
 
 /* Home */
@@ -651,4 +646,25 @@
   text-align: center;
   width: 40%;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    text-align: center;
+    padding: 20px;
+    margin: 100px auto;
+    max-width: 90%;
+  }
+  .navbar {
+    display: none;
+  }
+  .dropdown {
+    display: block;
+  }
+  
+  .dropdown img {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
 }
