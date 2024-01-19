@@ -2,7 +2,7 @@
 
 This project was created to allow Long Beach Rising to use an online platform to manage Bouldering League.  The application allows members of the gym to form a greater communityy over the duration of boudlering league as well as give transparency to how points are calculated, whos on which team, and how the leaderboards look. A memeber is able to sign up and either create or join an existing team.  They can then fill out a form to submit their completed climbs and have their points automatically calculated for themselves as well as for their entir team. As an admin, you can create new climbing sets and associated climbs for each week of bouldering league.   
 
-## Usage
+## Usage 
 
 To get the application preped to run in development, you can run:
 
