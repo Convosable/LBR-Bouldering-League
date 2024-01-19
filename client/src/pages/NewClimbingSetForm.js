@@ -68,6 +68,7 @@ function NewClimbingSetForm() {
                     <option value="3">Week 3</option>
                     <option value="4">Week 4</option>
                     <option value="5">Week 5</option>
+                    <option value="Grasshopper Board">Grasshopper Board</option>
                 </select>
                 <br></br>
                 <label>Start Date: </label>

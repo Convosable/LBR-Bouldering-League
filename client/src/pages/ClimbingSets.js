@@ -13,7 +13,7 @@ const ClimbingSets = () => {
             <div className='climbing-sets-container'>
                 {climbingSets?.map((set) => (
                     <div className='climbing-sets' key={set.id}>
-                        <h1>Week {set.week} - {set.set_name}</h1>
+                        {set.set_name === 'Grasshopper Board' ? <h1>{set.set_name}</h1> : <h1>Week {set.week} - {set.set_name}</h1>}
                         <img src= {set.image_url} alt={set.set_name} />
                         <Link to={`/climbing_sets/${set.slug}`}>
                             <p>Set Details / Log climbs</p>
