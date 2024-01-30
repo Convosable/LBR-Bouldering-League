@@ -13,6 +13,8 @@ function Admin() {
 
     const climbingSets = useSelector(state => state.climbingSets);
 
+    console.log(climbingSets)
+
     const dispatch = useDispatch();
 
     function toggleFormVisibility(setId) {
@@ -54,7 +56,11 @@ function Admin() {
                 <h2>Current Climbs:</h2>
                 {set.climbs.map((climb) => (
                   <div key={climb.id} className='admin-climbs'>
-                    <h3 >{climb.color} V{climb.grade}</h3>
+                    { 
+                      set.set_name === 'Grasshopper Board' ? 
+                      <h3>{climb.name} V{climb.grade}</h3> :
+                      <h3>{climb.color} V{climb.grade}</h3>
+                    }
                     <button onClick = {() => handleDeleteClimb(climb)}>Delete</button>
                   </div>
                 ))}

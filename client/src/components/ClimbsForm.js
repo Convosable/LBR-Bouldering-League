@@ -69,7 +69,9 @@ const ClimbsForm = ({ set }) => {
                 <h2>Submit climbs here:</h2>
                 {set.climbs.map((climb) => (
                     <div className='climbs' key={climb.id}>
-                        <h2>{climb.color} V{climb.grade}</h2>
+                        {set.set_name === 'Grasshopper Board' ? 
+                        <h2>{climb.name} V{climb.grade}</h2> :
+                        <h2>{climb.color} V{climb.grade}</h2>}
                         <input 
                             type="checkbox" 
                             checked={completedClimbs.includes(climb.id)}

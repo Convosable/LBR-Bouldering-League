@@ -7,7 +7,7 @@ const NewClimbForm = ({ set }) => {
 
     const [grade, setGrade] = useState('')
     const [color, setColor] = useState('')
-    // const [name, setName] = useState('')
+    const [name, setName] = useState('')
 
     const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const NewClimbForm = ({ set }) => {
         const climbInfo = {
             grade: grade,
             color: color,
-            // name: name
+            name: name
         }
         fetch(`/climbing_sets/${set.id}/climbs`, {
             method: 'POST',
@@ -25,10 +25,13 @@ const NewClimbForm = ({ set }) => {
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then((newClimb) => {dispatch(addClimbingSetClimb(newClimb))})
+                r.json().then((newClimb) => {
+                    dispatch(addClimbingSetClimb(newClimb))
+                    console.log(newClimb)
+                })
                 setGrade('')
                 setColor('')
-                // setName('')
+                setName('')
             }
         })
     }
@@ -43,18 +46,20 @@ const NewClimbForm = ({ set }) => {
                     <option value="Yellow">Yellow</option>
                     <option value="Green">Green</option>
                     <option value="Blue">Blue</option>
-                    <option value="Puple">Puple</option>
+                    <option value="Purple">Purple</option>
                     <option value="Pink">Pink</option>
                     <option value="White">White</option>
                     <option value="Black">Black</option>
                     <option value="Wood">Wood</option>
                     <option value="Grasshopper">Grasshopper</option>
                 </select>
-                {/* { color = 'Grasshopper' 
+                { color === 'Grasshopper' 
                     ?
                  <input placeholder='Name' name='name' value={name} onChange={(e) => setName(e.target.value)} /> 
                     :
-                null } */}
+                null }
+
+                {/* add link to grasshopper climb?? */}
                 <select name="grade" value={grade} onChange={(e) => setGrade(e.target.value)}>
                     <option value="" disabled>Grade</option>
                         {Array.from({ length: 11 }, (i, index) => (
