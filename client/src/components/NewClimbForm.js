@@ -7,6 +7,7 @@ const NewClimbForm = ({ set }) => {
 
     const [grade, setGrade] = useState('')
     const [color, setColor] = useState('')
+    // const [name, setName] = useState('')
 
     const dispatch = useDispatch();
 
@@ -14,7 +15,8 @@ const NewClimbForm = ({ set }) => {
         e.preventDefault()
         const climbInfo = {
             grade: grade,
-            color: color
+            color: color,
+            // name: name
         }
         fetch(`/climbing_sets/${set.id}/climbs`, {
             method: 'POST',
@@ -26,6 +28,7 @@ const NewClimbForm = ({ set }) => {
                 r.json().then((newClimb) => {dispatch(addClimbingSetClimb(newClimb))})
                 setGrade('')
                 setColor('')
+                // setName('')
             }
         })
     }
@@ -45,7 +48,13 @@ const NewClimbForm = ({ set }) => {
                     <option value="White">White</option>
                     <option value="Black">Black</option>
                     <option value="Wood">Wood</option>
+                    <option value="Grasshopper">Grasshopper</option>
                 </select>
+                {/* { color = 'Grasshopper' 
+                    ?
+                 <input placeholder='Name' name='name' value={name} onChange={(e) => setName(e.target.value)} /> 
+                    :
+                null } */}
                 <select name="grade" value={grade} onChange={(e) => setGrade(e.target.value)}>
                     <option value="" disabled>Grade</option>
                         {Array.from({ length: 11 }, (i, index) => (

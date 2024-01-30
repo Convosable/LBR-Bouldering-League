@@ -166,6 +166,7 @@ week1.image.attach(
     Climb.create(
         grade: grade,
         color: Faker::Color.color_name,
+        name: '',
         climbing_set_id: 1
     )
 end
@@ -174,6 +175,7 @@ end
     Climb.create(
         grade: grade,
         color: Faker::Color.color_name,
+        name: '',
         climbing_set_id: 2
     )
 end

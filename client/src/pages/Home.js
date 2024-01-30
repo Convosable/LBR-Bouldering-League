@@ -1,9 +1,10 @@
 import React from 'react'
 
 const Home = () => {
+  
   return (
     <div className='home'>
-        <h1>Welcome to Long Beach Rising Bouldering Leage!</h1>
+        <h1>Welcome to Long Beach Rising Bouldering League!</h1>
 
           <p>Remember, the main goals of bouldering league are to:</p>  
             <li>Try your hardest and become a better and strong climber.</li>
@@ -26,7 +27,7 @@ const Home = () => {
             <li>V4-V5: 100 points</li>
             <li>V6: 150 points</li>
             <li>V7: 200 points</li>
-            <li>V8-V9: 0 points... Chris needs to move up his handicapo level</li>
+            <li>V8-V9: 0 points... Chris needs to move up his handicap level</li>
 
         <h2>Rules</h2>
           <li>Each team will consist of 4 climbers.</li>
