@@ -584,6 +584,13 @@
   background-color: #0074d9;
 }
 
+.admin-new-climb-form input {
+  box-sizing: border-box;
+  width: 80%;
+  height: 35px;
+  border-radius: 5px;
+}
+
 /* Admin New Climbing Set  */
 
 .admin-new-climbing-set {

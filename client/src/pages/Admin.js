@@ -58,7 +58,7 @@ function Admin() {
                   <div key={climb.id} className='admin-climbs'>
                     { 
                       set.set_name === 'Grasshopper Board' ? 
-                      <h3>{climb.name} V{climb.grade}</h3> :
+                      <h3>{climb.name} - V{climb.grade}</h3> :
                       <h3>{climb.color} V{climb.grade}</h3>
                     }
                     <button onClick = {() => handleDeleteClimb(climb)}>Delete</button>

@@ -70,7 +70,7 @@ const ClimbsForm = ({ set }) => {
                 {set.climbs.map((climb) => (
                     <div className='climbs' key={climb.id}>
                         {set.set_name === 'Grasshopper Board' ? 
-                        <h2>{climb.name} V{climb.grade}</h2> :
+                        <h2>{climb.name} - V{climb.grade}</h2> :
                         <h2>{climb.color} V{climb.grade}</h2>}
                         <input 
                             type="checkbox" 

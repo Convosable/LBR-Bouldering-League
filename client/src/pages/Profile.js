@@ -9,7 +9,7 @@ const Profile = () => {
     const navigate = useNavigate();
     const climbingSets = useSelector(state => state.climbingSets)
 
-    console.log(climbingSets)
+    console.log()
 
     return (
         <div className='profile'>
@@ -34,9 +34,11 @@ const Profile = () => {
                         <div key={set.id} className="week-set">
                             <h2>Week {set.week}: {set.set_name}</h2>
                             {completedClimbs.map((climb) => (
-                                <li key={climb.id}>
-                                    {climb.color} V{climb.grade} - {climb.points} points
-                                </li>
+                                <div>
+                                    {climb.color === 'Grasshopper' ? 
+                                        <li key={climb.id}>{climb.name} - V{climb.grade}</li> :
+                                        <li key={climb.id}>{climb.color} V{climb.grade}</li>}
+                                </div>
                             ))}
                         </div>
                     );
