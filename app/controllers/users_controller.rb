@@ -31,6 +31,9 @@ class UsersController < ApplicationController
     end
 
     def update
+      if params[:image].present? && params[:image] != 'null'
+        @current_user.image.attach(params[:image])
+      end
       @current_user.update!(user_params)
       @current_user.update_points
       if @current_user.team

@@ -18,19 +18,23 @@ const EditProfile = () => {
     const [username, setUsername] = useState(user.username)
     const [email, setEmail] = useState(user.email)
     const [handicap, setHandicap] = useState(user.handicap)
+    const [image, setImage] = useState(user.image);
 
     function handleEditProfile(e) {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('user[username]', username);
+        formData.append('user[first_name]', firstName);
+        formData.append('user[last_name]', lastName);
+        formData.append('user[email]', email);
+        formData.append('user[handicap]', handicap);
+        if (image) {
+            formData.append('image', image);
+        }
+
         fetch(`/users/${user.id}`, {
             method: 'PATCH',
-            headers: { 'content-type': 'application/json'},
-            body: JSON.stringify({
-                first_name: firstName,
-                last_name: lastName,
-                username: username,
-                email: email,
-                handicap: handicap
-            })
+            body: formData
         })
         .then((r) => {
             if (r.ok) {
@@ -73,6 +77,8 @@ const EditProfile = () => {
                         </option>
                     ))}
                 </select> <br></br>
+                <label>Profile Picture:</label>
+                <input type="file" accept="image/*" onChange={(e) =>  setImage(e.target.files[0])}/>  <br></br>
                 <input type="submit" value="Save" />
             </form>
             {errors?.map((err) => (
